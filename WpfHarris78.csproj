@@ -102,6 +102,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="fonts\pixelmix.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="fonts\ProggySquareSZ.ttf" />
+    <Resource Include="fonts\PTSans\PTC_bold.ttf" />
+    <Resource Include="fonts\PTSans\PTN_bold.ttf" />
+    <Resource Include="fonts\PTSans\PTS_bold_italic.ttf" />
+    <Resource Include="fonts\PTSans\PTS_italic.ttf" />
+    <Resource Include="fonts\Targa.ttf" />
+    <Resource Include="fonts\whiterabbit.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -216,6 +226,7 @@
   <ItemGroup>
     <Resource Include="display.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

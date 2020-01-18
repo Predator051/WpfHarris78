@@ -122,7 +122,7 @@ namespace WpfHarris78
 
             //SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             switcher.InitToOff();
-            displayFonts.AddFontFile(@"fonts\pixelmix.ttf");
+            displayFonts.AddFontFile(@"pixelmix.ttf");
             richDispley.FontFamily = new FontFamily(displayFonts.Families[0].Name);
             richDispley.FontWeight = FontWeight.FromOpenTypeWeight(500);
             richDispley.Background = new SolidColorBrush(displayColor);
