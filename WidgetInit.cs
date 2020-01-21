@@ -2344,6 +2344,10 @@ namespace Harris7800HMP
                 }
 
                 wdg.PrepareToShowWidget(GetNameMenu(MenuNames.OptionMsgMenu));
+            })); 
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("CLR", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                wdg.ShowPreviousWidget();
             }));
             optionMenu.AddParam(new Param("RebuildByStationMode", null, "", 1, 0, () =>
             {
@@ -2505,6 +2509,10 @@ namespace Harris7800HMP
 
             }));
 
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("CLR", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                wdg.ShowPreviousWidget();
+            }));
             optionMenu.AddActionToParam(optionMenu.GetParam("Bit"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
             {
                 var activeParam = wdg.ActiveParam();

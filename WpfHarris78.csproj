@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\DBBridge.cs" />
+    <Compile Include="Database\DBManager.cs" />
+    <Compile Include="Database\LessonsManager.cs" />
     <Compile Include="RadioModules.cs" />
     <Compile Include="RadioStation.cs" />
     <Compile Include="Switcher.cs" />
@@ -102,16 +120,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="fonts\pixelmix.ttf">
+    <Resource Include="Fonts\pixelmix.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="fonts\ProggySquareSZ.ttf" />
-    <Resource Include="fonts\PTSans\PTC_bold.ttf" />
-    <Resource Include="fonts\PTSans\PTN_bold.ttf" />
-    <Resource Include="fonts\PTSans\PTS_bold_italic.ttf" />
-    <Resource Include="fonts\PTSans\PTS_italic.ttf" />
-    <Resource Include="fonts\Targa.ttf" />
-    <Resource Include="fonts\whiterabbit.ttf" />
+    <Resource Include="Fonts\ProggySquareSZ.ttf" />
+    <Resource Include="Fonts\PTSans\PTC_bold.ttf" />
+    <Resource Include="Fonts\PTSans\PTN_bold.ttf" />
+    <Resource Include="Fonts\PTSans\PTS_bold_italic.ttf" />
+    <Resource Include="Fonts\PTSans\PTS_italic.ttf" />
+    <Resource Include="Fonts\Targa.ttf" />
+    <Resource Include="Fonts\whiterabbit.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -226,7 +244,27 @@
   <ItemGroup>
     <Resource Include="display.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Database\Database.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\Database_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Database.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
