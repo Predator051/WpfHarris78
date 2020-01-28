@@ -39,13 +39,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock TextWrapping="Wrap" Text="Шлях до інформаційного файлу:" Height="26" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" FontSize="14" HorizontalAlignment="Center" Margin="10,28,549,365" Width="233" TextDecorations="{x:Null}" Focusable="True" TextAlignment="Right"/>
         <Border BorderBrush="#FFB81212" BorderThickness="1" HorizontalAlignment="Left" Height="3" Margin="10,10,0,0" VerticalAlignment="Top" Width="759" Background="#FFB81212"/>
-        <TextBox x:Name="tbPdfFilePath" HorizontalAlignment="Left" Height="26" Margin="257,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="512" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" PreviewMouseUp="tbPdfFilePath_PreviewMouseUp"/>
+        <TextBox x:Name="tbPdfFilePath" HorizontalAlignment="Left" Height="26" Margin="495,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" PreviewMouseUp="tbPdfFilePath_PreviewMouseUp"/>
         <Border BorderBrush="#FFB81212" BorderThickness="1" HorizontalAlignment="Left" Height="391" Margin="248,18,0,0" VerticalAlignment="Top" Width="4" Background="#FFB81212"/>
-        <TextBlock TextWrapping="Wrap" Text="Назва вправи:" Height="26" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" FontSize="14" HorizontalAlignment="Center" Margin="10,59,549,334" Width="233" TextDecorations="{x:Null}" TextAlignment="Right"/>
-        <TextBox x:Name="tbLessonName" HorizontalAlignment="Left" Height="26" Margin="257,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="512" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro"/>
+        <TextBox x:Name="tbLessonName" HorizontalAlignment="Left" Height="26" Margin="373,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro"/>
         <Button x:Name="btSave" Content="Створити" HorizontalAlignment="Left" Margin="707,378,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource btnLightRed}" Click="btSave_Click"/>
         <Separator HorizontalAlignment="Left" Height="20" Margin="257,353,0,0" VerticalAlignment="Top" Width="525"/>
+        <TextBlock TextWrapping="Wrap" Text="Шлях до інформаційного файлу:" Height="26" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" FontSize="14" HorizontalAlignment="Center" Margin="257,33,302,360" Width="233" TextDecorations="{x:Null}" Focusable="True" TextAlignment="Right"/>
+        <TextBlock TextWrapping="Wrap" Text="Назва вправи:" Height="26" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" FontSize="14" HorizontalAlignment="Center" Margin="257,59,424,334" Width="111" TextDecorations="{x:Null}" TextAlignment="Right"/>
+        <syncfusion:TreeViewAdv HorizontalAlignment="Left" Height="391" Margin="10,18,0,0" VerticalAlignment="Top" Width="233">
+            <syncfusion:TreeViewItemAdv EditedItemTemplate="{x:Null}" EditedItemTemplateSelector="{x:Null}" ExpanderStyle="{x:Null}" FakeItemTemplate="{x:Null}" FakeItemTemplateSelector="{x:Null}" Header="Item1" IsImageSourceFreeze="False">
+                <syncfusion:TreeViewItemAdv EditedItemTemplate="{x:Null}" EditedItemTemplateSelector="{x:Null}" ExpanderStyle="{x:Null}" FakeItemTemplate="{x:Null}" FakeItemTemplateSelector="{x:Null}" Header="Item1" IsImageSourceFreeze="False">
+
+                </syncfusion:TreeViewItemAdv>
+            </syncfusion:TreeViewItemAdv>
+        </syncfusion:TreeViewAdv>
     </Grid>
 </Window>

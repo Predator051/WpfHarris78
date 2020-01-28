@@ -19,6 +19,7 @@ namespace Harris7800HMP
         private int y;
         private int fontSize = 6;
         private bool isVisible = true;
+        public object container = null;
 
         public Param(string name, Action<string, Param> act, string text, int xX, int yY, Action update = null)
         {
@@ -106,6 +107,7 @@ namespace Harris7800HMP
         };
         private Dictionary<Param, List<RadioStationMode>> awailableParamForMode = new Dictionary<Param, List<RadioStationMode>>();
         private Dictionary<string, Object> objectContainer = new Dictionary<string, Object>();
+        private List<Param> ignorParams = new List<Param>(); 
         public Widget(string name)
         {
             this.name = name;
@@ -132,6 +134,27 @@ namespace Harris7800HMP
         public Param ActiveParam()
         {
             return parameters.Find(param => param.IsActive);
+        }
+
+        public void ignorParam(string name)
+        {
+            ignorParam(GetParam(name));
+        }
+
+        public void ignorParam(Param pr)
+        {
+            pr.IsVisible = false;
+            if (ignorParams.Contains(pr)) return;
+            ignorParams.Add(pr);
+        }
+        public void unignorParam(string name)
+        {
+            unignorParam(GetParam(name));
+        }
+        public void unignorParam(Param pr)
+        {
+            pr.IsVisible = true;
+            ignorParams.Remove(pr);
         }
 
         public List<Param> GetActiveParamsBy(Func<Param, bool> selectFunc = null)
@@ -248,13 +271,29 @@ namespace Harris7800HMP
                 }
             }
         }
-        public void VisibleParamsByNode(RadioStationMode mode)
+        public void VisibleParamsByNode(RadioStationMode mode, bool useIngorList = false)
         {
             var paramsByNode = GetParamByMode(mode);
 
             foreach (var pr in parameters)
             {
                 if (paramsByNode.Contains(pr))
+                {
+                    if (useIngorList && ignorParams.Contains(pr))
+                    {
+                        pr.IsVisible = false;
+                        continue;
+                    }
+                    pr.IsVisible = true;
+                }
+            }
+        }
+
+        public void VisibleParamsBy (Func<Param, bool> predicat)
+        {
+            foreach(var pr in parameters)
+            {
+                if (predicat(pr))
                 {
                     pr.IsVisible = true;
                 }

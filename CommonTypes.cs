@@ -219,7 +219,9 @@ namespace Harris7800HMP
             public string keyName = "";
             public string keyVal = "";
             public string keyAws = "";
+            public RadioStationMode stationMode = RadioStationMode.Fix;
             public int updateCount = 0;
+            public KeyType type = KeyType.None;
             public string CountToString()
             {
                 if (updateCount < 10)
@@ -236,10 +238,64 @@ namespace Harris7800HMP
             {KeyType.Aes128, new List<KeyValue>() },
         };
 
+        public int Count(Func<KeyValue, bool> predicat)
+        {
+            int result = 0;
+
+            foreach (var pair in keys)
+            {
+                foreach (var keyVal in pair.Value)
+                {
+                    if ((bool)predicat?.Invoke(keyVal))
+                    {
+                        result++;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public KeyValuePair<KeyType, KeyValue> FindFirstCryptoKey ( Func<KeyType, KeyValue, bool> predicat)
+        {
+            foreach(var pair in keys)
+            {
+                foreach (var keyVal in pair.Value)
+                {
+                    if ((bool)predicat?.Invoke(pair.Key, keyVal))
+                    {
+                        return new KeyValuePair<KeyType, KeyValue>(pair.Key, keyVal);
+                    }
+                }
+            }
+
+            return new KeyValuePair<KeyType, KeyValue>(KeyType.None, null);
+        }
+
+        public List<KeyValue> GetCryptoKeysByMode (RadioStationMode mode)
+        {
+            List<KeyValue> keysResult = new List<KeyValue>();
+
+
+            foreach (var pair in keys)
+            {
+                foreach (var keyVal in pair.Value)
+                {
+                    if (keyVal.stationMode == mode)
+                    {
+                        keysResult.Add(keyVal);
+                    }
+                }
+            }
+
+            return keysResult;
+        }
+
         public Dictionary<KeyType, List<KeyValue>> Keys { get => keys; set => keys = value; }
 
         public void AddKey(KeyType type, KeyValue value)
         {
+            value.type = type;
             keys[type].Add(value);
         }
 

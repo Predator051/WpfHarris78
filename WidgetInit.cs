@@ -43,6 +43,7 @@ namespace Harris7800HMP
             OptionTestBitMenu,
             OptionTestBatteryMenu,
             OptionTestTempMenu,
+            OptionTestVswrMenu,
             OptionTestSpecialMenu,
             OptionTestSpecialVersionMenu,
             OptionTestSpecialConfigMenu,
@@ -79,6 +80,7 @@ namespace Harris7800HMP
             var optionMenu = InitOptionMenu(station);
             var optionMenu2 = InitOptionMenu2(station);
             var optionMenuTest = InitOptionMenuTest(station);
+            var optionMenuTestVswr = InitOptionTestVswr(station);
             var optionMenuRadio = InitOptionMenuRadio(station);
             var keyBoardLock = InitKeyboardLockMenu(station);
             var optionMenuGps = InitOptionGpsTodMenu(station);
@@ -167,6 +169,7 @@ namespace Harris7800HMP
             optionMenuTest.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestBatteryMenu), optionTestBatteryMenu);
             optionMenuTest.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestTempMenu), optionTestTempMenu);
             optionMenuTest.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestSpecialMenu), optionTestSpecialMenu);
+            optionMenuTest.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestVswrMenu), optionMenuTestVswr);
 
             optionTestSpecialMenu.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestSpecialVersionMenu), optionTestSpecialVersionMenu);
             optionTestSpecialMenu.AddAvailableWidget(GetNameMenu(MenuNames.OptionTestSpecialConfigMenu), optionTestSpecialConfigMenu);
@@ -185,6 +188,7 @@ namespace Harris7800HMP
 
             widgetContainer.Add(GetNameMenu(MenuNames.MainMenu), mainMenu);
             widgetContainer.Add(GetNameMenu(MenuNames.OptionMsgEnterSmsMenu), optionMsgEnterSmsMenu);
+            widgetContainer.Add(GetNameMenu(MenuNames.ProgramComsecKeysMenu), programComsecKeysMenu);
 
             return mainMenu;
         }
@@ -244,7 +248,23 @@ namespace Harris7800HMP
             }, "CLR", 3, 5))
                 .AddModesForParam("VoiceValue", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
             mainMenu
-                .AddParam(new Param("KeyValue", null, "▬▬▬▬▬", 3, 11))
+                .AddParam(new Param("KeyValue", null, "▬▬▬▬▬", 3, 11, () => {
+                    var keyValueParam = mainMenu.GetParam("KeyValue");
+                    if (station.GetState() != SwitcherState.CT)
+                    {
+                        keyValueParam.text = "▬▬▬▬▬";
+                        return;
+                    }
+
+                    List<KeyModule.KeyValue> keys = station.Keys.GetCryptoKeysByMode(station.Mode);
+
+                    if (keys.Count == 0)
+                    {
+                        keyValueParam.text = "▬▬▬▬▬";
+                        keyValueParam.container = null;
+                    }
+
+                }))
                 .AddModesForParam("KeyValue", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
             mainMenu
                 .AddParam(new Param("ChanValue", (string text, Param cParam) =>
@@ -263,6 +283,35 @@ namespace Harris7800HMP
                 .AddModesForParam("Key", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
             mainMenu.AddParam(new Param("Chan", null, "CHAN", 4, 35))
                 .AddModesForParam("Chan", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
+            //CT State and KeyValue == active
+            mainMenu.AddParam(new Param("KeyName", null, "", 4, 0, () => {
+                var myParam = mainMenu.GetParam("KeyName");
+                var keyValueParam = mainMenu.GetParam("KeyValue");
+
+                if (station.GetState() != SwitcherState.CT 
+                || station.Keys.Count(val => val.stationMode == station.Mode) == 0
+                || !keyValueParam.IsActive) return;
+
+                myParam.Text = keyValueParam.Text;
+            }))
+                .AddModesForParam("KeyName", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
+            mainMenu.AddParam(new Param("Sig", null, "SIG:QBLV", 4, 23))
+                .AddModesForParam("Sig", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
+            mainMenu.AddParam(new Param("UC", null, "UC:00", 4, 35))
+                .AddModesForParam("UC", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
+
+            var dataTitleParam = mainMenu.GetParam("Data");
+            var voiceTitleParam = mainMenu.GetParam("Voice");
+            var keyTitleParam = mainMenu.GetParam("Key");
+            var chanTitleParam = mainMenu.GetParam("Chan");
+
+            var keyNameParam = mainMenu.GetParam("KeyName");
+            var sigParam = mainMenu.GetParam("Sig");
+            var usParam = mainMenu.GetParam("UC");
+
+            mainMenu.ignorParam(keyNameParam);
+            mainMenu.ignorParam(sigParam);
+            mainMenu.ignorParam(usParam);
 
             mainMenu.AddActionToParam(mainMenu.GetParam("SQ"), new Button("SQL", (Button btn, RadioStation rs, Widget wdg) =>
             {
@@ -308,6 +357,19 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("KeyValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
+                            if (station.GetState() != SwitcherState.CT
+                                || station.Keys.Count(val => val.stationMode == station.Mode) == 0) return;
+
+                            mainMenu.ignorParam(dataTitleParam);
+                            mainMenu.ignorParam(voiceTitleParam);
+                            mainMenu.ignorParam(keyTitleParam);
+                            mainMenu.ignorParam(chanTitleParam);
+
+                            mainMenu.unignorParam(keyNameParam);
+                            mainMenu.unignorParam(sigParam);
+                            mainMenu.unignorParam(usParam);
+
                             break;
                         }
                     case "KeyValue":
@@ -315,6 +377,16 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("VoiceValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
+                            mainMenu.unignorParam(dataTitleParam);
+                            mainMenu.unignorParam(voiceTitleParam);
+                            mainMenu.unignorParam(keyTitleParam);
+                            mainMenu.unignorParam(chanTitleParam);
+
+                            mainMenu.ignorParam(keyNameParam);
+                            mainMenu.ignorParam(sigParam);
+                            mainMenu.ignorParam(usParam);
+
                             break;
                         }
                     case "VoiceValue":
@@ -322,6 +394,7 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("DataValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
                             break;
                         }
                     case "DataValue":
@@ -369,6 +442,16 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("DataValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
+                            dataTitleParam.IsVisible = true;
+                            voiceTitleParam.IsVisible = true;
+                            keyTitleParam.IsVisible = true;
+                            chanTitleParam.IsVisible = true;
+
+                            keyNameParam.IsVisible = false;
+                            sigParam.IsVisible = false;
+                            usParam.IsVisible = false;
+
                             break;
                         }
                     case "KeyValue":
@@ -377,6 +460,16 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("ChanValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
+                            mainMenu.unignorParam(dataTitleParam);
+                            mainMenu.unignorParam(voiceTitleParam);
+                            mainMenu.unignorParam(keyTitleParam);
+                            mainMenu.unignorParam(chanTitleParam);
+
+                            mainMenu.ignorParam(keyNameParam);
+                            mainMenu.ignorParam(sigParam);
+                            mainMenu.ignorParam(usParam);
+
                             break;
                         }
                     case "VoiceValue":
@@ -385,6 +478,18 @@ namespace Harris7800HMP
                             var param = wdg.GetParam("KeyValue");
                             wdg.DeactiveParam();
                             param.IsActive = true;
+
+                            if (station.GetState() != SwitcherState.CT
+                                || station.Keys.Count(val => val.stationMode == station.Mode) == 0) return;
+
+                            mainMenu.ignorParam(dataTitleParam);
+                            mainMenu.ignorParam(voiceTitleParam);
+                            mainMenu.ignorParam(keyTitleParam);
+                            mainMenu.ignorParam(chanTitleParam);
+
+                            mainMenu.unignorParam(keyNameParam);
+                            mainMenu.unignorParam(sigParam);
+                            mainMenu.unignorParam(usParam);
 
                             break;
                         }
@@ -688,6 +793,73 @@ namespace Harris7800HMP
                 activeParam.Action(text);
                 activeParam.ActiveTo = text.Length;
             }));
+            mainMenu.AddActionToParam(mainMenu.GetParam("KeyValue"), new Button("UP", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                var activeParam = wdg.ActiveParam();
+
+                if (activeParam == null
+                    || activeParam.Name != "KeyValue" 
+                    || station.GetState() != SwitcherState.CT)
+                {
+                    return;
+                }
+
+                List<KeyModule.KeyValue> keys = station.Keys.GetCryptoKeysByMode(station.Mode);
+
+                if (keys.Count == 0) return;
+
+                if (activeParam.text == "▬▬▬▬▬")
+                {
+                    activeParam.Text = keys[0].keyName;
+                    activeParam.container = keys[0];
+                    return;
+                }
+
+                int index = keys.IndexOf(activeParam.container as KeyModule.KeyValue);
+                index++;
+                if (index > keys.Count - 1) index = 0;
+
+                activeParam.Text = keys[index].keyName;
+                activeParam.container = keys[index];
+
+                if (keys.Count == 1) return;
+
+                sigParam.Text = "SIG:" + Helper.RandomString(4);
+
+            }));
+            mainMenu.AddActionToParam(mainMenu.GetParam("KeyValue"), new Button("DOWN", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                var activeParam = wdg.ActiveParam();
+
+                if (activeParam == null
+                    || activeParam.Name != "KeyValue"
+                    || station.GetState() != SwitcherState.CT)
+                {
+                    return;
+                }
+
+                List<KeyModule.KeyValue> keys = station.Keys.GetCryptoKeysByMode(station.Mode);
+
+                if (keys.Count == 0) return;
+
+                if (activeParam.text == "▬▬▬▬▬")
+                {
+                    activeParam.Text = keys[0].keyName;
+                    activeParam.container = keys[0];
+                    return;
+                }
+
+                int index = keys.IndexOf(activeParam.container as KeyModule.KeyValue);
+                index--;
+                if (index < 0) index = keys.Count - 1;
+
+                activeParam.Text = keys[index].keyName;
+                activeParam.container = keys[index];
+
+                if (keys.Count == 1) return;
+
+                sigParam.Text = "SIG:" + Helper.RandomString(4);
+            }));
             mainMenu.AddActionToParam(mainMenu.GetParam("Chan"), new Button("CLR", (Button btn, RadioStation rs, Widget wdg) =>
             {
                 wdg.DeactiveParam();
@@ -797,13 +969,36 @@ namespace Harris7800HMP
 
             mainMenu.AddParam(new Param("3GTitle", null, "INCOMPLETE 3G FILL", 2, 4), false).AddModeForParam("3GTitle", RadioStationMode.ThreeG);
 
-
             mainMenu.AddParam(new Param("RebuildByStationMode", null, "", 1, 0, () =>
             {
                 var modeParams = mainMenu.GetParamByMode(station.Mode);
 
                 mainMenu.InvisibleAllParams();
-                mainMenu.VisibleParamsByNode(station.Mode);
+                mainMenu.VisibleParamsByNode(station.Mode, true);
+                
+                if (station.GetState() == SwitcherState.CT
+                                && station.Keys.Count(val => val.stationMode == station.Mode) != 0
+                    && mainMenu.GetParam("KeyValue").Text == "▬▬▬▬▬")
+                {
+                    List<KeyModule.KeyValue> keys = station.Keys.GetCryptoKeysByMode(station.Mode);
+
+                    mainMenu.GetParam("KeyValue").Text = keys[0].keyName;
+                    mainMenu.GetParam("KeyValue").container = keys[0];
+
+                    keyNameParam.Text = keys[0].keyName;
+                }
+
+                if (mainMenu.GetParam("KeyValue").Text == "▬▬▬▬▬")
+                {
+                    mainMenu.GetParam("KeyValue").Y = 11;
+                    mainMenu.GetParam("ChanValue").Y = 18;
+                } 
+                else
+                {
+                    mainMenu.GetParam("KeyValue").Y = 13;
+                    mainMenu.GetParam("ChanValue").Y = 20;
+                }
+
             }));
 
             return mainMenu;
@@ -1352,7 +1547,7 @@ namespace Harris7800HMP
                 List<Param> modeParams = mainMenu.GetParamByMode(station.Mode);
 
                 mainMenu.InvisibleAllParams();
-                mainMenu.VisibleParamsByNode(station.Mode);
+                mainMenu.VisibleParamsByNode(station.Mode, true);
             }));
 
             return mainMenu;
@@ -2553,6 +2748,16 @@ namespace Harris7800HMP
 
                 wdg.PrepareToShowWidget(GetNameMenu(MenuNames.OptionTestSpecialMenu));
             }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Vswr"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                var activeParam = wdg.ActiveParam();
+                if (activeParam == null || activeParam.Name != "Vswr")
+                {
+                    return;
+                }
+
+                wdg.PrepareToShowWidget(GetNameMenu(MenuNames.OptionTestVswrMenu));
+            }));
             return optionMenu;
         }
 
@@ -2683,6 +2888,237 @@ namespace Harris7800HMP
                         }
                     }
                 }
+            }));
+
+            return optionMenu;
+        }
+
+        public static Widget InitOptionTestVswr(RadioStation station)
+        {
+            var optionMenu = new Widget(GetNameMenu(MenuNames.OptionTestVswrMenu));
+
+            optionMenu.LineSize[0] = 7;
+            optionMenu.LineSize[1] = 11.5;
+            optionMenu.LineSize[2] = 11.5;
+            optionMenu.LineSize[3] = 7;
+            optionMenu.LineCharOffset[0] = 6;
+            optionMenu.LineCharOffset[1] = 5;
+            optionMenu.LineCharOffset[2] = 6;
+            optionMenu.LineCharOffset[3] = 5;
+            optionMenu.AddParam(new Param("Body", null, "", 1, 0)); 
+            optionMenu.AddParam(new Param("StationRTmode", null, "R", 1, 0));
+            optionMenu.AddParam(new Param("Battery", null, "BAT ■■■■■", 1, 2));
+            optionMenu
+                .AddParam(new Param("StationMode", null, "FIX", 1, 12, () =>
+                {
+                    optionMenu.GetParam("StationMode").Text = RadioStation.ModeToString(station.Mode);
+                }));
+            optionMenu
+                .AddParam(new Param("SQ", null, "SQ", 1, 16));
+            optionMenu
+                .AddParam(new Param("SwitchState", null, "PT", 1, 19, () =>
+                {
+                    optionMenu.GetParam("SwitchState").Text = Enum.GetName(typeof(SwitcherState), station.GetState());
+                }));
+
+            optionMenu.AddParam(new Param("Title", null, "VSWR FREQUENCY", 2, 7));
+            optionMenu.AddParam(new Param("Value", (string text, Param cParam) =>
+            {
+                cParam.text = cParam.Text.Remove(cParam.ActiveFrom, cParam.ActiveTo);
+                cParam.text = cParam.Text.Insert(cParam.ActiveFrom, text);
+            }, "07.8000", 3, 12));
+            optionMenu.AddParam(new Param("Info", null, "ENT TO TEST - CLR TO ABORT", 4, 8));
+            string firstTitle = "VSWR FREQUENCY";
+            var titleParam = optionMenu.GetParam("Title");
+            var valueParam = optionMenu.GetParam("Value");
+            var infoParam = optionMenu.GetParam("Info");
+
+
+            titleParam.Y = Helper.CalcCenterIndent(titleParam.Text.Length, 25);
+            valueParam.Y = Helper.CalcCenterIndent(valueParam.Text.Length, 25);
+
+            valueParam.IsActive = true;
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Value"), new Button("DOWN", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("9");
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Value"), new Button("UP", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("6");
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Value"), new Button("LEFT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                    return;
+                }
+
+                if (valueParam.IsInParam())
+                {
+                    if (valueParam.ActiveFrom <= 0)
+                    {
+                        return;
+                    }
+                    valueParam.ActiveFrom -= 1;
+                    if (!Char.IsDigit(valueParam.GetActiveText()[0]))
+                    {
+                        valueParam.ActiveFrom -= 1;
+                    }
+                }
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Value"), new Button("RIGTH", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                    return;
+                }
+
+                if (valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom += 1;
+
+                    if (valueParam.ActiveFrom > valueParam.Text.Length - 1)
+                    {
+                        valueParam.ActiveFrom = valueParam.Text.Length - 1;
+                    }
+                    if (!Char.IsDigit(valueParam.GetActiveText()[0]))
+                    {
+                        valueParam.ActiveFrom += 1;
+                    }
+                }
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("CALL", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("1");
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("LT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("2");
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("MODE", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("3");
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("SQL", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("4");
+
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("ZERO", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("5");
+
+
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("OPT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("7");
+
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("PGM", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("8");
+
+
+            }));
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("UPDATE", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+
+                if (!valueParam.IsInParam())
+                {
+                    valueParam.ActiveFrom = 0;
+                    valueParam.ActiveTo = 1;
+                }
+                valueParam.Action("0");
+
+
+            }));
+
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                Widget transition = GetVswrTestInProgressMenu(station, valueParam.Text, "MIC", "USB");
+                Widget step2 = GetOptionTestVswr2(station,
+                    clr: () =>
+                    {
+                        MainWindow.currObject.QueueWidget.Add(optionMenu);
+                        MainWindow.currObject.StartShowWidgetQueue();
+                    },
+                    ent: () =>
+                    {
+                        MainWindow.currObject.QueueWidget.Add(optionMenu.ComeFrom);
+                        MainWindow.currObject.StartShowWidgetQueue();
+                    });
+                MainWindow.currObject.QueueWidget.Add(transition);
+                MainWindow.currObject.QueueWidget.Add(step2);
+                MainWindow.currObject.StartShowWidgetQueue(2000);
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("CLR", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                optionMenu.ShowPreviousWidget();
             }));
 
             return optionMenu;
@@ -3177,7 +3613,88 @@ namespace Harris7800HMP
             }));
             return optionMenu;
         }
+        public static Widget GetVswrTestInProgressMenu(RadioStation station, string freq, string key, string mod)
+        {
+            var optionMenu = new Widget("GetVswrTestInProgressMenu");
 
+            optionMenu.LineSize[0] = 7;
+            optionMenu.LineSize[1] = 11.5;
+            optionMenu.LineSize[2] = 11.5;
+            optionMenu.LineSize[3] = 7;
+            optionMenu.LineCharOffset[0] = 6;
+            optionMenu.LineCharOffset[1] = 5;
+            optionMenu.LineCharOffset[2] = 6;
+            optionMenu.LineCharOffset[3] = 5;
+            optionMenu.AddParam(new Param("Body", null, "", 1, 0));
+            optionMenu.AddParam(new Param("StationRTmode", null, "R", 1, 0));
+            optionMenu.AddParam(new Param("Battery", null, "BAT ■■■■■", 1, 2));
+            optionMenu
+                .AddParam(new Param("StationMode", null, "FIX", 1, 12, () =>
+                {
+                    optionMenu.GetParam("StationMode").Text = RadioStation.ModeToString(station.Mode);
+                }));
+            optionMenu
+                .AddParam(new Param("SQ", null, "SQ", 1, 16));
+            optionMenu
+                .AddParam(new Param("SwitchState", null, "PT", 1, 19, () =>
+                {
+                    optionMenu.GetParam("SwitchState").Text = Enum.GetName(typeof(SwitcherState), station.GetState());
+                }));
+
+            optionMenu.AddParam(new Param("TestTitle", null, "VSWR TESTING", 2, 8));
+            optionMenu.AddParam(new Param("TestValue", null, "IN PROGRESS", 3, 7));
+            optionMenu.AddParam(new Param("Info", null, $"  KEY: {key}  FREQ: {freq} MOD: {mod}", 4, 2));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            optionMenu.GetParam("TestTitle").Y = Helper.CalcCenterIndent(optionMenu.GetParam("TestTitle").Text.Length, 25);
+            optionMenu.GetParam("TestValue").Y = Helper.CalcCenterIndent(optionMenu.GetParam("TestValue").Text.Length, 25);
+
+            return optionMenu;
+        }
+        public static Widget GetOptionTestVswr2(RadioStation station, Action clr, Action ent)
+        {
+            Random rand = new Random();
+            var optionMenu = new Widget("GetOptionTestVswr2");
+
+            optionMenu.LineSize[0] = 7;
+            optionMenu.LineSize[1] = 11.5;
+            optionMenu.LineSize[2] = 11.5;
+            optionMenu.LineSize[3] = 7;
+            optionMenu.LineCharOffset[0] = 6;
+            optionMenu.LineCharOffset[1] = 5;
+            optionMenu.LineCharOffset[2] = 6;
+            optionMenu.LineCharOffset[3] = 5;
+            optionMenu.AddParam(new Param("Body", null, "", 1, 0));
+            optionMenu.AddParam(new Param("StationRTmode", null, "R", 1, 0));
+            optionMenu.AddParam(new Param("Battery", null, "BAT ■■■■■", 1, 2));
+            optionMenu
+                .AddParam(new Param("StationMode", null, "FIX", 1, 12, () =>
+                {
+                    optionMenu.GetParam("StationMode").Text = RadioStation.ModeToString(station.Mode);
+                }));
+            optionMenu
+                .AddParam(new Param("SQ", null, "SQ", 1, 16));
+            optionMenu
+                .AddParam(new Param("SwitchState", null, "PT", 1, 19, () =>
+                {
+                    optionMenu.GetParam("SwitchState").Text = Enum.GetName(typeof(SwitcherState), station.GetState());
+                }));
+
+            optionMenu.AddParam(new Param("TestTitle", null, "POWER:               21 W", 2, 0));
+            optionMenu.AddParam(new Param("TestValue", null, $"VSWR:               {rand.Next(1,4)}.{rand.Next(1, 4)}:{rand.Next(1, 4)}", 3, 0));
+            optionMenu.AddParam(new Param("Info", null, "CLR TO VIEW FREQ - ENT TO EXIT", 4, 4));
+
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("CLR", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                clr?.Invoke();
+            }));
+
+            optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
+            {
+                ent?.Invoke();
+            }));
+            return optionMenu;
+        }
         public static Widget GetTestInProgressMenu()
         {
             var optionMenu = new Widget("TestInProgressMenu");
@@ -6369,7 +6886,7 @@ namespace Harris7800HMP
                         }
                         , ifNo: () =>
                         {
-                            MainWindow.currObject.QueueWidget.Add(programMenu);
+                            MainWindow.currObject.QueueWidget.Add(widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)]);
                             MainWindow.currObject.StartShowWidgetQueue();
                         }));
                     MainWindow.currObject.StartShowWidgetQueue();
@@ -6787,6 +7304,7 @@ namespace Harris7800HMP
                 var value = (KeyModule.KeyValue)enterMsgMenu.ObjectContainer["KeyValue"];
                 var type = (KeyModule.KeyType)enterMsgMenu.ObjectContainer["KeyType"];
                 value.keyVal = lineOne + lineTwo;
+                value.stationMode = rs.Mode;
 
                 rs.Keys.Keys[type].Add(value);
 
@@ -6813,14 +7331,81 @@ namespace Harris7800HMP
                                 , "MK-128 AND AWS"
                                 , "KEYS LOADED"
                                 , "WAIT OR PRESS CLR/ENT TO CONTINUE"
-                                , ReturnToThisWidget
-                                , ReturnToThisWidget));
-                            MainWindow.currObject.QueueWidget.Add(enterMsgMenu);
+                                , ent: () => {
+                                    var nextStep = InitProgramComsecKeysEnterMenu(station);
+
+                                    nextStep.AddActionToParam(nextStep.GetParam("Body"), new Button("CLR", (Button btn1, RadioStation rs1, Widget wdg1) =>
+                                    {
+                                        var comsecKeys = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                                        comsecKeys.moveTo = null;
+                                        MainWindow.currObject.QueueWidget.Add(comsecKeys);
+                                        MainWindow.currObject.StartShowWidgetQueue();
+                                    }));
+
+                                    MainWindow.currObject.QueueWidget.Add(nextStep);
+                                    MainWindow.currObject.StartShowWidgetQueue();
+                                }
+                                , clr: () => {
+                                        var nextStep = InitProgramComsecKeysEnterMenu(station);
+
+                                        nextStep.AddActionToParam(nextStep.GetParam("Body"), new Button("CLR", (Button btn1, RadioStation rs1, Widget wdg1) =>
+                                        {
+                                            var programComsec = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                                            programComsec.moveTo = null;
+                                            MainWindow.currObject.QueueWidget.Add(programComsec);
+                                            MainWindow.currObject.StartShowWidgetQueue();
+                                        }));
+
+                                        MainWindow.currObject.QueueWidget.Add(nextStep);
+                                        MainWindow.currObject.StartShowWidgetQueue();
+                                    })); 
+                            var optionMenu = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                            optionMenu.moveTo = null;
+                            MainWindow.currObject.QueueWidget.Add(optionMenu);
                             MainWindow.currObject.StartShowWidgetQueue();
                         }));
                         MainWindow.currObject.StartShowWidgetQueue();
                     }
-                    , ifNo: ReturnToThisWidget));
+                    , ifNo: () => {
+                        Widget keyLoaded = MessageMenu("PGM-COMSEC-KEYS-ENTER--",
+                                    "MK-128 AND AVS",
+                                    "KEYS LOADED",
+                                    "WAIT OR PRESS CLR/ENT TO CONTINUE",
+                                    ent: () => {
+                                        var nextStep = InitProgramComsecKeysEnterMenu(station);
+
+                                        nextStep.AddActionToParam(nextStep.GetParam("Body"), new Button("CLR", (Button btn1, RadioStation rs1, Widget wdg1) =>
+                                        {
+                                            var programComsec = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                                            programComsec.moveTo = null;
+                                            MainWindow.currObject.QueueWidget.Add(programComsec);
+                                            MainWindow.currObject.StartShowWidgetQueue();
+                                        }));
+
+                                        MainWindow.currObject.QueueWidget.Add(nextStep);
+                                        MainWindow.currObject.StartShowWidgetQueue();
+                                    },
+                                    clr: () => {
+                                        var nextStep = InitProgramComsecKeysEnterMenu(station);
+
+                                        nextStep.AddActionToParam(nextStep.GetParam("Body"), new Button("CLR", (Button btn1, RadioStation rs1, Widget wdg1) =>
+                                        {
+                                            var programComsec = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                                            programComsec.moveTo = null;
+                                            MainWindow.currObject.QueueWidget.Add(programComsec);
+                                            MainWindow.currObject.StartShowWidgetQueue();
+                                        }));
+
+                                        MainWindow.currObject.QueueWidget.Add(nextStep);
+                                        MainWindow.currObject.StartShowWidgetQueue();
+                                    });
+
+                        var optionMenu = widgetContainer[GetNameMenu(MenuNames.ProgramComsecKeysMenu)];
+                        optionMenu.moveTo = null;
+                        MainWindow.currObject.QueueWidget.Add(keyLoaded);
+                        MainWindow.currObject.QueueWidget.Add(optionMenu);
+                        MainWindow.currObject.StartShowWidgetQueue(1000);
+                    }));
                     MainWindow.currObject.StartShowWidgetQueue();
                 }
                 else
@@ -7336,8 +7921,8 @@ namespace Harris7800HMP
             programMenu.AddParam(new Param("KeyValue", null, lineTwo, 3, 10));
             programMenu.AddParam(new Param("Info", null, info, 4, 5));
 
-            programMenu.GetParam("Title").Y = Helper.CalcCenterIndent(programMenu.GetParam("Title").Text.Length, 25);
-            programMenu.GetParam("Info").Y = Helper.CalcCenterIndent(programMenu.GetParam("Info").Text.Length, 25);
+            //programMenu.GetParam("Title").Y = Helper.CalcCenterIndent(programMenu.GetParam("Title").Text.Length, 25);
+            //programMenu.GetParam("Info").Y = Helper.CalcCenterIndent(programMenu.GetParam("Info").Text.Length, 25);
             programMenu.GetParam("KeyTitle").Y = Helper.CalcCenterIndent(programMenu.GetParam("KeyTitle").Text.Length, 25);
             programMenu.GetParam("KeyValue").Y = Helper.CalcCenterIndent(programMenu.GetParam("KeyValue").Text.Length, 25);
 

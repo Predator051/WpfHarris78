@@ -19,6 +19,7 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WpfHarris78.Src.Test;
 
 namespace WpfHarris78
 {
@@ -82,6 +83,8 @@ namespace WpfHarris78
         public static DispatcherTimer timer1 = new DispatcherTimer();
         public static DispatcherTimer timerOn = new DispatcherTimer();
         public static DispatcherTimer timerAnimation = new DispatcherTimer();
+        public static DispatcherTimer globalTimer = new DispatcherTimer();
+        public static long millsecondsWork = 0;
 
         public static String keyNeed = "1379";
         public static String keyEntered = "";
@@ -130,13 +133,25 @@ namespace WpfHarris78
             radioStation = new RadioStation(switcher);
             currentWidget = WidgetInit.InitDefaultWidgets(radioStation);
 
+            globalTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            globalTimer.Tick += global_timer_Tick;
+            globalTimer.Start();
+
             WidgetTextToRichText(currentWidget);
             timer1.Interval = new TimeSpan(0,0,0,0,500);
             timer1.Tick += timer1_Tick;
             timerAnimation.Interval = new TimeSpan(0, 0, 0, 1);
+            timerAnimation.Tick += timerAnimation_Tick;
             //fileLesson = fLesson;
             //richDisplay.BackColor = displayColor;
+            TreeNodeTest.Testing();
         }
+
+        private void global_timer_Tick(object sender, EventArgs e)
+        {
+            millsecondsWork++;
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             WidgetTextToRichText(currentWidget);
@@ -298,7 +313,6 @@ namespace WpfHarris78
             int seconds = interval / 1000;
             int millseconds = interval % 1000;
             timerAnimation.Interval = new TimeSpan(0,0,0, seconds, millseconds);
-            timerAnimation.Tick += timerAnimation_Tick;
             timer1.Stop();
             timerAnimation.Start();
         }
@@ -313,6 +327,7 @@ namespace WpfHarris78
                 return;
             }
 
+            Debug.WriteLine(millsecondsWork);
             currentWidget = next;
             WidgetTextToRichText(next);
         }

@@ -81,6 +81,8 @@
     <Compile Include="Database\LessonsManager.cs" />
     <Compile Include="RadioModules.cs" />
     <Compile Include="RadioStation.cs" />
+    <Compile Include="Src\NTree\NTree.cs" />
+    <Compile Include="Src\Test\TreeNodeTest.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Widget.cs" />
     <Compile Include="WidgetInit.cs" />
