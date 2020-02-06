@@ -1,0 +1,36 @@
+﻿<Page x:Class="HarrisAdmin.Pages.LessonSettingsStationStatus"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HarrisAdmin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LessonSettingsStationStatus"      
+      Width="531"
+      Height="335">
+
+    <Grid>
+        <CheckBox Name="chbMode" Content="Режим" HorizontalAlignment="Left" Margin="24,39,0,0" VerticalAlignment="Top" Checked="chbMode_Checked" Unchecked="chbMode_Unchecked"/>
+        <CheckBox Name="chbCoupler" Content="Підключений Coupler" HorizontalAlignment="Left" Margin="24,72,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="chbHandset" Content="Підключений Handset" HorizontalAlignment="Left" Margin="24,92,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="chbUsb" Content="Підключений Usb" HorizontalAlignment="Left" Margin="24,111,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="cbMode" HorizontalAlignment="Left" Margin="88,36,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="FIX" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="3G" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="ALE" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="HOP" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <CheckBox Name="chbState" Content="Положення" HorizontalAlignment="Left" Margin="236,39,0,0" VerticalAlignment="Top" Checked="chbState_Checked" Unchecked="chbState_Unchecked"/>
+        <ComboBox Name="cbState" HorizontalAlignment="Left" Margin="325,36,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="OFF" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="PT" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="CT" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="LD" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Z" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="CLR" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <CheckBox Name="chbSq" Content="Увімкнутий SQ" HorizontalAlignment="Left" Margin="236,72,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>

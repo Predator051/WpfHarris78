@@ -16,10 +16,10 @@ namespace WpfHarris78.Database
 
         public static Lesson ParseFromDataRow(DataRow row)
         {
-            return new Lesson { 
+            return new Lesson {
                 Id = (int)row["Id"],
                 Name = (string)row["Name"],
-                Description = (byte[])row["Description"]
+                Description = row["Description"] != DBNull.Value ? (byte[])row["Description"] : null
             };
         }
     }
@@ -52,6 +52,36 @@ namespace WpfHarris78.Database
             }
 
             return lessons;
+        }
+    }
+
+    public class LessonParametersManager
+    {
+        public static void CreateLesson(int lesson_id, Protobuf.Wrappers.LessonParametersWrapper lessonParameters)
+        {
+            SqlCommand command = new SqlCommand("INSERT INTO LessonCheckParameters(Lesson_id, ParametersJson) VALUES (@lesson_id, @parameters);");
+            command.Parameters.AddWithValue("@lesson_id", lesson_id);
+            command.Parameters.AddWithValue("@parameters", lessonParameters.ToJsonFormat());
+
+            DBManager.executeNonSqlCommand(command);
+        }
+
+        public static string GetParametersLessonJson(int lesson_id)
+        {
+            SqlCommand command = new SqlCommand("SELECT ParametersJson FROM LessonCheckParameters WHERE Lesson_id = @lesson_id;");
+            command.Parameters.AddWithValue("@lesson_id", lesson_id);
+
+            var ds = DBManager.executeSqlQuery(command);
+
+            return ds.Tables[0].Rows[0][0] as string;
+        }
+
+        public static LessonParametersSet.LessonParameters GetParametersLesson(int lesson_id)
+        {
+            string jsonParams = GetParametersLessonJson(lesson_id);
+
+            Google.Protobuf.JsonParser jsonParser = new Google.Protobuf.JsonParser(new Google.Protobuf.JsonParser.Settings(1000));
+            return jsonParser.Parse<LessonParametersSet.LessonParameters>(jsonParams);
         }
     }
 }

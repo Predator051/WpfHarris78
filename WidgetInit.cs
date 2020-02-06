@@ -215,6 +215,7 @@ namespace Harris7800HMP
                 .AddParam(new Param("StationMode", null, "FIX", 1, 12, () =>
                 {
                     mainMenu.GetParam("StationMode").Text = RadioStation.ModeToString(station.Mode);
+                    WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Common.Mode = station.CurrentModeToString();
                 }))
                 .AddModesForParam("StationMode", new List<RadioStationMode> { RadioStationMode.ThreeG, RadioStationMode.Ale, RadioStationMode.Hop }); ;
             mainMenu
@@ -274,7 +275,6 @@ namespace Harris7800HMP
 
             }, "003", 3, 18))
                 .AddModesForParam("ChanValue", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
-
             mainMenu.AddParam(new Param("Data", null, "DATA", 4, 0))
                 .AddModesForParam("Data", new List<RadioStationMode> { RadioStationMode.Ale, RadioStationMode.Hop });
             mainMenu.AddParam(new Param("Voice", null, "VOICE", 4, 8))
@@ -322,6 +322,7 @@ namespace Harris7800HMP
 
                 var param = wdg.GetParam("SQ");
                 param.Text = param.Text == "SQ" ? "  " : "SQ";
+                WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Common.Sq = param.Text == "SQ";
             }));
             mainMenu.AddActionToParam(mainMenu.GetParam("ChanValue"), new Button("LEFT", (Button btn, RadioStation rs, Widget wdg) =>
             {
@@ -2737,6 +2738,7 @@ namespace Harris7800HMP
                 }
 
                 wdg.PrepareToShowWidget(GetNameMenu(MenuNames.OptionTestTempMenu));
+                WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Option.Test.Temp = true; 
             }));
             optionMenu.AddActionToParam(optionMenu.GetParam("Special"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
             {
@@ -2861,6 +2863,16 @@ namespace Harris7800HMP
                 {
                     if (paramTitle == "RADIO LOCK")
                     {
+                        var lessonsParams = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters;
+                        lessonsParams.Option.Radio.Bfo = paramBfo.CurrParam();
+                        lessonsParams.Option.Radio.FmSquelchType = paramFmSquelch.CurrParam();
+                        lessonsParams.Option.Radio.InternalCoupler = paramInternelCoupler.CurrParam();
+                        lessonsParams.Option.Radio.RadioLock = paramRadioLock.CurrParam();
+                        lessonsParams.Option.Radio.RadioSilence = paramRadioSilence.CurrParam();
+                        lessonsParams.Option.Radio.RxNoiceBlanking = paramRxNocie.CurrParam();
+                        lessonsParams.Option.Radio.SquelchLevel = paramSquelch.CurrParam();
+                        lessonsParams.Option.Radio.TxPowerLevel = paramPowerLevel.CurrParam();
+
                         var res = activeParam.Text == "ON";
                         rs.KeyBoardLock = res;
                         if (res)
@@ -3099,6 +3111,9 @@ namespace Harris7800HMP
 
             optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
             {
+                var freqStr = valueParam.Text;
+                freqStr = freqStr.Replace(".", ",");
+                WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Option.Test.VswrFrequency = freqStr;
                 Widget transition = GetVswrTestInProgressMenu(station, valueParam.Text, "MIC", "USB");
                 Widget step2 = GetOptionTestVswr2(station,
                     clr: () =>
@@ -3547,11 +3562,13 @@ namespace Harris7800HMP
             optionMenu.AddActionToParam(optionMenu.GetParam("Body"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
             {
                 var activeParam = wdg.ActiveParam();
+                var bitParamsCheck = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Option.Test.Bit;
 
                 switch (activeParam.Text)
                 {
                     case "SYSTEM":
                         {
+                            bitParamsCheck.System = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestContrastMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestLightMenu());
@@ -3562,6 +3579,7 @@ namespace Harris7800HMP
                         }
                     case "RF-5382 COUPLER":
                         {
+                            bitParamsCheck.RfCoupler = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetCouplerRfMenu());
                             MainWindow.currObject.StartShowWidgetQueue();
@@ -3569,6 +3587,7 @@ namespace Harris7800HMP
                         }
                     case "PREPOST":
                         {
+                            bitParamsCheck.Prepost = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetPrepostMenu());
                             MainWindow.currObject.StartShowWidgetQueue();
@@ -3576,6 +3595,7 @@ namespace Harris7800HMP
                         }
                     case "EXTERNAL PA":
                         {
+                            bitParamsCheck.ExternalPa = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetExtraMenu());
                             MainWindow.currObject.StartShowWidgetQueue();
@@ -3583,6 +3603,7 @@ namespace Harris7800HMP
                         }
                     case "KDP":
                         {
+                            bitParamsCheck.Kdp = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestContrastMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestLightMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestPassedMenu());
@@ -3591,6 +3612,7 @@ namespace Harris7800HMP
                         }
                     case "KDU":
                         {
+                            bitParamsCheck.Kdu = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestPassedMenu());
                             MainWindow.currObject.StartShowWidgetQueue();
@@ -3598,6 +3620,7 @@ namespace Harris7800HMP
                         }
                     case "INTERNAL COUPLER":
                         {
+                            bitParamsCheck.InternalCoupler = true;
                             MainWindow.currObject.QueueWidget.Add(GetTestInProgressMenu());
                             MainWindow.currObject.QueueWidget.Add(GetTestPassedMenu());
                             MainWindow.currObject.StartShowWidgetQueue();
@@ -3945,6 +3968,7 @@ namespace Harris7800HMP
                 }
                 else
                 {
+                    WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Option.Test.Battery = true;
                     wdg.ShowPreviousWidget();
 
                     activeParam.Text = radioParams[0].CurrParam();
@@ -6863,13 +6887,22 @@ namespace Harris7800HMP
             programMenu.AddActionToParam(programMenu.GetParam("Body"), new Button("ENT", (Button btn, RadioStation rs, Widget wdg) =>
             {
                 //wdg.showPreviousWidget();
-                if (station.Keys.IsContainKey(programMenu.GetParam("KeyValue").Text))
+                string keyName = programMenu.GetParam("KeyValue").Text;
+                if (station.Keys.IsContainKey(keyName))
                 {
+                    var holderKeys = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Comsec.Keys;
+
+                    foreach(var item in holderKeys.ToArray())
+                    {
+                        if (item.Name == keyName)
+                        {
+                            holderKeys.Remove(item);
+                        } 
+                    }
 
                     MainWindow.currObject.QueueWidget.Add(DialogMenu(title: "PGM-COMSEC-AKS-ENTER", text: "KEY EXIST OVERWRITE?", null
                         , ifYes: () =>
                         {
-
                             var keyValue = station.Keys.FindKey(programMenu.GetParam("KeyValue").Text);
                             var nextStep = InitProgramComsecKeysEnterValueMenu(rs);
                             nextStep.ObjectContainer.Add("KeyValue", keyValue);
@@ -7305,6 +7338,7 @@ namespace Harris7800HMP
                 var type = (KeyModule.KeyType)enterMsgMenu.ObjectContainer["KeyType"];
                 value.keyVal = lineOne + lineTwo;
                 value.stationMode = rs.Mode;
+                value.type = type;
 
                 rs.Keys.Keys[type].Add(value);
 
@@ -7316,7 +7350,6 @@ namespace Harris7800HMP
 
                 if (type == KeyModule.KeyType.Citadel1)
                 {
-
                     MainWindow.currObject.QueueWidget.Add(DialogMenu(title: "PGM-COMSEC-KEYS-ENTER"
                     , text: "ENTER AVS KEY"
                     , clr: ReturnToThisWidget
@@ -7327,6 +7360,7 @@ namespace Harris7800HMP
                         , (string enteredMsg) =>
                         {
                             value.keyAws = enteredMsg;
+                            WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Comsec.Keys.Add(value.SerializeToProtobuf());
                             MainWindow.currObject.QueueWidget.Add(MessageMenu("PGM-COMSEC-KEYS-ENTER-"
                                 , "MK-128 AND AWS"
                                 , "KEYS LOADED"
@@ -7367,6 +7401,7 @@ namespace Harris7800HMP
                         MainWindow.currObject.StartShowWidgetQueue();
                     }
                     , ifNo: () => {
+                        WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Comsec.Keys.Add(value.SerializeToProtobuf());
                         Widget keyLoaded = MessageMenu("PGM-COMSEC-KEYS-ENTER--",
                                     "MK-128 AND AVS",
                                     "KEYS LOADED",
@@ -7410,6 +7445,7 @@ namespace Harris7800HMP
                 }
                 else
                 {
+                    WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Comsec.Keys.Add(value.SerializeToProtobuf());
                     MainWindow.currObject.QueueWidget.Add(MessageMenu("PGM-COMSEC-KEYS-ENTER"
                         , KeyModule.TypeToString(type).ToUpper()
                         , "KEY ENTERED"

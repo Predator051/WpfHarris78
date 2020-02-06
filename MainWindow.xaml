@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfHarris78"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="WpfHarris78.MainWindow"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        x:Class="WpfHarris78.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="457.275" Width="841.57">
-    <Grid Margin="0,0,19,0" HorizontalAlignment="Right" Width="805" Height="426" VerticalAlignment="Bottom">
+        Title="Harris RF-7800H-MP" Height="457.275" Width="841.57">
+    <Grid Margin="10,0,0,0" HorizontalAlignment="Left" Width="805" Height="426" VerticalAlignment="Bottom">
         <Grid.Background>
             <ImageBrush TileMode="FlipX" ImageSource="background-keys.png" Stretch="Uniform"/>
         </Grid.Background>
-        <RichTextBox x:Name="richDispley" HorizontalAlignment="Left" Height="60" Margin="299,138,0,0" VerticalAlignment="Top" Width="206" FontFamily="/WpfHarris78;component/Resources/#Targa " TextChanged="richDispley_TextChanged">
+        <RichTextBox x:Name="richDispley" HorizontalAlignment="Left" Height="60" Margin="299,138,0,0" VerticalAlignment="Top" Width="206" FontFamily="{StaticResource PixelmixRegular}" TextChanged="richDispley_TextChanged">
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Setter Property="Margin" Value="2" />
@@ -22,7 +23,7 @@
             </RichTextBox.Background>
             <FlowDocument/>
         </RichTextBox>
-        <Image x:Name="pbOn" HorizontalAlignment="Left" Height="61" Margin="325,219,0,0" VerticalAlignment="Top" Width="207" Stretch="Fill"/>
+        <Image x:Name="pbOn" HorizontalAlignment="Left" Height="61" Margin="299,137,0,0" VerticalAlignment="Top" Width="207" Stretch="Fill"/>
         <Image HorizontalAlignment="Left" Height="113" Margin="576,120,0,0" VerticalAlignment="Top" Width="102" Source="presetKnob_0.png" MouseUp="Image_MouseUp"/>
         <Button x:Name="btVolUp" Content="" HorizontalAlignment="Left" Margin="288,254,0,0" VerticalAlignment="Top" Width="37" Height="30" Background="#00000000" BorderBrush="#00642E2E" MouseEnter="btMouseEnter" MouseLeave="btMouseLeave" Click="btKeyBoard_Click" Opacity="0.5"/>
         <Button x:Name="btVolDown" Content="" HorizontalAlignment="Left" Margin="288,285,0,0" VerticalAlignment="Top" Width="37" Height="30" BorderBrush="#00000000" Opacity="0.5" Background="#00000000" Click="btKeyBoard_Click"/>
@@ -42,6 +43,21 @@
         <Button x:Name="btEnt" Content="" HorizontalAlignment="Left" Margin="476,325,0,0" VerticalAlignment="Top" Width="37" Height="26" Background="#00000000" BorderBrush="{x:Null}" Opacity="0.5" Click="btKeyBoard_Click"/>
         <Button x:Name="btPreUp" Content="" HorizontalAlignment="Left" Margin="475,254,0,0" VerticalAlignment="Top" Width="37" Height="30" Background="#00000000" BorderBrush="{x:Null}" Opacity="0.5" Click="btKeyBoard_Click"/>
         <Button x:Name="btPreDown" Content="" HorizontalAlignment="Left" Margin="475,284,0,0" VerticalAlignment="Top" Width="37" Height="30" Background="#00000000" BorderBrush="{x:Null}" Opacity="0.5" Click="btKeyBoard_Click"/>
+        <Image x:Name="imageCouplerModule" HorizontalAlignment="Left" Height="336" Margin="-26,137,0,-47" VerticalAlignment="Top" Width="241" Source="coupler.png"/>
+        <Button x:Name="btCouplerModul" Content="" HorizontalAlignment="Left" Margin="111,137,0,0" VerticalAlignment="Top" Width="104" Height="95" Click="btCouplerModul_Click" Style="{StaticResource UIStationModuleButton}"/>
+        <Image x:Name="imageHandsetModule" HorizontalAlignment="Left" Height="280" Margin="576,284,0,-138" VerticalAlignment="Top" Width="150" Source="handsetTube.png" Stretch="None"/>
+        <Button x:Name="btHandsetModul" Content="" HorizontalAlignment="Left" Margin="576,290,0,0" VerticalAlignment="Top" Width="104" Height="95" Style="{StaticResource UIStationModuleButton}" Click="btHandsetModul_Click"/>
+        <Image x:Name="imageUsbModule" HorizontalAlignment="Left" Height="151" Margin="614,223,0,0" VerticalAlignment="Top" Width="163" Source="usbJustConnector.png" RenderTransformOrigin="0.5,0.5" ContextMenuClosing="imageUsbModule_ContextMenuClosing">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-16.005"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Button x:Name="btUsbModul" Content="" HorizontalAlignment="Left" Margin="652,233,0,0" VerticalAlignment="Top" Width="48" Height="43" Click="btUsbModul_Click" Style="{StaticResource UIStationModuleButton}"/>
 
     </Grid>
 </Window>

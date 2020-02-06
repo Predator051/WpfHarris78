@@ -28,6 +28,7 @@ namespace WpfHarris78
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Members
         public enum ButtonKey
         {
             VOLUME_PLUS,
@@ -98,6 +99,8 @@ namespace WpfHarris78
         private Color displayTextColor = Color.FromRgb(138, 164, 0);
 
         public WidgetQueue QueueWidget => queueWidget;
+        public LessonParametersSet.LessonParameters LessonParameters { get; set; }
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
@@ -125,8 +128,8 @@ namespace WpfHarris78
 
             //SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             switcher.InitToOff();
-            displayFonts.AddFontFile(@"pixelmix.ttf");
-            richDispley.FontFamily = new FontFamily(displayFonts.Families[0].Name);
+            //displayFonts.AddFontFile(@"pixelmix.ttf");
+            //richDispley.FontFamily = new FontFamily(displayFonts.Families[0].Name);
             richDispley.FontWeight = FontWeight.FromOpenTypeWeight(500);
             richDispley.Background = new SolidColorBrush(displayColor);
 
@@ -142,9 +145,27 @@ namespace WpfHarris78
             timer1.Tick += timer1_Tick;
             timerAnimation.Interval = new TimeSpan(0, 0, 0, 1);
             timerAnimation.Tick += timerAnimation_Tick;
-            //fileLesson = fLesson;
-            //richDisplay.BackColor = displayColor;
-            TreeNodeTest.Testing();
+            imageCouplerModule.Visibility = Visibility.Hidden;
+            imageHandsetModule.Visibility = Visibility.Hidden;
+            imageUsbModule.Visibility = Visibility.Hidden;
+
+            Src.Checker.LessonParametersHolder.Holder.Parameters = new LessonParametersSet.LessonParameters()
+            {
+                Option = new LessonParametersSet.LessonParameters.Types.Option()
+                {
+                    Radio = new LessonParametersSet.LessonParameters.Types.Option.Types.Radio(),
+                    Test = new LessonParametersSet.LessonParameters.Types.Option.Types.Test() { 
+                        Bit = new LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit()
+                    },
+                },
+                Common = new LessonParametersSet.LessonParameters.Types.Common(),
+                Program = new LessonParametersSet.LessonParameters.Types.Program()
+                {
+                    Comsec = new LessonParametersSet.LessonParameters.Types.Program.Types.Comsec()
+                }
+            };
+
+            //ProtobufTest.test();
         }
 
         private void global_timer_Tick(object sender, EventArgs e)
@@ -252,6 +273,8 @@ namespace WpfHarris78
             radioStation.NextState();
             var pBox = (Image)sender;
             pBox.Source = switcher.GetBitmapSource();
+            Src.Checker.LessonParametersHolder.Holder.Parameters.Common.State 
+                = Enum.GetName(typeof(Harris7800HMP.SwitcherState), radioStation.GetState())?.ToUpper();
         }
 
 
@@ -433,11 +456,65 @@ namespace WpfHarris78
             System.Windows.Controls.Button btn = (System.Windows.Controls.Button)sender;
             currentWidget.BtnClick(btn.Name, radioStation);
             WidgetTextToRichText(currentWidget);
+
+            //Debug.WriteLine($"Checker return: {Src.Checker.LessonParametersChecker.IsEquals(LessonParameters, Src.Checker.LessonParametersHolder.Holder.Parameters)}");
         }
 
         private void richDispley_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void btCouplerModul_Click(object sender, RoutedEventArgs e)
+        {
+            if (radioStation.connectedCoupler)
+            {
+                imageCouplerModule.Visibility = Visibility.Hidden;
+                radioStation.connectedCoupler = false;
+            } 
+            else
+            {
+                imageCouplerModule.Visibility = Visibility.Visible;
+                radioStation.connectedCoupler = true;
+            }
+            Src.Checker.LessonParametersHolder.Holder.Parameters.Common.Coupler = radioStation.connectedCoupler;
+        }
+
+        private void btHandsetModul_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (radioStation.connectedHandset)
+            {
+                imageHandsetModule.Visibility = Visibility.Hidden;
+                radioStation.connectedHandset = false;
+            }
+            else
+            {
+                imageHandsetModule.Visibility = Visibility.Visible;
+                radioStation.connectedHandset = true;
+            }
+            Src.Checker.LessonParametersHolder.Holder.Parameters.Common.Handset = radioStation.connectedHandset;
+        }
+
+        private void imageUsbModule_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+
+        }
+
+        private void btUsbModul_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (radioStation.connectedUsb)
+            {
+                imageUsbModule.Visibility = Visibility.Hidden;
+                radioStation.connectedUsb = false;
+            }
+            else
+            {
+                imageUsbModule.Visibility = Visibility.Visible;
+                radioStation.connectedUsb = true;
+            }
+            Src.Checker.LessonParametersHolder.Holder.Parameters.Common.Usb = radioStation.connectedUsb;
         }
     }
 }

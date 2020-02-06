@@ -1,0 +1,78 @@
+﻿<Page x:Class="HarrisAdmin.Pages.LessonSettingsOptionRadio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HarrisAdmin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="LessonSettingsOptionRadio"      
+      Width="531"
+      Height="335"
+      ShowsNavigationUI ="False">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="340*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- 0 Column -->
+        <CheckBox Name="checkedPowerLevel" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedSquelchLevel" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedSquelchType" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedInternalCoupler" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedRadioSilence" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedBfo" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedNoiceBlanking" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Name="checkedRadioLock" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Height="15" Width="20" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+
+        <!-- 1 Column -->
+        <TextBlock Margin="0,10,10,0" TextWrapping="Wrap" Text="TX POWER LEVEL:" VerticalAlignment="Top" Height="14"  Grid.Column="1"/>
+        <TextBlock Margin="0,40,17,0" TextWrapping="Wrap" Text="SQUELCH LEVEL:" VerticalAlignment="Top" Height="14"   Grid.Column="1"/>
+        <TextBlock Margin="0,70,17,0" TextWrapping="Wrap" Text="FM SQUELCH TYPE:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+        <TextBlock Margin="0,100,17,0" TextWrapping="Wrap" Text="INTERNAL COUPLER:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+        <TextBlock Margin="0,130,17,0" TextWrapping="Wrap" Text="RADIO SILENCE:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+        <TextBlock Margin="0,160,17,0" TextWrapping="Wrap" Text="BFO:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+        <TextBlock Margin="0,190,17,0" TextWrapping="Wrap" Text="RX NOICE BLANKING:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+        <TextBlock Margin="0,220,17,0" TextWrapping="Wrap" Text="RADIO LOCK:" VerticalAlignment="Top" Height="14" Grid.Column="1"/>
+
+        <!-- 2 Column -->
+        <ComboBox Name="cbPowerLevel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="LOW" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="HIGH" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="MED" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+
+        <ComboBox Name="cbSquelchLevel" Grid.Column="2" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="LOW" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="HIGH" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="MED" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+
+        <ComboBox Name="cbSquelchType" Grid.Column="2" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="TONE" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="NOICE" HorizontalAlignment="Left" Width="118" />
+        </ComboBox>
+
+        <ComboBox Name="cbInternalCoupler" Grid.Column="2" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="ENABLED" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="BYPASSED" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+
+        <CheckBox Name="chbRadioSilence" Content="ON/OFF" Grid.Column="2" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top"/>
+
+        <ComboBox Name="cbBfo" Grid.Column="2" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="10" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+            <ComboBoxItem Content="0" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="-10" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+
+        <CheckBox Name="chbNoiceBlanking" Content="ON/OFF" Grid.Column="2" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
+
+        <CheckBox Name="chbRadioLock" Content="ON/OFF" Grid.Column="2" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

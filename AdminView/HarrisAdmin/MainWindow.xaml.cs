@@ -27,6 +27,8 @@ namespace HarrisAdmin
             InitializeComponent();
             //WpfHarris78.MainWindow h = new WpfHarris78.MainWindow();
             //h.Show();
+            this.DataContext = new ViewModel.WindowViewModel(this);
+
         }
 
         private void btAddLesson_Click(object sender, RoutedEventArgs e)

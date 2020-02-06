@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LessonParametersSet;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -229,6 +230,38 @@ namespace Harris7800HMP
                     return "0" + updateCount;
                 }
                 return updateCount.ToString();
+            }
+
+            public LessonParameters.Types.Program.Types.Comsec.Types.Key SerializeToProtobuf()
+            {
+                LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType type = LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Citadel;
+
+                switch (this.type)
+                {
+                    case KeyType.Citadel1:
+                        {
+                            type = LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Citadel;
+                            break;
+                        }
+                    case KeyType.Aes128:
+                        {
+                            type = LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Aes128;
+                            break;
+                        }
+                    case KeyType.Aes256:
+                        {
+                            type = LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Aes256;
+                            break;
+                        }
+                }
+
+                return new LessonParameters.Types.Program.Types.Comsec.Types.Key()
+                {
+                    AwsKey = keyAws.ToUpper(),
+                    Key_ = keyVal.ToUpper(),
+                    Name = keyName.ToUpper(),
+                    Type = type
+                };
             }
         }
 

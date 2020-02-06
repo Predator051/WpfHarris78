@@ -1,0 +1,116 @@
+syntax = "proto3";
+ 
+package LessonParametersSet;
+ 
+message LessonParameters {
+    string name = 1;
+
+    message Common {
+        string mode     = 1;
+        string state    = 2;
+        bool coupler    = 3;
+        bool handset    = 4;
+        bool usb        = 5;
+        bool sq         = 6;
+	}
+
+    message Option {
+        message Radio {
+            string txPowerLevel     = 1;
+            string squelchLevel     = 2;
+            string fmSquelchType    = 3;
+            string internalCoupler  = 4;
+            string radioSilence     = 5;
+            string bfo              = 6;
+            string rxNoiceBlanking  = 7;
+            string radioLock        = 8;
+		}
+
+        message Test {
+            message Bit {
+                bool system          = 1;
+                bool rfCoupler       = 2;
+                bool prepost         = 3;
+                bool externalPa      = 4;
+                bool kdp             = 5;
+                bool kdu             = 6;
+                bool internalCoupler = 7;
+			}
+            Bit bit              = 1;
+            bool battery         = 2;
+            bool temp            = 3;
+            string vswrFrequency = 4;
+		}
+
+        Radio radio = 1;
+        Test test = 2;
+	}
+
+    message Program {
+        message Comsec {
+            message Key {
+
+                enum KeyType {
+                    CITADEL = 0;  
+                    Aes256 = 1;
+                    Aes128 = 2;
+				}
+
+                KeyType type = 1;
+                string name = 2;
+                string key = 5;
+                string awsKey = 6;
+			}   
+            repeated Key keys = 1;
+		}
+        Comsec comsec = 1;
+	}
+
+    Option option = 2;
+    Common common = 3;
+    Program program = 4;
+}
+
+/*
+            var paramPowerLevel = new WidgetTextParams("TX POWER LEVEL");
+            paramPowerLevel.AddParam("LOW").AddParam("HIGH").AddParam("MED");
+            var paramSquelch = new WidgetTextParams("SQUELCH LEVEL");
+            paramSquelch.AddParam("LOW").AddParam("HIGH").AddParam("MED");
+            var paramFmSquelch = new WidgetTextParams("FM SQUELCH TYPE");
+            paramFmSquelch.AddParam("TONE").AddParam("NOICE");
+            var paramInternelCoupler = new WidgetTextParams("INTERNAL COUPLER");
+            paramInternelCoupler.AddParam("ENABLED").AddParam("BYPASSED");
+            var paramRadioSilence = new WidgetTextParams("RADIO SILENCE");
+            paramRadioSilence.AddParam("OFF").AddParam("ON");
+            var paramBfo = new WidgetTextParams("BFO");
+            paramBfo.AddParam("-10").AddParam("0").AddParam("10");
+            var paramRxNocie = new WidgetTextParams("RX NOICE BLANKING");
+            paramRxNocie.AddParam("OFF").AddParam("ON");
+            var paramRadioLock = new WidgetTextParams("RADIO LOCK");
+            paramRadioLock.AddParam("OFF").AddParam("ON");
+*/
+/*
+message Person {
+  string name = 1;
+  int32 id = 2;  // Уникальный числовой идентификатор человека
+  string email = 3;
+ 
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+ 
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+ 
+  repeated PhoneNumber phones = 4;
+}
+ 
+// Адресная книга
+message AddressBook {
+  repeated Person people = 1;
+}
+*/

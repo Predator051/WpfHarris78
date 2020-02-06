@@ -4,92 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HarrisAdmin"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:PdfViewer="clr-namespace:Syncfusion.Windows.PdfViewer;assembly=Syncfusion.PdfViewer.WPF" x:Class="HarrisAdmin.MainWindow"
-        mc:Ignorable="d"
-        Title="Harris RF-7800H-MP" Height="466.169" Width="810.011" Background="White">
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        xmlns:PdfViewer="clr-namespace:Syncfusion.Windows.PdfViewer;assembly=Syncfusion.PdfViewer.WPF" 
+        x:Class="HarrisAdmin.MainWindow"
+        mc:Ignorable="d"     
+        MinWidth="820.011"
+        MinHeight="509.169"
+        Title="Harris RF-7800H-MP" 
+        Height="509.169" 
+        Width="820.011" 
+        Background="White"
+        Style="{StaticResource WindowStyle}">
     <Window.Resources>
-        <Style x:Key="_ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Border x:Name="_Border"
-                                Padding="6"
-                                SnapsToDevicePixels="true"
-                                CornerRadius="5" 
-                                Background="#B00020">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="true">
-                                <Setter TargetName="_Border" Property="Background" Value="#BF263C"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="Black" />
-                </Trigger>
-                <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Duration="0:0:0.2"
-                                                 Storyboard.TargetProperty="FontSize"
-                                                 To="14"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Duration="0:0:0.3"
-                                                 Storyboard.TargetProperty="FontSize"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}"/>
-        <Style TargetType="Button" x:Key="btnLightRed">
-            <Setter Property="Background" Value="#FFCF3131"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                        CornerRadius="5"
-                        BorderThickness="1"
-                        Padding="5"
-                        BorderBrush="#000">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                            </ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
     </Window.Resources>
-    <Grid Background="White" Style="{DynamicResource MainGridStyle}" Height="428" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
 
-        <ListBox x:Name="lbLessons" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            CaptionHeight="{Binding TitleHeight}"
+            CornerRadius="0"
+            GlassFrameThickness="0"
+            />
+    </WindowChrome.WindowChrome>
+
+    <Grid Background="White" Height="428" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
+
+        <ListBox x:Name="lbLessons"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="White" Margin="10,10,0,0" FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" Height="358" VerticalAlignment="Top" HorizontalAlignment="Left" Width="341" SelectionChanged="lbLessons_SelectionChanged">
             <ListBox.Effect>
                 <DropShadowEffect BlurRadius="10" Opacity="0.5" Direction="300"/>
             </ListBox.Effect>
-            <ListBoxItem Content="Елемент 1"/>
-            <ListBoxItem Content="Елемент 1"/>
+            <ListBoxItem Content="Test1"/>
+            <ListBoxItem Content="Test2"/>
             <ListBoxItem Content="Елемент 1"/>
 
         </ListBox>
@@ -100,27 +47,24 @@
         </PdfViewer:PdfDocumentView>
         <Button x:Name="btAddLesson" 
                 Content="Створити" 
-                Width="75" 
-                FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" 
-                Height="24"
-                Style="{StaticResource btnLightRed}" Margin="18,383,707,21" Click="btAddLesson_Click"/>
+                Margin="10,383,702,10" 
+                Click="btAddLesson_Click"
+                Width="88" Height="35"
+                Style="{StaticResource UIButton}"/>
         <Button x:Name="btEditLesson" 
                 Content="Редагувати" 
                 HorizontalAlignment="Left" 
-                Margin="146,383,0,0" 
+                Margin="138,383,0,0" 
                 VerticalAlignment="Top" 
-                Width="73" 
-                FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" 
-                Style="{StaticResource btnLightRed}"
-                Height="24"/>
+                Width="88" 
+                Height="35"
+                Style="{StaticResource UIButton}"/>
         <Button x:Name="btRemoveLesson" 
                 Content="Видалити" 
                 HorizontalAlignment="Left" 
-                Margin="270,383,0,0" 
+                Margin="263,383,0,0" 
                 VerticalAlignment="Top" 
-                Width="73" 
-                FontFamily="/HarrisAdmin;component/Resources/#Anonymous Pro" 
-                Style="{StaticResource btnLightRed}"
-                Height="24"/>
+                Width="88" Height="35" 
+                Style="{StaticResource UIButton}"/>
     </Grid>
 </Window>
