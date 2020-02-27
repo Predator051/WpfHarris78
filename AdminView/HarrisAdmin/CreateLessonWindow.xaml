@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         MinWidth="818"
         MinHeight="485" 
+        MaxHeight="485"
+        MaxWidth="818"
         Title="Harris RF-7800H-MP" 
         Height="501" 
         Width="818"
@@ -43,6 +45,13 @@
                 <TreeViewItem Header="Test"></TreeViewItem>
             </TreeViewItem>
             <TreeViewItem Header="Program">
+                <TreeViewItem Header="Mode">
+                    <TreeViewItem Header="Preset">
+                        <TreeViewItem Header="Channel"></TreeViewItem>
+                        <TreeViewItem Header="Modem"></TreeViewItem>
+                        <TreeViewItem Header="System"></TreeViewItem>
+                    </TreeViewItem>
+                </TreeViewItem>
                 <TreeViewItem Header="Comsec">
                     <TreeViewItem Header="Keys">
                         

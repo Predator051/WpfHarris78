@@ -29,19 +29,34 @@ namespace HarrisAdmin
             //h.Show();
             this.DataContext = new ViewModel.WindowViewModel(this);
 
+            this.lbLessons.Items.Clear();
+            var lessons = LessonsManager.GetLessons();
+            foreach (var lesson in lessons)
+            {
+                Src.UI.LessonListBoxItem lbItem = new Src.UI.LessonListBoxItem(lesson);
+                this.lbLessons.Items.Add(lbItem);
+            }
         }
 
         private void btAddLesson_Click(object sender, RoutedEventArgs e)
         {
-            CreateLessonWindow createWindow = new CreateLessonWindow();
-            createWindow.ShowDialog();
-
-            this.lbLessons.Items.Clear();
-            var lessons = WpfHarris78.Database.LessonsManager.GetLessons();
-            foreach( var lesson in lessons)
+            try
             {
-                Src.UI.LessonListBoxItem lbItem = new Src.UI.LessonListBoxItem(lesson);
-                this.lbLessons.Items.Add(lbItem);
+                CreateLessonWindow createWindow = new CreateLessonWindow();
+                createWindow.ShowDialog();
+
+                this.lbLessons.Items.Clear();
+                var lessons = LessonsManager.GetLessons();
+                foreach (var lesson in lessons)
+                {
+                    Src.UI.LessonListBoxItem lbItem = new Src.UI.LessonListBoxItem(lesson);
+                    this.lbLessons.Items.Add(lbItem);
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+                throw;
             }
         }
 
@@ -55,7 +70,7 @@ namespace HarrisAdmin
         private void lbLessons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Src.UI.LessonListBoxItem currItem = (Src.UI.LessonListBoxItem) this.lbLessons.SelectedItem;
-            if (currItem != null)
+            if (currItem != null && currItem.Lesson.Description != null)
             {
                 loadPdfToView(currItem.Lesson.Description);
             }

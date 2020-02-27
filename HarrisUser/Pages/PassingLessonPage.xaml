@@ -10,9 +10,10 @@
       Title="PassingLessonPage">
 
     <Grid>
-        <PdfViewer:PdfDocumentView HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="519" Width="488"/>
+        <PdfViewer:PdfDocumentView Name="pdfLessonView" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="519" Width="488"/>
         <TextBlock Name="tbInfoAboutPassing" HorizontalAlignment="Left" Margin="503,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="78" Width="267" Background="White"/>
         <Button Name="btnEndPassing" Content="Закінчити" HorizontalAlignment="Left" Margin="695,93,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource UIButton}" Click="Button_Click"/>
+        <TextBlock x:Name="ParametersInfo" HorizontalAlignment="Left" Margin="503,208,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="321" Width="267"/>
 
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,11 +30,23 @@ namespace HarrisUser.Pages
             Lesson = lesson;
 
             LessonCheckSteps = WpfHarris78.Database.LessonParametersManager.GetParametersLesson(lesson.Id);
+            this.ParametersInfo.Text = Google.Protobuf.JsonFormatter.ToDiagnosticString(LessonCheckSteps);
+
+            if (Lesson.Description != null)
+            {
+                loadPdfToView(Lesson.Description);
+            }
 
             WpfHarris78.MainWindow mainWindow = new WpfHarris78.MainWindow();
             mainWindow.Show();
         }
 
+        private void loadPdfToView(byte[] arrayByte)
+        {
+            Stream stream = new MemoryStream(arrayByte);
+
+            this.pdfLessonView.Load(stream);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             bool isPassing = Checker.LessonParametersChecker.IsEquals(LessonCheckSteps, Checker.LessonParametersHolder.Holder.Parameters);

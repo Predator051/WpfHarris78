@@ -49,11 +49,17 @@ namespace HarrisAdmin.Pages
             LessonParametersSet.LessonParameters.Types.Common common = new LessonParametersSet.LessonParameters.Types.Common
             {
                 Coupler = (bool)chbCoupler.IsChecked,
+                CheckCoupler = (bool)chbCoupler.IsChecked,
                 Handset = (bool)chbHandset.IsChecked,
+                CheckHandset = (bool)chbHandset.IsChecked,
                 Mode = (bool)chbMode.IsChecked ? cbMode.Text : "",
+                CheckMode = (bool)chbMode.IsChecked,
                 Sq = (bool)chbSq.IsChecked,
+                CheckSq = (bool)chbSq.IsChecked,
                 State = (bool)chbState.IsChecked ? cbState.Text : "",
-                Usb = (bool)chbUsb.IsChecked
+                CheckState = (bool)chbState.IsChecked,
+                Usb = (bool)chbUsb.IsChecked,
+                CheckUsb = (bool)chbUsb.IsChecked
             };
 
             return common;

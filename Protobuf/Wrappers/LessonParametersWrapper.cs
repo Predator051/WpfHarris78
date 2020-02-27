@@ -23,6 +23,10 @@ namespace WpfHarris78.Protobuf.Wrappers
                 Program = new LessonParametersSet.LessonParameters.Types.Program()
                 {
                     Comsec = new LessonParametersSet.LessonParameters.Types.Program.Types.Comsec(),
+                    Mode = new LessonParametersSet.LessonParameters.Types.Program.Types.Mode()
+                    {
+                        Preset = new LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset()
+                    }
                 }
             };
         }

@@ -6,40 +6,64 @@ message LessonParameters {
     string name = 1;
 
     message Common {
-        string mode     = 1;
-        string state    = 2;
-        bool coupler    = 3;
-        bool handset    = 4;
-        bool usb        = 5;
-        bool sq         = 6;
+        string mode         = 1;
+        bool checkMode      = 2;
+        string state        = 3;
+        bool checkState     = 4;
+        bool coupler        = 5;
+        bool checkCoupler   = 6;
+        bool handset        = 7;
+        bool checkHandset   = 8;
+        bool usb            = 9;
+        bool checkUsb       = 10;
+        bool sq             = 11;
+        bool checkSq        = 12;
 	}
 
     message Option {
         message Radio {
-            string txPowerLevel     = 1;
-            string squelchLevel     = 2;
-            string fmSquelchType    = 3;
-            string internalCoupler  = 4;
-            string radioSilence     = 5;
-            string bfo              = 6;
-            string rxNoiceBlanking  = 7;
-            string radioLock        = 8;
+            string txPowerLevel             = 1;
+            bool checkTxPowerLevel          = 2;
+            string squelchLevel             = 3;
+            bool checkSquelchLevel          = 4;
+            string fmSquelchType            = 5;
+            bool checkFmSquelchType         = 6;
+            string internalCoupler          = 7;
+            bool checkInternalCoupler       = 8;
+            string radioSilence             = 9;
+            bool checkRadioSilence          = 10;
+            string bfo                      = 11;
+            bool checkBfo                   = 12;
+            string rxNoiceBlanking          = 13;
+            bool checkRxNoiceBlanking       = 14;
+            string radioLock                = 15;
+            bool checkRadioLock             = 16;
 		}
 
         message Test {
             message Bit {
-                bool system          = 1;
-                bool rfCoupler       = 2;
-                bool prepost         = 3;
-                bool externalPa      = 4;
-                bool kdp             = 5;
-                bool kdu             = 6;
-                bool internalCoupler = 7;
+                bool system                 = 1;
+                bool checkSystem            = 2;
+                bool rfCoupler              = 3;
+                bool checkRfCoupler         = 4;
+                bool prepost                = 5;
+                bool checkPrepost           = 6;
+                bool externalPa             = 7;
+                bool checkExternalPa        = 8;
+                bool kdp                    = 9;
+                bool checkKdp               = 10;
+                bool kdu                    = 11;
+                bool checkKdu               = 12;
+                bool internalCoupler        = 13;
+                bool checkInternalCoupler   = 14;
 			}
-            Bit bit              = 1;
-            bool battery         = 2;
-            bool temp            = 3;
-            string vswrFrequency = 4;
+            Bit bit                     = 1;
+            bool battery                = 2;
+            bool checkBattery           = 3;
+            bool temp                   = 4;
+            bool checkTemp              = 5;
+            string vswrFrequency        = 6;
+            bool checkVswrFrequency     = 7;
 		}
 
         Radio radio = 1;
@@ -54,16 +78,90 @@ message LessonParameters {
                     CITADEL = 0;  
                     Aes256 = 1;
                     Aes128 = 2;
+                    None = 3;
 				}
 
-                KeyType type = 1;
-                string name = 2;
-                string key = 5;
-                string awsKey = 6;
+                KeyType type        = 1;
+                bool    checkType   = 2;
+                string  name        = 3;
+                bool    checkName   = 4;
+                string  key         = 5;
+                bool    checkKey    = 6;
+                string  awsKey      = 7;
+                bool    checkAwsKey = 8;
 			}   
             repeated Key keys = 1;
 		}
+
+        message Mode {
+            message Preset {
+                 message Channel {
+                    string  num                 = 1;
+                    bool    checkNum            = 2;
+                    string  rxFrequency         = 3;
+                    bool    checkRxFrequency    = 4;
+                    string  txFrequency         = 5;
+                    bool    checkTxFrequency    = 6;
+                    string  modulation          = 7;
+                    bool    checkModulation     = 8;
+                    bool    mode                = 9;
+                    bool    checkMode           = 10;
+                    string  hailKey             = 11;
+                    bool    checkHailKey        = 12;
+                    bool    enableSsbScan       = 13;
+                    bool    checkEnableSsbScan  = 14;
+                    string  maxBandwidth        = 15;
+                    bool    checkMaxBandwidth   = 16;
+				 }
+                 message Modem {
+                    string name             = 1;
+                    bool    checkName       = 2;
+                    string modemType        = 3;
+                    bool    checkModemType  = 4;
+                    string dataRate         = 5;
+                    bool    checkDataRate   = 6;
+                    string mode             = 7;
+                    bool    checkMode       = 8;
+                    string dataBits         = 9;
+                    bool    checkDataBits   = 10;
+                    string stopBits         = 11;
+                    bool    checkStopBits   = 12;
+                    string parity           = 13;
+                    bool    checkParity     = 14;
+                    string enable           = 15;
+                    bool    checkEnable     = 16;
+                    string originalName     = 17;
+                    bool    checkOriginalName   = 18;
+				 }
+                                  
+                 message System {
+                    string name                     = 1;
+                    bool    checkName               = 2;
+                    string channelNumber            = 3;
+                    bool    checkChannelNumber      = 4;
+                    Modem modemPreset               = 5;
+                    bool    checkModemPreset        = 6;
+                    Comsec.Key key                  = 7;
+                    bool    checkKey                = 8;
+                    string ptVoiceMode              = 9;
+                    bool    checkPtVoiceMode        = 10;
+                    string ctVoiceMode              = 11;
+                    bool    checkCtVoiceMode        = 12;
+                    string enable                   = 13;
+                    bool    checkEnable             = 14;
+
+                    bool    checkKeyValue           = 15;
+                    bool    checkRadioMode          = 16;
+				 }                                  
+                 repeated Channel channels = 1;     
+                 repeated Modem   modems   = 2;     
+                 repeated System  systems  = 3;
+			}
+            Preset preset = 1;
+		}
+
         Comsec comsec = 1;
+        Mode mode     = 2;
 	}
 
     Option option = 2;

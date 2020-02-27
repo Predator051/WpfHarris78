@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using LessonParametersSet;
 
 namespace HarrisAdmin.Pages
@@ -71,12 +62,10 @@ namespace HarrisAdmin.Pages
                 this.maskEditKey.Value = currItem.Key.keyVal;
                 if (!string.IsNullOrEmpty(currItem.Key.keyAws))
                 {
-                    this.chbAvs.IsChecked = true;
                     this.maskEditAvs.Value = currItem.Key.keyAws;
                 } 
                 else
                 {
-                    this.chbAvs.IsChecked = false;
                     this.maskEditAvs.Value = "";
                 }
 
@@ -88,6 +77,10 @@ namespace HarrisAdmin.Pages
                     }
                 }
 
+                this.chbAvs.IsChecked = currItem.CheckAwsKey;
+                this.chbCheckKey.IsChecked = currItem.CheckKey;
+                this.chbCheckName.IsChecked = currItem.CheckName;
+                this.chbCheckType.IsChecked = currItem.CheckType;
             }
         }
 
@@ -97,14 +90,12 @@ namespace HarrisAdmin.Pages
             var currKeyType = (Harris7800HMP.KeyModule.KeyType)currItem;
             if (currKeyType != Harris7800HMP.KeyModule.KeyType.Citadel1)
             {
-                chbAvs.IsChecked = false;
-                chbAvs.IsEnabled = false;
                 maskEditAvs.Value = "";
                 maskEditAvs.IsEnabled = false;
             } 
             else
             {
-                chbAvs.IsEnabled = true;
+                maskEditAvs.IsEnabled = true;
             }
 
             var currKeyItem = lbKeys.SelectedItem;
@@ -136,16 +127,16 @@ namespace HarrisAdmin.Pages
 
         private void chbAvs_Checked(object sender, RoutedEventArgs e)
         {
-            this.maskEditAvs.IsEnabled = true;
+            var key = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            key.CheckAwsKey = true;
+            var currKey = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            currKey.Key.keyAws = maskEditAvs.Text.Trim(new char[] { '_' });
         }
 
         private void chbAvs_Unchecked(object sender, RoutedEventArgs e)
         {
-            this.maskEditAvs.IsEnabled = false;
-            var currKeyItem = lbKeys.SelectedItem;
-
-            var currKey = (Src.UI.KeyListBoxItem)currKeyItem;
-            currKey.Key.keyAws = "";
+            var key = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            key.CheckAwsKey = false;
         }
 
         private void maskEditAvs_TextChanged(object sender, TextChangedEventArgs e)
@@ -168,6 +159,45 @@ namespace HarrisAdmin.Pages
             }
 
             return keysOut;
+        }
+
+        public List<Src.UI.KeyListBoxItem> GetKeysList()
+        {
+            List<Src.UI.KeyListBoxItem> keys = new List<Src.UI.KeyListBoxItem>();
+            foreach (var item in lbKeys.Items)
+            {
+                var key = (Src.UI.KeyListBoxItem)item;
+                keys.Add(key);
+            }
+            return keys;
+        }
+
+        private void chbCheckKey_Checked(object sender, RoutedEventArgs e)
+        {
+            bool checkStatus = (bool)((CheckBox)sender).IsChecked;
+            var key = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            key.CheckKey = checkStatus;
+            if (checkStatus)
+            {
+                key.Key.keyVal = maskEditKey.Text.Trim(new char[] { '_' });
+            }
+        }
+
+        private void chbCheckType_Checked(object sender, RoutedEventArgs e)
+        {
+            bool checkStatus = (bool)((CheckBox)sender).IsChecked;
+            var key = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            key.CheckType = checkStatus; 
+            if (checkStatus)
+            {
+                key.Key.type = (Harris7800HMP.KeyModule.KeyType)cbKeyType.SelectedItem;
+            }
+        }
+
+        private void chbCheckName_Checked(object sender, RoutedEventArgs e)
+        {
+            var key = (Src.UI.KeyListBoxItem)lbKeys.SelectedItem;
+            key.CheckName = (bool)((CheckBox)sender).IsChecked;
         }
     }
 }

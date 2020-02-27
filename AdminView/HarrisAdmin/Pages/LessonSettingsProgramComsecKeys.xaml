@@ -15,21 +15,21 @@
         <ListBox x:Name="lbKeys" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="lbKeys_SelectionChanged" />
         <GroupBox Header="Налаштування ключа" HorizontalAlignment="Left" Height="290" Margin="148,0,0,0" VerticalAlignment="Top" Width="373">
             <Grid Name="gridKeyContent">
-                <ComboBox x:Name="cbKeyType" HorizontalAlignment="Left" Margin="94,40,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbKeyType_SelectionChanged">
+                <ComboBox x:Name="cbKeyType" HorizontalAlignment="Left" Margin="102,40,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbKeyType_SelectionChanged">
                 </ComboBox>
-                <TextBlock HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="Тип:" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Текст ключа:" VerticalAlignment="Top"/>
-                <syncfusion:SfMaskedEdit x:Name="maskEditKey" HorizontalAlignment="Left" Height="28" Margin="93,71,0,0" TextWrapping="Wrap" 
-                                         Text="" VerticalAlignment="Top" Width="258" 
+                <syncfusion:SfMaskedEdit x:Name="maskEditKey" HorizontalAlignment="Left" Height="28" Margin="102,71,0,0" TextWrapping="Wrap" 
+                                         Text="" VerticalAlignment="Top" Width="249" 
                                          Mask="[0-9A-Za-z_]{1,40}" PromptChar="_" MaskType="RegEx" TextChanged="maskEditKey_TextChanged"/>
                 <CheckBox x:Name="chbAvs" Content="AWS ключ" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Checked="chbAvs_Checked" Unchecked="chbAvs_Unchecked" />
-                <syncfusion:SfMaskedEdit x:Name="maskEditAvs" HorizontalAlignment="Left" Height="28" Margin="92,114,0,0" TextWrapping="Wrap" 
-                    Text="" VerticalAlignment="Top" Width="258" 
+                <syncfusion:SfMaskedEdit x:Name="maskEditAvs" HorizontalAlignment="Left" Height="28" Margin="102,114,0,0" TextWrapping="Wrap" 
+                    Text="" VerticalAlignment="Top" Width="248" 
                     Mask="[0-9A-Za-z_]{1,40}" PromptChar="_" MaskType="RegEx" TextChanged="maskEditAvs_TextChanged"/>
-                <syncfusion:SfMaskedEdit x:Name="maskEditName" HorizontalAlignment="Left" Height="28" Margin="92,7,0,0" TextWrapping="Wrap" 
+                <syncfusion:SfMaskedEdit x:Name="maskEditName" HorizontalAlignment="Left" Height="28" Margin="101,7,0,0" TextWrapping="Wrap" 
                     Text="" VerticalAlignment="Top" Width="123" 
                     Mask="[0-9A-Za-z_]{5}" PromptChar="_" MaskType="RegEx" TextChanged="maskEditName_TextChanged"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbCheckKey" Content="Текст ключа" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Checked="chbCheckKey_Checked" Unchecked="chbCheckKey_Checked"/>
+                <CheckBox x:Name="chbCheckType" Content="Тип" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="chbCheckType_Checked" Unchecked="chbCheckType_Checked"/>
+                <CheckBox x:Name="chbCheckName" Content="Ім'я" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Checked="chbCheckName_Checked" Unchecked="chbCheckName_Checked"/>
             </Grid>
         </GroupBox>
         <Button x:Name="btnRemoveKey" Content="-" HorizontalAlignment="Left" Margin="96,295,0,0" VerticalAlignment="Top" Width="36" Style="{StaticResource UIButton}"/>

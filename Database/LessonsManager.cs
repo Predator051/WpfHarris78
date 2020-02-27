@@ -28,7 +28,8 @@ namespace WpfHarris78.Database
         public static void CreateLesson(Lesson lesson)
         {
             SqlCommand command = new SqlCommand("INSERT INTO Lessons(Name, Description) VALUES (@name, @description); SET @id=SCOPE_IDENTITY();");
-            command.Parameters.AddWithValue("@name", lesson.Name);
+            var paramName = command.Parameters.AddWithValue("@name", lesson.Name);
+            paramName.SqlDbType = SqlDbType.NVarChar;
             command.Parameters.AddWithValue("@description", lesson.Description);
 
             SqlParameter idParam = command.Parameters.Add("@id", SqlDbType.Int);

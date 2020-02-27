@@ -5,7 +5,7 @@ namespace Harris7800HMP
 {
     public enum RadioStationMode
     {
-        Fix, Ale, ThreeG, Hop
+        Fix, Ale, ThreeG, Hop, None
     };
     public class RadioStation
     {
@@ -61,7 +61,7 @@ namespace Harris7800HMP
             presetModemsModule.Add(modem);
         }
 
-        public void AddPresetSystem(List<WidgetTextParams> textParams, string oldName)
+        public StationPresetSystem AddPresetSystem(List<WidgetTextParams> textParams, string oldName)
         {
             WidgetTextParams FindParam(string name)
             {
@@ -91,7 +91,7 @@ namespace Harris7800HMP
                 stationPresetSystemModule.modemPreset = PresetModems.Find(pm => pm.name == modemPreset);
             }
 
-            if (keyName == "--------------------")
+            if (keyName != "--------------------")
             {
                 var kType = KeyModule.StringToType(keyTypeName);
                 var value = Keys.Keys[kType].Find(k => k.keyName == keyName);
@@ -110,15 +110,18 @@ namespace Harris7800HMP
             }
 
             presetSystemsModule.AddPresetSystem(stationPresetSystemModule);
+            return stationPresetSystemModule;
         }
-        public void UpdatePresetModem(StationPresetModemModule modem, string oldName)
+        public StationPresetModemModule UpdatePresetModem(StationPresetModemModule modem, string oldName)
         {
             var isContains = presetModemsModule.Find(m => m.name == oldName);
             if (isContains != null)
             {
                 presetModemsModule.Remove(isContains);
+                modem.originalName = isContains.originalName;
             }
             presetModemsModule.Add(modem);
+            return modem;
         }
 
         public string CurrentModeToString()

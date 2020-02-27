@@ -10,6 +10,8 @@
         mc:Ignorable="d"     
         MinWidth="820.011"
         MinHeight="509.169"
+        MaxHeight="509.169"
+        MaxWidth="820.011"
         Title="Harris RF-7800H-MP" 
         Height="509.169" 
         Width="820.011" 

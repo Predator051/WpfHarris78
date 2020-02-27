@@ -31,40 +31,53 @@ namespace HarrisAdmin
        
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            var commonLessonSettings = DataModels.ApplicationPageContainer.Contrainer.GetPage<CommonLessonSettings>();
-
-            byte[] bytesOfPdf = null;
             try
             {
-                bytesOfPdf = File.ReadAllBytes(commonLessonSettings.tbPdfFilePath.Text);
+                var commonLessonSettings = DataModels.ApplicationPageContainer.Contrainer.GetPage<CommonLessonSettings>();
+
+                byte[] bytesOfPdf = null;
+                try
+                {
+                    bytesOfPdf = File.ReadAllBytes(commonLessonSettings.tbPdfFilePath.Text);
+                }
+                catch (IOException)
+                {
+                    System.Windows.MessageBox.Show($"Невдається завантажити файл: {commonLessonSettings.tbPdfFilePath.Text}");
+                    return;
+                }
+
+                WpfHarris78.Database.Lesson newLesson = new WpfHarris78.Database.Lesson
+                {
+                    Name = commonLessonSettings.tbLessonName.Text,
+                    Description = bytesOfPdf
+                };
+
+                var radio = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsOptionRadio>().GetProtobufRadioObject();
+                var test = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsOptionTest>().GetProtobufTestObject();
+                var common = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsStationStatus>().GetProtobufCommonObject();
+                var keys = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsProgramComsecKeys>().GetProtobufKeysObject();
+                var channels = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonsSettingsProgramModeChannel>().GetProtobufChannelObjects();
+                var modems = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsProgramModeModem>().GetModemsProtobufObject();
+                var systems = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsProgramModeSystem>().GetSystemProtobufObjects();
+
+                WpfHarris78.Protobuf.Wrappers.LessonParametersWrapper lessonParameters = new WpfHarris78.Protobuf.Wrappers.LessonParametersWrapper();
+                lessonParameters.Parameters.Option.Radio = radio;
+                lessonParameters.Parameters.Option.Test = test;
+                lessonParameters.Parameters.Common = common;
+                lessonParameters.Parameters.Program.Comsec.Keys.Add(keys);
+                lessonParameters.Parameters.Program.Mode.Preset.Channels.Add(channels);
+                lessonParameters.Parameters.Program.Mode.Preset.Modems.Add(modems);
+                lessonParameters.Parameters.Program.Mode.Preset.Systems.Add(systems);
+
+                WpfHarris78.Database.LessonsManager.CreateLesson(newLesson);
+                WpfHarris78.Database.LessonParametersManager.CreateLesson(newLesson.Id, lessonParameters);
+
+                this.Close();
             }
-            catch (IOException)
+            catch (Exception exp)
             {
-                System.Windows.MessageBox.Show($"Невдається завантажити файл: {commonLessonSettings.tbPdfFilePath.Text}");
-                return;
+                System.Windows.MessageBox.Show(exp.Message);
             }
-
-            WpfHarris78.Database.Lesson newLesson = new WpfHarris78.Database.Lesson
-            {
-                Name = commonLessonSettings.tbLessonName.Text,
-                Description = bytesOfPdf
-            };
-
-            var radio = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsOptionRadio>().GetProtobufRadioObject();
-            var test = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsOptionTest>().GetProtobufTestObject();
-            var common = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsStationStatus>().GetProtobufCommonObject();
-            var keys = DataModels.ApplicationPageContainer.Contrainer.GetPage<LessonSettingsProgramComsecKeys>().GetProtobufKeysObject();
-
-            WpfHarris78.Protobuf.Wrappers.LessonParametersWrapper lessonParameters = new WpfHarris78.Protobuf.Wrappers.LessonParametersWrapper();
-            lessonParameters.Parameters.Option.Radio = radio;
-            lessonParameters.Parameters.Option.Test  = test;
-            lessonParameters.Parameters.Common = common;
-            lessonParameters.Parameters.Program.Comsec.Keys.Add(keys);
-
-            WpfHarris78.Database.LessonsManager.CreateLesson(newLesson);
-            WpfHarris78.Database.LessonParametersManager.CreateLesson(newLesson.Id, lessonParameters);
-
-            this.Close();
         }
 
         private void SfDataGrid_SelectionChanged(object sender, Syncfusion.UI.Xaml.Grid.GridSelectionChangedEventArgs e)
@@ -77,6 +90,7 @@ namespace HarrisAdmin
         }
         private void treeViewLessonParams_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            if (!DataModels.ApplicationPageContainer.IsInited) return;
             string itemHeaderString = ((TreeViewItem)this.treeViewLessonParams.SelectedItem).Header.ToString();
 
             switch(itemHeaderString)
@@ -104,6 +118,21 @@ namespace HarrisAdmin
                 case "Keys":
                     {
                         this.MainFrame.Content = DataModels.ApplicationPageContainer.Contrainer.Pages[DataModels.ApplicationPage.LessonSettingsProgramComsecKeys];
+                        break;
+                    }
+                case "Channel":
+                    {
+                        this.MainFrame.Content = DataModels.ApplicationPageContainer.Contrainer.Pages[DataModels.ApplicationPage.LessonSettingsProgramModePresetChannel];
+                        break;
+                    }
+                case "Modem":
+                    {
+                        this.MainFrame.Content = DataModels.ApplicationPageContainer.Contrainer.Pages[DataModels.ApplicationPage.LessonSettingsProgramModePresetModem];
+                        break;
+                    }
+                case "System":
+                    {
+                        this.MainFrame.Content = DataModels.ApplicationPageContainer.Contrainer.Pages[DataModels.ApplicationPage.LessonSettingsProgramModePresetSystem];
                         break;
                     }
                 default:

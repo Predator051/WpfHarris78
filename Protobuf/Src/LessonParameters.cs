@@ -25,41 +25,94 @@ namespace LessonParametersSet {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChZMZXNzb25QYXJhbWV0ZXJzLnByb3RvEhNMZXNzb25QYXJhbWV0ZXJzU2V0",
-            "IuAJChBMZXNzb25QYXJhbWV0ZXJzEgwKBG5hbWUYASABKAkSPAoGb3B0aW9u",
+            "IqcbChBMZXNzb25QYXJhbWV0ZXJzEgwKBG5hbWUYASABKAkSPAoGb3B0aW9u",
             "GAIgASgLMiwuTGVzc29uUGFyYW1ldGVyc1NldC5MZXNzb25QYXJhbWV0ZXJz",
             "Lk9wdGlvbhI8CgZjb21tb24YAyABKAsyLC5MZXNzb25QYXJhbWV0ZXJzU2V0",
             "Lkxlc3NvblBhcmFtZXRlcnMuQ29tbW9uEj4KB3Byb2dyYW0YBCABKAsyLS5M",
-            "ZXNzb25QYXJhbWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRlcnMuUHJvZ3JhbRpg",
-            "CgZDb21tb24SDAoEbW9kZRgBIAEoCRINCgVzdGF0ZRgCIAEoCRIPCgdjb3Vw",
-            "bGVyGAMgASgIEg8KB2hhbmRzZXQYBCABKAgSCwoDdXNiGAUgASgIEgoKAnNx",
-            "GAYgASgIGscECgZPcHRpb24SQQoFcmFkaW8YASABKAsyMi5MZXNzb25QYXJh",
-            "bWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRlcnMuT3B0aW9uLlJhZGlvEj8KBHRl",
-            "c3QYAiABKAsyMS5MZXNzb25QYXJhbWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRl",
-            "cnMuT3B0aW9uLlRlc3QasgEKBVJhZGlvEhQKDHR4UG93ZXJMZXZlbBgBIAEo",
-            "CRIUCgxzcXVlbGNoTGV2ZWwYAiABKAkSFQoNZm1TcXVlbGNoVHlwZRgDIAEo",
-            "CRIXCg9pbnRlcm5hbENvdXBsZXIYBCABKAkSFAoMcmFkaW9TaWxlbmNlGAUg",
-            "ASgJEgsKA2JmbxgGIAEoCRIXCg9yeE5vaWNlQmxhbmtpbmcYByABKAkSEQoJ",
-            "cmFkaW9Mb2NrGAggASgJGoMCCgRUZXN0EkIKA2JpdBgBIAEoCzI1Lkxlc3Nv",
-            "blBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVycy5PcHRpb24uVGVzdC5C",
-            "aXQSDwoHYmF0dGVyeRgCIAEoCBIMCgR0ZW1wGAMgASgIEhUKDXZzd3JGcmVx",
-            "dWVuY3kYBCABKAkagAEKA0JpdBIOCgZzeXN0ZW0YASABKAgSEQoJcmZDb3Vw",
-            "bGVyGAIgASgIEg8KB3ByZXBvc3QYAyABKAgSEgoKZXh0ZXJuYWxQYRgEIAEo",
-            "CBILCgNrZHAYBSABKAgSCwoDa2R1GAYgASgIEhcKD2ludGVybmFsQ291cGxl",
-            "chgHIAEoCBrVAgoHUHJvZ3JhbRJECgZjb21zZWMYASABKAsyNC5MZXNzb25Q",
-            "YXJhbWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRlcnMuUHJvZ3JhbS5Db21zZWMa",
-            "gwIKBkNvbXNlYxJGCgRrZXlzGAEgAygLMjguTGVzc29uUGFyYW1ldGVyc1Nl",
-            "dC5MZXNzb25QYXJhbWV0ZXJzLlByb2dyYW0uQ29tc2VjLktleRqwAQoDS2V5",
-            "Ek4KBHR5cGUYASABKA4yQC5MZXNzb25QYXJhbWV0ZXJzU2V0Lkxlc3NvblBh",
-            "cmFtZXRlcnMuUHJvZ3JhbS5Db21zZWMuS2V5LktleVR5cGUSDAoEbmFtZRgC",
-            "IAEoCRILCgNrZXkYBSABKAkSDgoGYXdzS2V5GAYgASgJIi4KB0tleVR5cGUS",
-            "CwoHQ0lUQURFTBAAEgoKBkFlczI1NhABEgoKBkFlczEyOBACYgZwcm90bzM="));
+            "ZXNzb25QYXJhbWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRlcnMuUHJvZ3JhbRrW",
+            "AQoGQ29tbW9uEgwKBG1vZGUYASABKAkSEQoJY2hlY2tNb2RlGAIgASgIEg0K",
+            "BXN0YXRlGAMgASgJEhIKCmNoZWNrU3RhdGUYBCABKAgSDwoHY291cGxlchgF",
+            "IAEoCBIUCgxjaGVja0NvdXBsZXIYBiABKAgSDwoHaGFuZHNldBgHIAEoCBIU",
+            "CgxjaGVja0hhbmRzZXQYCCABKAgSCwoDdXNiGAkgASgIEhAKCGNoZWNrVXNi",
+            "GAogASgIEgoKAnNxGAsgASgIEg8KB2NoZWNrU3EYDCABKAga/QcKBk9wdGlv",
+            "bhJBCgVyYWRpbxgBIAEoCzIyLkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29u",
+            "UGFyYW1ldGVycy5PcHRpb24uUmFkaW8SPwoEdGVzdBgCIAEoCzIxLkxlc3Nv",
+            "blBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVycy5PcHRpb24uVGVzdBqF",
+            "AwoFUmFkaW8SFAoMdHhQb3dlckxldmVsGAEgASgJEhkKEWNoZWNrVHhQb3dl",
+            "ckxldmVsGAIgASgIEhQKDHNxdWVsY2hMZXZlbBgDIAEoCRIZChFjaGVja1Nx",
+            "dWVsY2hMZXZlbBgEIAEoCBIVCg1mbVNxdWVsY2hUeXBlGAUgASgJEhoKEmNo",
+            "ZWNrRm1TcXVlbGNoVHlwZRgGIAEoCBIXCg9pbnRlcm5hbENvdXBsZXIYByAB",
+            "KAkSHAoUY2hlY2tJbnRlcm5hbENvdXBsZXIYCCABKAgSFAoMcmFkaW9TaWxl",
+            "bmNlGAkgASgJEhkKEWNoZWNrUmFkaW9TaWxlbmNlGAogASgIEgsKA2JmbxgL",
+            "IAEoCRIQCghjaGVja0JmbxgMIAEoCBIXCg9yeE5vaWNlQmxhbmtpbmcYDSAB",
+            "KAkSHAoUY2hlY2tSeE5vaWNlQmxhbmtpbmcYDiABKAgSEQoJcmFkaW9Mb2Nr",
+            "GA8gASgJEhYKDmNoZWNrUmFkaW9Mb2NrGBAgASgIGuYDCgRUZXN0EkIKA2Jp",
+            "dBgBIAEoCzI1Lkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVy",
+            "cy5PcHRpb24uVGVzdC5CaXQSDwoHYmF0dGVyeRgCIAEoCBIUCgxjaGVja0Jh",
+            "dHRlcnkYAyABKAgSDAoEdGVtcBgEIAEoCBIRCgljaGVja1RlbXAYBSABKAgS",
+            "FQoNdnN3ckZyZXF1ZW5jeRgGIAEoCRIaChJjaGVja1Zzd3JGcmVxdWVuY3kY",
+            "ByABKAgangIKA0JpdBIOCgZzeXN0ZW0YASABKAgSEwoLY2hlY2tTeXN0ZW0Y",
+            "AiABKAgSEQoJcmZDb3VwbGVyGAMgASgIEhYKDmNoZWNrUmZDb3VwbGVyGAQg",
+            "ASgIEg8KB3ByZXBvc3QYBSABKAgSFAoMY2hlY2tQcmVwb3N0GAYgASgIEhIK",
+            "CmV4dGVybmFsUGEYByABKAgSFwoPY2hlY2tFeHRlcm5hbFBhGAggASgIEgsK",
+            "A2tkcBgJIAEoCBIQCghjaGVja0tkcBgKIAEoCBILCgNrZHUYCyABKAgSEAoI",
+            "Y2hlY2tLZHUYDCABKAgSFwoPaW50ZXJuYWxDb3VwbGVyGA0gASgIEhwKFGNo",
+            "ZWNrSW50ZXJuYWxDb3VwbGVyGA4gASgIGu8PCgdQcm9ncmFtEkQKBmNvbXNl",
+            "YxgBIAEoCzI0Lkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVy",
+            "cy5Qcm9ncmFtLkNvbXNlYxJACgRtb2RlGAIgASgLMjIuTGVzc29uUGFyYW1l",
+            "dGVyc1NldC5MZXNzb25QYXJhbWV0ZXJzLlByb2dyYW0uTW9kZRraAgoGQ29t",
+            "c2VjEkYKBGtleXMYASADKAsyOC5MZXNzb25QYXJhbWV0ZXJzU2V0Lkxlc3Nv",
+            "blBhcmFtZXRlcnMuUHJvZ3JhbS5Db21zZWMuS2V5GocCCgNLZXkSTgoEdHlw",
+            "ZRgBIAEoDjJALkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVy",
+            "cy5Qcm9ncmFtLkNvbXNlYy5LZXkuS2V5VHlwZRIRCgljaGVja1R5cGUYAiAB",
+            "KAgSDAoEbmFtZRgDIAEoCRIRCgljaGVja05hbWUYBCABKAgSCwoDa2V5GAUg",
+            "ASgJEhAKCGNoZWNrS2V5GAYgASgIEg4KBmF3c0tleRgHIAEoCRITCgtjaGVj",
+            "a0F3c0tleRgIIAEoCCI4CgdLZXlUeXBlEgsKB0NJVEFERUwQABIKCgZBZXMy",
+            "NTYQARIKCgZBZXMxMjgQAhIICgROb25lEAMa/gsKBE1vZGUSSQoGcHJlc2V0",
+            "GAEgASgLMjkuTGVzc29uUGFyYW1ldGVyc1NldC5MZXNzb25QYXJhbWV0ZXJz",
+            "LlByb2dyYW0uTW9kZS5QcmVzZXQaqgsKBlByZXNldBJTCghjaGFubmVscxgB",
+            "IAMoCzJBLkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVycy5Q",
+            "cm9ncmFtLk1vZGUuUHJlc2V0LkNoYW5uZWwSTwoGbW9kZW1zGAIgAygLMj8u",
+            "TGVzc29uUGFyYW1ldGVyc1NldC5MZXNzb25QYXJhbWV0ZXJzLlByb2dyYW0u",
+            "TW9kZS5QcmVzZXQuTW9kZW0SUQoHc3lzdGVtcxgDIAMoCzJALkxlc3NvblBh",
+            "cmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVycy5Qcm9ncmFtLk1vZGUuUHJl",
+            "c2V0LlN5c3RlbRrfAgoHQ2hhbm5lbBILCgNudW0YASABKAkSEAoIY2hlY2tO",
+            "dW0YAiABKAgSEwoLcnhGcmVxdWVuY3kYAyABKAkSGAoQY2hlY2tSeEZyZXF1",
+            "ZW5jeRgEIAEoCBITCgt0eEZyZXF1ZW5jeRgFIAEoCRIYChBjaGVja1R4RnJl",
+            "cXVlbmN5GAYgASgIEhIKCm1vZHVsYXRpb24YByABKAkSFwoPY2hlY2tNb2R1",
+            "bGF0aW9uGAggASgIEgwKBG1vZGUYCSABKAgSEQoJY2hlY2tNb2RlGAogASgI",
+            "Eg8KB2hhaWxLZXkYCyABKAkSFAoMY2hlY2tIYWlsS2V5GAwgASgIEhUKDWVu",
+            "YWJsZVNzYlNjYW4YDSABKAgSGgoSY2hlY2tFbmFibGVTc2JTY2FuGA4gASgI",
+            "EhQKDG1heEJhbmR3aWR0aBgPIAEoCRIZChFjaGVja01heEJhbmR3aWR0aBgQ",
+            "IAEoCBrqAgoFTW9kZW0SDAoEbmFtZRgBIAEoCRIRCgljaGVja05hbWUYAiAB",
+            "KAgSEQoJbW9kZW1UeXBlGAMgASgJEhYKDmNoZWNrTW9kZW1UeXBlGAQgASgI",
+            "EhAKCGRhdGFSYXRlGAUgASgJEhUKDWNoZWNrRGF0YVJhdGUYBiABKAgSDAoE",
+            "bW9kZRgHIAEoCRIRCgljaGVja01vZGUYCCABKAgSEAoIZGF0YUJpdHMYCSAB",
+            "KAkSFQoNY2hlY2tEYXRhQml0cxgKIAEoCBIQCghzdG9wQml0cxgLIAEoCRIV",
+            "Cg1jaGVja1N0b3BCaXRzGAwgASgIEg4KBnBhcml0eRgNIAEoCRITCgtjaGVj",
+            "a1Bhcml0eRgOIAEoCBIOCgZlbmFibGUYDyABKAkSEwoLY2hlY2tFbmFibGUY",
+            "ECABKAgSFAoMb3JpZ2luYWxOYW1lGBEgASgJEhkKEWNoZWNrT3JpZ2luYWxO",
+            "YW1lGBIgASgIGtcDCgZTeXN0ZW0SDAoEbmFtZRgBIAEoCRIRCgljaGVja05h",
+            "bWUYAiABKAgSFQoNY2hhbm5lbE51bWJlchgDIAEoCRIaChJjaGVja0NoYW5u",
+            "ZWxOdW1iZXIYBCABKAgSVAoLbW9kZW1QcmVzZXQYBSABKAsyPy5MZXNzb25Q",
+            "YXJhbWV0ZXJzU2V0Lkxlc3NvblBhcmFtZXRlcnMuUHJvZ3JhbS5Nb2RlLlBy",
+            "ZXNldC5Nb2RlbRIYChBjaGVja01vZGVtUHJlc2V0GAYgASgIEkUKA2tleRgH",
+            "IAEoCzI4Lkxlc3NvblBhcmFtZXRlcnNTZXQuTGVzc29uUGFyYW1ldGVycy5Q",
+            "cm9ncmFtLkNvbXNlYy5LZXkSEAoIY2hlY2tLZXkYCCABKAgSEwoLcHRWb2lj",
+            "ZU1vZGUYCSABKAkSGAoQY2hlY2tQdFZvaWNlTW9kZRgKIAEoCBITCgtjdFZv",
+            "aWNlTW9kZRgLIAEoCRIYChBjaGVja0N0Vm9pY2VNb2RlGAwgASgIEg4KBmVu",
+            "YWJsZRgNIAEoCRITCgtjaGVja0VuYWJsZRgOIAEoCBIVCg1jaGVja0tleVZh",
+            "bHVlGA8gASgIEhYKDmNoZWNrUmFkaW9Nb2RlGBAgASgIYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters), global::LessonParametersSet.LessonParameters.Parser, new[]{ "Name", "Option", "Common", "Program" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Common), global::LessonParametersSet.LessonParameters.Types.Common.Parser, new[]{ "Mode", "State", "Coupler", "Handset", "Usb", "Sq" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option), global::LessonParametersSet.LessonParameters.Types.Option.Parser, new[]{ "Radio", "Test" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Radio), global::LessonParametersSet.LessonParameters.Types.Option.Types.Radio.Parser, new[]{ "TxPowerLevel", "SquelchLevel", "FmSquelchType", "InternalCoupler", "RadioSilence", "Bfo", "RxNoiceBlanking", "RadioLock" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Test), global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Parser, new[]{ "Bit", "Battery", "Temp", "VswrFrequency" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit), global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit.Parser, new[]{ "System", "RfCoupler", "Prepost", "ExternalPa", "Kdp", "Kdu", "InternalCoupler" }, null, null, null, null)})}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program), global::LessonParametersSet.LessonParameters.Types.Program.Parser, new[]{ "Comsec" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec), global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Parser, new[]{ "Keys" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key), global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Parser, new[]{ "Type", "Name", "Key_", "AwsKey" }, null, new[]{ typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType) }, null, null)})})})
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters), global::LessonParametersSet.LessonParameters.Parser, new[]{ "Name", "Option", "Common", "Program" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Common), global::LessonParametersSet.LessonParameters.Types.Common.Parser, new[]{ "Mode", "CheckMode", "State", "CheckState", "Coupler", "CheckCoupler", "Handset", "CheckHandset", "Usb", "CheckUsb", "Sq", "CheckSq" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option), global::LessonParametersSet.LessonParameters.Types.Option.Parser, new[]{ "Radio", "Test" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Radio), global::LessonParametersSet.LessonParameters.Types.Option.Types.Radio.Parser, new[]{ "TxPowerLevel", "CheckTxPowerLevel", "SquelchLevel", "CheckSquelchLevel", "FmSquelchType", "CheckFmSquelchType", "InternalCoupler", "CheckInternalCoupler", "RadioSilence", "CheckRadioSilence", "Bfo", "CheckBfo", "RxNoiceBlanking", "CheckRxNoiceBlanking", "RadioLock", "CheckRadioLock" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Test), global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Parser, new[]{ "Bit", "Battery", "CheckBattery", "Temp", "CheckTemp", "VswrFrequency", "CheckVswrFrequency" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit), global::LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit.Parser, new[]{ "System", "CheckSystem", "RfCoupler", "CheckRfCoupler", "Prepost", "CheckPrepost", "ExternalPa", "CheckExternalPa", "Kdp", "CheckKdp", "Kdu", "CheckKdu", "InternalCoupler", "CheckInternalCoupler" }, null, null, null, null)})}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program), global::LessonParametersSet.LessonParameters.Types.Program.Parser, new[]{ "Comsec", "Mode" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec), global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Parser, new[]{ "Keys" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key), global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Parser, new[]{ "Type", "CheckType", "Name", "CheckName", "Key_", "CheckKey", "AwsKey", "CheckAwsKey" }, null, new[]{ typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType) }, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode), global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Parser, new[]{ "Preset" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset), global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Parser, new[]{ "Channels", "Modems", "Systems" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel), global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel.Parser, new[]{ "Num", "CheckNum", "RxFrequency", "CheckRxFrequency", "TxFrequency", "CheckTxFrequency", "Modulation", "CheckModulation", "Mode", "CheckMode", "HailKey", "CheckHailKey", "EnableSsbScan", "CheckEnableSsbScan", "MaxBandwidth", "CheckMaxBandwidth" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem), global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem.Parser, new[]{ "Name", "CheckName", "ModemType", "CheckModemType", "DataRate", "CheckDataRate", "Mode", "CheckMode", "DataBits", "CheckDataBits", "StopBits", "CheckStopBits", "Parity", "CheckParity", "Enable", "CheckEnable", "OriginalName", "CheckOriginalName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System), global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System.Parser, new[]{ "Name", "CheckName", "ChannelNumber", "CheckChannelNumber", "ModemPreset", "CheckModemPreset", "Key", "CheckKey", "PtVoiceMode", "CheckPtVoiceMode", "CtVoiceMode", "CheckCtVoiceMode", "Enable", "CheckEnable", "CheckKeyValue", "CheckRadioMode" }, null, null, null, null)})})})})
           }));
     }
     #endregion
@@ -325,11 +378,17 @@ namespace LessonParametersSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Common(Common other) : this() {
           mode_ = other.mode_;
+          checkMode_ = other.checkMode_;
           state_ = other.state_;
+          checkState_ = other.checkState_;
           coupler_ = other.coupler_;
+          checkCoupler_ = other.checkCoupler_;
           handset_ = other.handset_;
+          checkHandset_ = other.checkHandset_;
           usb_ = other.usb_;
+          checkUsb_ = other.checkUsb_;
           sq_ = other.sq_;
+          checkSq_ = other.checkSq_;
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -349,8 +408,19 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "checkMode" field.</summary>
+        public const int CheckModeFieldNumber = 2;
+        private bool checkMode_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckMode {
+          get { return checkMode_; }
+          set {
+            checkMode_ = value;
+          }
+        }
+
         /// <summary>Field number for the "state" field.</summary>
-        public const int StateFieldNumber = 2;
+        public const int StateFieldNumber = 3;
         private string state_ = "";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string State {
@@ -360,8 +430,19 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "checkState" field.</summary>
+        public const int CheckStateFieldNumber = 4;
+        private bool checkState_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckState {
+          get { return checkState_; }
+          set {
+            checkState_ = value;
+          }
+        }
+
         /// <summary>Field number for the "coupler" field.</summary>
-        public const int CouplerFieldNumber = 3;
+        public const int CouplerFieldNumber = 5;
         private bool coupler_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Coupler {
@@ -371,8 +452,19 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "checkCoupler" field.</summary>
+        public const int CheckCouplerFieldNumber = 6;
+        private bool checkCoupler_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckCoupler {
+          get { return checkCoupler_; }
+          set {
+            checkCoupler_ = value;
+          }
+        }
+
         /// <summary>Field number for the "handset" field.</summary>
-        public const int HandsetFieldNumber = 4;
+        public const int HandsetFieldNumber = 7;
         private bool handset_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Handset {
@@ -382,8 +474,19 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "checkHandset" field.</summary>
+        public const int CheckHandsetFieldNumber = 8;
+        private bool checkHandset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckHandset {
+          get { return checkHandset_; }
+          set {
+            checkHandset_ = value;
+          }
+        }
+
         /// <summary>Field number for the "usb" field.</summary>
-        public const int UsbFieldNumber = 5;
+        public const int UsbFieldNumber = 9;
         private bool usb_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Usb {
@@ -393,14 +496,36 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "checkUsb" field.</summary>
+        public const int CheckUsbFieldNumber = 10;
+        private bool checkUsb_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckUsb {
+          get { return checkUsb_; }
+          set {
+            checkUsb_ = value;
+          }
+        }
+
         /// <summary>Field number for the "sq" field.</summary>
-        public const int SqFieldNumber = 6;
+        public const int SqFieldNumber = 11;
         private bool sq_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Sq {
           get { return sq_; }
           set {
             sq_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "checkSq" field.</summary>
+        public const int CheckSqFieldNumber = 12;
+        private bool checkSq_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CheckSq {
+          get { return checkSq_; }
+          set {
+            checkSq_ = value;
           }
         }
 
@@ -418,11 +543,17 @@ namespace LessonParametersSet {
             return true;
           }
           if (Mode != other.Mode) return false;
+          if (CheckMode != other.CheckMode) return false;
           if (State != other.State) return false;
+          if (CheckState != other.CheckState) return false;
           if (Coupler != other.Coupler) return false;
+          if (CheckCoupler != other.CheckCoupler) return false;
           if (Handset != other.Handset) return false;
+          if (CheckHandset != other.CheckHandset) return false;
           if (Usb != other.Usb) return false;
+          if (CheckUsb != other.CheckUsb) return false;
           if (Sq != other.Sq) return false;
+          if (CheckSq != other.CheckSq) return false;
           return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -430,11 +561,17 @@ namespace LessonParametersSet {
         public override int GetHashCode() {
           int hash = 1;
           if (Mode.Length != 0) hash ^= Mode.GetHashCode();
+          if (CheckMode != false) hash ^= CheckMode.GetHashCode();
           if (State.Length != 0) hash ^= State.GetHashCode();
+          if (CheckState != false) hash ^= CheckState.GetHashCode();
           if (Coupler != false) hash ^= Coupler.GetHashCode();
+          if (CheckCoupler != false) hash ^= CheckCoupler.GetHashCode();
           if (Handset != false) hash ^= Handset.GetHashCode();
+          if (CheckHandset != false) hash ^= CheckHandset.GetHashCode();
           if (Usb != false) hash ^= Usb.GetHashCode();
+          if (CheckUsb != false) hash ^= CheckUsb.GetHashCode();
           if (Sq != false) hash ^= Sq.GetHashCode();
+          if (CheckSq != false) hash ^= CheckSq.GetHashCode();
           if (_unknownFields != null) {
             hash ^= _unknownFields.GetHashCode();
           }
@@ -452,25 +589,49 @@ namespace LessonParametersSet {
             output.WriteRawTag(10);
             output.WriteString(Mode);
           }
+          if (CheckMode != false) {
+            output.WriteRawTag(16);
+            output.WriteBool(CheckMode);
+          }
           if (State.Length != 0) {
-            output.WriteRawTag(18);
+            output.WriteRawTag(26);
             output.WriteString(State);
           }
+          if (CheckState != false) {
+            output.WriteRawTag(32);
+            output.WriteBool(CheckState);
+          }
           if (Coupler != false) {
-            output.WriteRawTag(24);
+            output.WriteRawTag(40);
             output.WriteBool(Coupler);
           }
+          if (CheckCoupler != false) {
+            output.WriteRawTag(48);
+            output.WriteBool(CheckCoupler);
+          }
           if (Handset != false) {
-            output.WriteRawTag(32);
+            output.WriteRawTag(56);
             output.WriteBool(Handset);
           }
+          if (CheckHandset != false) {
+            output.WriteRawTag(64);
+            output.WriteBool(CheckHandset);
+          }
           if (Usb != false) {
-            output.WriteRawTag(40);
+            output.WriteRawTag(72);
             output.WriteBool(Usb);
           }
+          if (CheckUsb != false) {
+            output.WriteRawTag(80);
+            output.WriteBool(CheckUsb);
+          }
           if (Sq != false) {
-            output.WriteRawTag(48);
+            output.WriteRawTag(88);
             output.WriteBool(Sq);
+          }
+          if (CheckSq != false) {
+            output.WriteRawTag(96);
+            output.WriteBool(CheckSq);
           }
           if (_unknownFields != null) {
             _unknownFields.WriteTo(output);
@@ -483,19 +644,37 @@ namespace LessonParametersSet {
           if (Mode.Length != 0) {
             size += 1 + pb::CodedOutputStream.ComputeStringSize(Mode);
           }
+          if (CheckMode != false) {
+            size += 1 + 1;
+          }
           if (State.Length != 0) {
             size += 1 + pb::CodedOutputStream.ComputeStringSize(State);
           }
+          if (CheckState != false) {
+            size += 1 + 1;
+          }
           if (Coupler != false) {
+            size += 1 + 1;
+          }
+          if (CheckCoupler != false) {
             size += 1 + 1;
           }
           if (Handset != false) {
             size += 1 + 1;
           }
+          if (CheckHandset != false) {
+            size += 1 + 1;
+          }
           if (Usb != false) {
             size += 1 + 1;
           }
+          if (CheckUsb != false) {
+            size += 1 + 1;
+          }
           if (Sq != false) {
+            size += 1 + 1;
+          }
+          if (CheckSq != false) {
             size += 1 + 1;
           }
           if (_unknownFields != null) {
@@ -512,20 +691,38 @@ namespace LessonParametersSet {
           if (other.Mode.Length != 0) {
             Mode = other.Mode;
           }
+          if (other.CheckMode != false) {
+            CheckMode = other.CheckMode;
+          }
           if (other.State.Length != 0) {
             State = other.State;
+          }
+          if (other.CheckState != false) {
+            CheckState = other.CheckState;
           }
           if (other.Coupler != false) {
             Coupler = other.Coupler;
           }
+          if (other.CheckCoupler != false) {
+            CheckCoupler = other.CheckCoupler;
+          }
           if (other.Handset != false) {
             Handset = other.Handset;
+          }
+          if (other.CheckHandset != false) {
+            CheckHandset = other.CheckHandset;
           }
           if (other.Usb != false) {
             Usb = other.Usb;
           }
+          if (other.CheckUsb != false) {
+            CheckUsb = other.CheckUsb;
+          }
           if (other.Sq != false) {
             Sq = other.Sq;
+          }
+          if (other.CheckSq != false) {
+            CheckSq = other.CheckSq;
           }
           _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -542,24 +739,48 @@ namespace LessonParametersSet {
                 Mode = input.ReadString();
                 break;
               }
-              case 18: {
+              case 16: {
+                CheckMode = input.ReadBool();
+                break;
+              }
+              case 26: {
                 State = input.ReadString();
                 break;
               }
-              case 24: {
-                Coupler = input.ReadBool();
-                break;
-              }
               case 32: {
-                Handset = input.ReadBool();
+                CheckState = input.ReadBool();
                 break;
               }
               case 40: {
-                Usb = input.ReadBool();
+                Coupler = input.ReadBool();
                 break;
               }
               case 48: {
+                CheckCoupler = input.ReadBool();
+                break;
+              }
+              case 56: {
+                Handset = input.ReadBool();
+                break;
+              }
+              case 64: {
+                CheckHandset = input.ReadBool();
+                break;
+              }
+              case 72: {
+                Usb = input.ReadBool();
+                break;
+              }
+              case 80: {
+                CheckUsb = input.ReadBool();
+                break;
+              }
+              case 88: {
                 Sq = input.ReadBool();
+                break;
+              }
+              case 96: {
+                CheckSq = input.ReadBool();
                 break;
               }
             }
@@ -765,13 +986,21 @@ namespace LessonParametersSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public Radio(Radio other) : this() {
               txPowerLevel_ = other.txPowerLevel_;
+              checkTxPowerLevel_ = other.checkTxPowerLevel_;
               squelchLevel_ = other.squelchLevel_;
+              checkSquelchLevel_ = other.checkSquelchLevel_;
               fmSquelchType_ = other.fmSquelchType_;
+              checkFmSquelchType_ = other.checkFmSquelchType_;
               internalCoupler_ = other.internalCoupler_;
+              checkInternalCoupler_ = other.checkInternalCoupler_;
               radioSilence_ = other.radioSilence_;
+              checkRadioSilence_ = other.checkRadioSilence_;
               bfo_ = other.bfo_;
+              checkBfo_ = other.checkBfo_;
               rxNoiceBlanking_ = other.rxNoiceBlanking_;
+              checkRxNoiceBlanking_ = other.checkRxNoiceBlanking_;
               radioLock_ = other.radioLock_;
+              checkRadioLock_ = other.checkRadioLock_;
               _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
             }
 
@@ -791,8 +1020,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkTxPowerLevel" field.</summary>
+            public const int CheckTxPowerLevelFieldNumber = 2;
+            private bool checkTxPowerLevel_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckTxPowerLevel {
+              get { return checkTxPowerLevel_; }
+              set {
+                checkTxPowerLevel_ = value;
+              }
+            }
+
             /// <summary>Field number for the "squelchLevel" field.</summary>
-            public const int SquelchLevelFieldNumber = 2;
+            public const int SquelchLevelFieldNumber = 3;
             private string squelchLevel_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string SquelchLevel {
@@ -802,8 +1042,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkSquelchLevel" field.</summary>
+            public const int CheckSquelchLevelFieldNumber = 4;
+            private bool checkSquelchLevel_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckSquelchLevel {
+              get { return checkSquelchLevel_; }
+              set {
+                checkSquelchLevel_ = value;
+              }
+            }
+
             /// <summary>Field number for the "fmSquelchType" field.</summary>
-            public const int FmSquelchTypeFieldNumber = 3;
+            public const int FmSquelchTypeFieldNumber = 5;
             private string fmSquelchType_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string FmSquelchType {
@@ -813,8 +1064,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkFmSquelchType" field.</summary>
+            public const int CheckFmSquelchTypeFieldNumber = 6;
+            private bool checkFmSquelchType_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckFmSquelchType {
+              get { return checkFmSquelchType_; }
+              set {
+                checkFmSquelchType_ = value;
+              }
+            }
+
             /// <summary>Field number for the "internalCoupler" field.</summary>
-            public const int InternalCouplerFieldNumber = 4;
+            public const int InternalCouplerFieldNumber = 7;
             private string internalCoupler_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string InternalCoupler {
@@ -824,8 +1086,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkInternalCoupler" field.</summary>
+            public const int CheckInternalCouplerFieldNumber = 8;
+            private bool checkInternalCoupler_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckInternalCoupler {
+              get { return checkInternalCoupler_; }
+              set {
+                checkInternalCoupler_ = value;
+              }
+            }
+
             /// <summary>Field number for the "radioSilence" field.</summary>
-            public const int RadioSilenceFieldNumber = 5;
+            public const int RadioSilenceFieldNumber = 9;
             private string radioSilence_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string RadioSilence {
@@ -835,8 +1108,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkRadioSilence" field.</summary>
+            public const int CheckRadioSilenceFieldNumber = 10;
+            private bool checkRadioSilence_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckRadioSilence {
+              get { return checkRadioSilence_; }
+              set {
+                checkRadioSilence_ = value;
+              }
+            }
+
             /// <summary>Field number for the "bfo" field.</summary>
-            public const int BfoFieldNumber = 6;
+            public const int BfoFieldNumber = 11;
             private string bfo_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string Bfo {
@@ -846,8 +1130,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkBfo" field.</summary>
+            public const int CheckBfoFieldNumber = 12;
+            private bool checkBfo_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckBfo {
+              get { return checkBfo_; }
+              set {
+                checkBfo_ = value;
+              }
+            }
+
             /// <summary>Field number for the "rxNoiceBlanking" field.</summary>
-            public const int RxNoiceBlankingFieldNumber = 7;
+            public const int RxNoiceBlankingFieldNumber = 13;
             private string rxNoiceBlanking_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string RxNoiceBlanking {
@@ -857,14 +1152,36 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkRxNoiceBlanking" field.</summary>
+            public const int CheckRxNoiceBlankingFieldNumber = 14;
+            private bool checkRxNoiceBlanking_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckRxNoiceBlanking {
+              get { return checkRxNoiceBlanking_; }
+              set {
+                checkRxNoiceBlanking_ = value;
+              }
+            }
+
             /// <summary>Field number for the "radioLock" field.</summary>
-            public const int RadioLockFieldNumber = 8;
+            public const int RadioLockFieldNumber = 15;
             private string radioLock_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string RadioLock {
               get { return radioLock_; }
               set {
                 radioLock_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+              }
+            }
+
+            /// <summary>Field number for the "checkRadioLock" field.</summary>
+            public const int CheckRadioLockFieldNumber = 16;
+            private bool checkRadioLock_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckRadioLock {
+              get { return checkRadioLock_; }
+              set {
+                checkRadioLock_ = value;
               }
             }
 
@@ -882,13 +1199,21 @@ namespace LessonParametersSet {
                 return true;
               }
               if (TxPowerLevel != other.TxPowerLevel) return false;
+              if (CheckTxPowerLevel != other.CheckTxPowerLevel) return false;
               if (SquelchLevel != other.SquelchLevel) return false;
+              if (CheckSquelchLevel != other.CheckSquelchLevel) return false;
               if (FmSquelchType != other.FmSquelchType) return false;
+              if (CheckFmSquelchType != other.CheckFmSquelchType) return false;
               if (InternalCoupler != other.InternalCoupler) return false;
+              if (CheckInternalCoupler != other.CheckInternalCoupler) return false;
               if (RadioSilence != other.RadioSilence) return false;
+              if (CheckRadioSilence != other.CheckRadioSilence) return false;
               if (Bfo != other.Bfo) return false;
+              if (CheckBfo != other.CheckBfo) return false;
               if (RxNoiceBlanking != other.RxNoiceBlanking) return false;
+              if (CheckRxNoiceBlanking != other.CheckRxNoiceBlanking) return false;
               if (RadioLock != other.RadioLock) return false;
+              if (CheckRadioLock != other.CheckRadioLock) return false;
               return Equals(_unknownFields, other._unknownFields);
             }
 
@@ -896,13 +1221,21 @@ namespace LessonParametersSet {
             public override int GetHashCode() {
               int hash = 1;
               if (TxPowerLevel.Length != 0) hash ^= TxPowerLevel.GetHashCode();
+              if (CheckTxPowerLevel != false) hash ^= CheckTxPowerLevel.GetHashCode();
               if (SquelchLevel.Length != 0) hash ^= SquelchLevel.GetHashCode();
+              if (CheckSquelchLevel != false) hash ^= CheckSquelchLevel.GetHashCode();
               if (FmSquelchType.Length != 0) hash ^= FmSquelchType.GetHashCode();
+              if (CheckFmSquelchType != false) hash ^= CheckFmSquelchType.GetHashCode();
               if (InternalCoupler.Length != 0) hash ^= InternalCoupler.GetHashCode();
+              if (CheckInternalCoupler != false) hash ^= CheckInternalCoupler.GetHashCode();
               if (RadioSilence.Length != 0) hash ^= RadioSilence.GetHashCode();
+              if (CheckRadioSilence != false) hash ^= CheckRadioSilence.GetHashCode();
               if (Bfo.Length != 0) hash ^= Bfo.GetHashCode();
+              if (CheckBfo != false) hash ^= CheckBfo.GetHashCode();
               if (RxNoiceBlanking.Length != 0) hash ^= RxNoiceBlanking.GetHashCode();
+              if (CheckRxNoiceBlanking != false) hash ^= CheckRxNoiceBlanking.GetHashCode();
               if (RadioLock.Length != 0) hash ^= RadioLock.GetHashCode();
+              if (CheckRadioLock != false) hash ^= CheckRadioLock.GetHashCode();
               if (_unknownFields != null) {
                 hash ^= _unknownFields.GetHashCode();
               }
@@ -920,33 +1253,65 @@ namespace LessonParametersSet {
                 output.WriteRawTag(10);
                 output.WriteString(TxPowerLevel);
               }
+              if (CheckTxPowerLevel != false) {
+                output.WriteRawTag(16);
+                output.WriteBool(CheckTxPowerLevel);
+              }
               if (SquelchLevel.Length != 0) {
-                output.WriteRawTag(18);
+                output.WriteRawTag(26);
                 output.WriteString(SquelchLevel);
               }
+              if (CheckSquelchLevel != false) {
+                output.WriteRawTag(32);
+                output.WriteBool(CheckSquelchLevel);
+              }
               if (FmSquelchType.Length != 0) {
-                output.WriteRawTag(26);
+                output.WriteRawTag(42);
                 output.WriteString(FmSquelchType);
               }
+              if (CheckFmSquelchType != false) {
+                output.WriteRawTag(48);
+                output.WriteBool(CheckFmSquelchType);
+              }
               if (InternalCoupler.Length != 0) {
-                output.WriteRawTag(34);
+                output.WriteRawTag(58);
                 output.WriteString(InternalCoupler);
               }
+              if (CheckInternalCoupler != false) {
+                output.WriteRawTag(64);
+                output.WriteBool(CheckInternalCoupler);
+              }
               if (RadioSilence.Length != 0) {
-                output.WriteRawTag(42);
+                output.WriteRawTag(74);
                 output.WriteString(RadioSilence);
               }
+              if (CheckRadioSilence != false) {
+                output.WriteRawTag(80);
+                output.WriteBool(CheckRadioSilence);
+              }
               if (Bfo.Length != 0) {
-                output.WriteRawTag(50);
+                output.WriteRawTag(90);
                 output.WriteString(Bfo);
               }
+              if (CheckBfo != false) {
+                output.WriteRawTag(96);
+                output.WriteBool(CheckBfo);
+              }
               if (RxNoiceBlanking.Length != 0) {
-                output.WriteRawTag(58);
+                output.WriteRawTag(106);
                 output.WriteString(RxNoiceBlanking);
               }
+              if (CheckRxNoiceBlanking != false) {
+                output.WriteRawTag(112);
+                output.WriteBool(CheckRxNoiceBlanking);
+              }
               if (RadioLock.Length != 0) {
-                output.WriteRawTag(66);
+                output.WriteRawTag(122);
                 output.WriteString(RadioLock);
+              }
+              if (CheckRadioLock != false) {
+                output.WriteRawTag(128, 1);
+                output.WriteBool(CheckRadioLock);
               }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(output);
@@ -959,26 +1324,50 @@ namespace LessonParametersSet {
               if (TxPowerLevel.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(TxPowerLevel);
               }
+              if (CheckTxPowerLevel != false) {
+                size += 1 + 1;
+              }
               if (SquelchLevel.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(SquelchLevel);
+              }
+              if (CheckSquelchLevel != false) {
+                size += 1 + 1;
               }
               if (FmSquelchType.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(FmSquelchType);
               }
+              if (CheckFmSquelchType != false) {
+                size += 1 + 1;
+              }
               if (InternalCoupler.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(InternalCoupler);
+              }
+              if (CheckInternalCoupler != false) {
+                size += 1 + 1;
               }
               if (RadioSilence.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(RadioSilence);
               }
+              if (CheckRadioSilence != false) {
+                size += 1 + 1;
+              }
               if (Bfo.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(Bfo);
+              }
+              if (CheckBfo != false) {
+                size += 1 + 1;
               }
               if (RxNoiceBlanking.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(RxNoiceBlanking);
               }
+              if (CheckRxNoiceBlanking != false) {
+                size += 1 + 1;
+              }
               if (RadioLock.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(RadioLock);
+              }
+              if (CheckRadioLock != false) {
+                size += 2 + 1;
               }
               if (_unknownFields != null) {
                 size += _unknownFields.CalculateSize();
@@ -994,26 +1383,50 @@ namespace LessonParametersSet {
               if (other.TxPowerLevel.Length != 0) {
                 TxPowerLevel = other.TxPowerLevel;
               }
+              if (other.CheckTxPowerLevel != false) {
+                CheckTxPowerLevel = other.CheckTxPowerLevel;
+              }
               if (other.SquelchLevel.Length != 0) {
                 SquelchLevel = other.SquelchLevel;
+              }
+              if (other.CheckSquelchLevel != false) {
+                CheckSquelchLevel = other.CheckSquelchLevel;
               }
               if (other.FmSquelchType.Length != 0) {
                 FmSquelchType = other.FmSquelchType;
               }
+              if (other.CheckFmSquelchType != false) {
+                CheckFmSquelchType = other.CheckFmSquelchType;
+              }
               if (other.InternalCoupler.Length != 0) {
                 InternalCoupler = other.InternalCoupler;
+              }
+              if (other.CheckInternalCoupler != false) {
+                CheckInternalCoupler = other.CheckInternalCoupler;
               }
               if (other.RadioSilence.Length != 0) {
                 RadioSilence = other.RadioSilence;
               }
+              if (other.CheckRadioSilence != false) {
+                CheckRadioSilence = other.CheckRadioSilence;
+              }
               if (other.Bfo.Length != 0) {
                 Bfo = other.Bfo;
+              }
+              if (other.CheckBfo != false) {
+                CheckBfo = other.CheckBfo;
               }
               if (other.RxNoiceBlanking.Length != 0) {
                 RxNoiceBlanking = other.RxNoiceBlanking;
               }
+              if (other.CheckRxNoiceBlanking != false) {
+                CheckRxNoiceBlanking = other.CheckRxNoiceBlanking;
+              }
               if (other.RadioLock.Length != 0) {
                 RadioLock = other.RadioLock;
+              }
+              if (other.CheckRadioLock != false) {
+                CheckRadioLock = other.CheckRadioLock;
               }
               _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
             }
@@ -1030,32 +1443,64 @@ namespace LessonParametersSet {
                     TxPowerLevel = input.ReadString();
                     break;
                   }
-                  case 18: {
-                    SquelchLevel = input.ReadString();
+                  case 16: {
+                    CheckTxPowerLevel = input.ReadBool();
                     break;
                   }
                   case 26: {
-                    FmSquelchType = input.ReadString();
+                    SquelchLevel = input.ReadString();
                     break;
                   }
-                  case 34: {
-                    InternalCoupler = input.ReadString();
+                  case 32: {
+                    CheckSquelchLevel = input.ReadBool();
                     break;
                   }
                   case 42: {
-                    RadioSilence = input.ReadString();
+                    FmSquelchType = input.ReadString();
                     break;
                   }
-                  case 50: {
-                    Bfo = input.ReadString();
+                  case 48: {
+                    CheckFmSquelchType = input.ReadBool();
                     break;
                   }
                   case 58: {
+                    InternalCoupler = input.ReadString();
+                    break;
+                  }
+                  case 64: {
+                    CheckInternalCoupler = input.ReadBool();
+                    break;
+                  }
+                  case 74: {
+                    RadioSilence = input.ReadString();
+                    break;
+                  }
+                  case 80: {
+                    CheckRadioSilence = input.ReadBool();
+                    break;
+                  }
+                  case 90: {
+                    Bfo = input.ReadString();
+                    break;
+                  }
+                  case 96: {
+                    CheckBfo = input.ReadBool();
+                    break;
+                  }
+                  case 106: {
                     RxNoiceBlanking = input.ReadString();
                     break;
                   }
-                  case 66: {
+                  case 112: {
+                    CheckRxNoiceBlanking = input.ReadBool();
+                    break;
+                  }
+                  case 122: {
                     RadioLock = input.ReadString();
+                    break;
+                  }
+                  case 128: {
+                    CheckRadioLock = input.ReadBool();
                     break;
                   }
                 }
@@ -1091,8 +1536,11 @@ namespace LessonParametersSet {
             public Test(Test other) : this() {
               bit_ = other.bit_ != null ? other.bit_.Clone() : null;
               battery_ = other.battery_;
+              checkBattery_ = other.checkBattery_;
               temp_ = other.temp_;
+              checkTemp_ = other.checkTemp_;
               vswrFrequency_ = other.vswrFrequency_;
+              checkVswrFrequency_ = other.checkVswrFrequency_;
               _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
             }
 
@@ -1123,8 +1571,19 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkBattery" field.</summary>
+            public const int CheckBatteryFieldNumber = 3;
+            private bool checkBattery_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckBattery {
+              get { return checkBattery_; }
+              set {
+                checkBattery_ = value;
+              }
+            }
+
             /// <summary>Field number for the "temp" field.</summary>
-            public const int TempFieldNumber = 3;
+            public const int TempFieldNumber = 4;
             private bool temp_;
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public bool Temp {
@@ -1134,14 +1593,36 @@ namespace LessonParametersSet {
               }
             }
 
+            /// <summary>Field number for the "checkTemp" field.</summary>
+            public const int CheckTempFieldNumber = 5;
+            private bool checkTemp_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckTemp {
+              get { return checkTemp_; }
+              set {
+                checkTemp_ = value;
+              }
+            }
+
             /// <summary>Field number for the "vswrFrequency" field.</summary>
-            public const int VswrFrequencyFieldNumber = 4;
+            public const int VswrFrequencyFieldNumber = 6;
             private string vswrFrequency_ = "";
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
             public string VswrFrequency {
               get { return vswrFrequency_; }
               set {
                 vswrFrequency_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+              }
+            }
+
+            /// <summary>Field number for the "checkVswrFrequency" field.</summary>
+            public const int CheckVswrFrequencyFieldNumber = 7;
+            private bool checkVswrFrequency_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool CheckVswrFrequency {
+              get { return checkVswrFrequency_; }
+              set {
+                checkVswrFrequency_ = value;
               }
             }
 
@@ -1160,8 +1641,11 @@ namespace LessonParametersSet {
               }
               if (!object.Equals(Bit, other.Bit)) return false;
               if (Battery != other.Battery) return false;
+              if (CheckBattery != other.CheckBattery) return false;
               if (Temp != other.Temp) return false;
+              if (CheckTemp != other.CheckTemp) return false;
               if (VswrFrequency != other.VswrFrequency) return false;
+              if (CheckVswrFrequency != other.CheckVswrFrequency) return false;
               return Equals(_unknownFields, other._unknownFields);
             }
 
@@ -1170,8 +1654,11 @@ namespace LessonParametersSet {
               int hash = 1;
               if (bit_ != null) hash ^= Bit.GetHashCode();
               if (Battery != false) hash ^= Battery.GetHashCode();
+              if (CheckBattery != false) hash ^= CheckBattery.GetHashCode();
               if (Temp != false) hash ^= Temp.GetHashCode();
+              if (CheckTemp != false) hash ^= CheckTemp.GetHashCode();
               if (VswrFrequency.Length != 0) hash ^= VswrFrequency.GetHashCode();
+              if (CheckVswrFrequency != false) hash ^= CheckVswrFrequency.GetHashCode();
               if (_unknownFields != null) {
                 hash ^= _unknownFields.GetHashCode();
               }
@@ -1193,13 +1680,25 @@ namespace LessonParametersSet {
                 output.WriteRawTag(16);
                 output.WriteBool(Battery);
               }
-              if (Temp != false) {
+              if (CheckBattery != false) {
                 output.WriteRawTag(24);
+                output.WriteBool(CheckBattery);
+              }
+              if (Temp != false) {
+                output.WriteRawTag(32);
                 output.WriteBool(Temp);
               }
+              if (CheckTemp != false) {
+                output.WriteRawTag(40);
+                output.WriteBool(CheckTemp);
+              }
               if (VswrFrequency.Length != 0) {
-                output.WriteRawTag(34);
+                output.WriteRawTag(50);
                 output.WriteString(VswrFrequency);
+              }
+              if (CheckVswrFrequency != false) {
+                output.WriteRawTag(56);
+                output.WriteBool(CheckVswrFrequency);
               }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(output);
@@ -1215,11 +1714,20 @@ namespace LessonParametersSet {
               if (Battery != false) {
                 size += 1 + 1;
               }
+              if (CheckBattery != false) {
+                size += 1 + 1;
+              }
               if (Temp != false) {
+                size += 1 + 1;
+              }
+              if (CheckTemp != false) {
                 size += 1 + 1;
               }
               if (VswrFrequency.Length != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(VswrFrequency);
+              }
+              if (CheckVswrFrequency != false) {
+                size += 1 + 1;
               }
               if (_unknownFields != null) {
                 size += _unknownFields.CalculateSize();
@@ -1241,11 +1749,20 @@ namespace LessonParametersSet {
               if (other.Battery != false) {
                 Battery = other.Battery;
               }
+              if (other.CheckBattery != false) {
+                CheckBattery = other.CheckBattery;
+              }
               if (other.Temp != false) {
                 Temp = other.Temp;
               }
+              if (other.CheckTemp != false) {
+                CheckTemp = other.CheckTemp;
+              }
               if (other.VswrFrequency.Length != 0) {
                 VswrFrequency = other.VswrFrequency;
+              }
+              if (other.CheckVswrFrequency != false) {
+                CheckVswrFrequency = other.CheckVswrFrequency;
               }
               _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
             }
@@ -1270,11 +1787,23 @@ namespace LessonParametersSet {
                     break;
                   }
                   case 24: {
+                    CheckBattery = input.ReadBool();
+                    break;
+                  }
+                  case 32: {
                     Temp = input.ReadBool();
                     break;
                   }
-                  case 34: {
+                  case 40: {
+                    CheckTemp = input.ReadBool();
+                    break;
+                  }
+                  case 50: {
                     VswrFrequency = input.ReadString();
+                    break;
+                  }
+                  case 56: {
+                    CheckVswrFrequency = input.ReadBool();
                     break;
                   }
                 }
@@ -1311,12 +1840,19 @@ namespace LessonParametersSet {
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Bit(Bit other) : this() {
                   system_ = other.system_;
+                  checkSystem_ = other.checkSystem_;
                   rfCoupler_ = other.rfCoupler_;
+                  checkRfCoupler_ = other.checkRfCoupler_;
                   prepost_ = other.prepost_;
+                  checkPrepost_ = other.checkPrepost_;
                   externalPa_ = other.externalPa_;
+                  checkExternalPa_ = other.checkExternalPa_;
                   kdp_ = other.kdp_;
+                  checkKdp_ = other.checkKdp_;
                   kdu_ = other.kdu_;
+                  checkKdu_ = other.checkKdu_;
                   internalCoupler_ = other.internalCoupler_;
+                  checkInternalCoupler_ = other.checkInternalCoupler_;
                   _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
@@ -1336,8 +1872,19 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkSystem" field.</summary>
+                public const int CheckSystemFieldNumber = 2;
+                private bool checkSystem_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckSystem {
+                  get { return checkSystem_; }
+                  set {
+                    checkSystem_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "rfCoupler" field.</summary>
-                public const int RfCouplerFieldNumber = 2;
+                public const int RfCouplerFieldNumber = 3;
                 private bool rfCoupler_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool RfCoupler {
@@ -1347,8 +1894,19 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkRfCoupler" field.</summary>
+                public const int CheckRfCouplerFieldNumber = 4;
+                private bool checkRfCoupler_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckRfCoupler {
+                  get { return checkRfCoupler_; }
+                  set {
+                    checkRfCoupler_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "prepost" field.</summary>
-                public const int PrepostFieldNumber = 3;
+                public const int PrepostFieldNumber = 5;
                 private bool prepost_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Prepost {
@@ -1358,8 +1916,19 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkPrepost" field.</summary>
+                public const int CheckPrepostFieldNumber = 6;
+                private bool checkPrepost_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckPrepost {
+                  get { return checkPrepost_; }
+                  set {
+                    checkPrepost_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "externalPa" field.</summary>
-                public const int ExternalPaFieldNumber = 4;
+                public const int ExternalPaFieldNumber = 7;
                 private bool externalPa_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool ExternalPa {
@@ -1369,8 +1938,19 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkExternalPa" field.</summary>
+                public const int CheckExternalPaFieldNumber = 8;
+                private bool checkExternalPa_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckExternalPa {
+                  get { return checkExternalPa_; }
+                  set {
+                    checkExternalPa_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "kdp" field.</summary>
-                public const int KdpFieldNumber = 5;
+                public const int KdpFieldNumber = 9;
                 private bool kdp_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Kdp {
@@ -1380,8 +1960,19 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkKdp" field.</summary>
+                public const int CheckKdpFieldNumber = 10;
+                private bool checkKdp_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckKdp {
+                  get { return checkKdp_; }
+                  set {
+                    checkKdp_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "kdu" field.</summary>
-                public const int KduFieldNumber = 6;
+                public const int KduFieldNumber = 11;
                 private bool kdu_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool Kdu {
@@ -1391,14 +1982,36 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkKdu" field.</summary>
+                public const int CheckKduFieldNumber = 12;
+                private bool checkKdu_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckKdu {
+                  get { return checkKdu_; }
+                  set {
+                    checkKdu_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "internalCoupler" field.</summary>
-                public const int InternalCouplerFieldNumber = 7;
+                public const int InternalCouplerFieldNumber = 13;
                 private bool internalCoupler_;
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public bool InternalCoupler {
                   get { return internalCoupler_; }
                   set {
                     internalCoupler_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "checkInternalCoupler" field.</summary>
+                public const int CheckInternalCouplerFieldNumber = 14;
+                private bool checkInternalCoupler_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckInternalCoupler {
+                  get { return checkInternalCoupler_; }
+                  set {
+                    checkInternalCoupler_ = value;
                   }
                 }
 
@@ -1416,12 +2029,19 @@ namespace LessonParametersSet {
                     return true;
                   }
                   if (System != other.System) return false;
+                  if (CheckSystem != other.CheckSystem) return false;
                   if (RfCoupler != other.RfCoupler) return false;
+                  if (CheckRfCoupler != other.CheckRfCoupler) return false;
                   if (Prepost != other.Prepost) return false;
+                  if (CheckPrepost != other.CheckPrepost) return false;
                   if (ExternalPa != other.ExternalPa) return false;
+                  if (CheckExternalPa != other.CheckExternalPa) return false;
                   if (Kdp != other.Kdp) return false;
+                  if (CheckKdp != other.CheckKdp) return false;
                   if (Kdu != other.Kdu) return false;
+                  if (CheckKdu != other.CheckKdu) return false;
                   if (InternalCoupler != other.InternalCoupler) return false;
+                  if (CheckInternalCoupler != other.CheckInternalCoupler) return false;
                   return Equals(_unknownFields, other._unknownFields);
                 }
 
@@ -1429,12 +2049,19 @@ namespace LessonParametersSet {
                 public override int GetHashCode() {
                   int hash = 1;
                   if (System != false) hash ^= System.GetHashCode();
+                  if (CheckSystem != false) hash ^= CheckSystem.GetHashCode();
                   if (RfCoupler != false) hash ^= RfCoupler.GetHashCode();
+                  if (CheckRfCoupler != false) hash ^= CheckRfCoupler.GetHashCode();
                   if (Prepost != false) hash ^= Prepost.GetHashCode();
+                  if (CheckPrepost != false) hash ^= CheckPrepost.GetHashCode();
                   if (ExternalPa != false) hash ^= ExternalPa.GetHashCode();
+                  if (CheckExternalPa != false) hash ^= CheckExternalPa.GetHashCode();
                   if (Kdp != false) hash ^= Kdp.GetHashCode();
+                  if (CheckKdp != false) hash ^= CheckKdp.GetHashCode();
                   if (Kdu != false) hash ^= Kdu.GetHashCode();
+                  if (CheckKdu != false) hash ^= CheckKdu.GetHashCode();
                   if (InternalCoupler != false) hash ^= InternalCoupler.GetHashCode();
+                  if (CheckInternalCoupler != false) hash ^= CheckInternalCoupler.GetHashCode();
                   if (_unknownFields != null) {
                     hash ^= _unknownFields.GetHashCode();
                   }
@@ -1452,29 +2079,57 @@ namespace LessonParametersSet {
                     output.WriteRawTag(8);
                     output.WriteBool(System);
                   }
-                  if (RfCoupler != false) {
+                  if (CheckSystem != false) {
                     output.WriteRawTag(16);
+                    output.WriteBool(CheckSystem);
+                  }
+                  if (RfCoupler != false) {
+                    output.WriteRawTag(24);
                     output.WriteBool(RfCoupler);
                   }
+                  if (CheckRfCoupler != false) {
+                    output.WriteRawTag(32);
+                    output.WriteBool(CheckRfCoupler);
+                  }
                   if (Prepost != false) {
-                    output.WriteRawTag(24);
+                    output.WriteRawTag(40);
                     output.WriteBool(Prepost);
                   }
+                  if (CheckPrepost != false) {
+                    output.WriteRawTag(48);
+                    output.WriteBool(CheckPrepost);
+                  }
                   if (ExternalPa != false) {
-                    output.WriteRawTag(32);
+                    output.WriteRawTag(56);
                     output.WriteBool(ExternalPa);
                   }
+                  if (CheckExternalPa != false) {
+                    output.WriteRawTag(64);
+                    output.WriteBool(CheckExternalPa);
+                  }
                   if (Kdp != false) {
-                    output.WriteRawTag(40);
+                    output.WriteRawTag(72);
                     output.WriteBool(Kdp);
                   }
+                  if (CheckKdp != false) {
+                    output.WriteRawTag(80);
+                    output.WriteBool(CheckKdp);
+                  }
                   if (Kdu != false) {
-                    output.WriteRawTag(48);
+                    output.WriteRawTag(88);
                     output.WriteBool(Kdu);
                   }
+                  if (CheckKdu != false) {
+                    output.WriteRawTag(96);
+                    output.WriteBool(CheckKdu);
+                  }
                   if (InternalCoupler != false) {
-                    output.WriteRawTag(56);
+                    output.WriteRawTag(104);
                     output.WriteBool(InternalCoupler);
+                  }
+                  if (CheckInternalCoupler != false) {
+                    output.WriteRawTag(112);
+                    output.WriteBool(CheckInternalCoupler);
                   }
                   if (_unknownFields != null) {
                     _unknownFields.WriteTo(output);
@@ -1487,22 +2142,43 @@ namespace LessonParametersSet {
                   if (System != false) {
                     size += 1 + 1;
                   }
+                  if (CheckSystem != false) {
+                    size += 1 + 1;
+                  }
                   if (RfCoupler != false) {
+                    size += 1 + 1;
+                  }
+                  if (CheckRfCoupler != false) {
                     size += 1 + 1;
                   }
                   if (Prepost != false) {
                     size += 1 + 1;
                   }
+                  if (CheckPrepost != false) {
+                    size += 1 + 1;
+                  }
                   if (ExternalPa != false) {
+                    size += 1 + 1;
+                  }
+                  if (CheckExternalPa != false) {
                     size += 1 + 1;
                   }
                   if (Kdp != false) {
                     size += 1 + 1;
                   }
+                  if (CheckKdp != false) {
+                    size += 1 + 1;
+                  }
                   if (Kdu != false) {
                     size += 1 + 1;
                   }
+                  if (CheckKdu != false) {
+                    size += 1 + 1;
+                  }
                   if (InternalCoupler != false) {
+                    size += 1 + 1;
+                  }
+                  if (CheckInternalCoupler != false) {
                     size += 1 + 1;
                   }
                   if (_unknownFields != null) {
@@ -1519,23 +2195,44 @@ namespace LessonParametersSet {
                   if (other.System != false) {
                     System = other.System;
                   }
+                  if (other.CheckSystem != false) {
+                    CheckSystem = other.CheckSystem;
+                  }
                   if (other.RfCoupler != false) {
                     RfCoupler = other.RfCoupler;
+                  }
+                  if (other.CheckRfCoupler != false) {
+                    CheckRfCoupler = other.CheckRfCoupler;
                   }
                   if (other.Prepost != false) {
                     Prepost = other.Prepost;
                   }
+                  if (other.CheckPrepost != false) {
+                    CheckPrepost = other.CheckPrepost;
+                  }
                   if (other.ExternalPa != false) {
                     ExternalPa = other.ExternalPa;
+                  }
+                  if (other.CheckExternalPa != false) {
+                    CheckExternalPa = other.CheckExternalPa;
                   }
                   if (other.Kdp != false) {
                     Kdp = other.Kdp;
                   }
+                  if (other.CheckKdp != false) {
+                    CheckKdp = other.CheckKdp;
+                  }
                   if (other.Kdu != false) {
                     Kdu = other.Kdu;
                   }
+                  if (other.CheckKdu != false) {
+                    CheckKdu = other.CheckKdu;
+                  }
                   if (other.InternalCoupler != false) {
                     InternalCoupler = other.InternalCoupler;
+                  }
+                  if (other.CheckInternalCoupler != false) {
+                    CheckInternalCoupler = other.CheckInternalCoupler;
                   }
                   _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
@@ -1553,27 +2250,55 @@ namespace LessonParametersSet {
                         break;
                       }
                       case 16: {
-                        RfCoupler = input.ReadBool();
+                        CheckSystem = input.ReadBool();
                         break;
                       }
                       case 24: {
-                        Prepost = input.ReadBool();
+                        RfCoupler = input.ReadBool();
                         break;
                       }
                       case 32: {
-                        ExternalPa = input.ReadBool();
+                        CheckRfCoupler = input.ReadBool();
                         break;
                       }
                       case 40: {
-                        Kdp = input.ReadBool();
+                        Prepost = input.ReadBool();
                         break;
                       }
                       case 48: {
-                        Kdu = input.ReadBool();
+                        CheckPrepost = input.ReadBool();
                         break;
                       }
                       case 56: {
+                        ExternalPa = input.ReadBool();
+                        break;
+                      }
+                      case 64: {
+                        CheckExternalPa = input.ReadBool();
+                        break;
+                      }
+                      case 72: {
+                        Kdp = input.ReadBool();
+                        break;
+                      }
+                      case 80: {
+                        CheckKdp = input.ReadBool();
+                        break;
+                      }
+                      case 88: {
+                        Kdu = input.ReadBool();
+                        break;
+                      }
+                      case 96: {
+                        CheckKdu = input.ReadBool();
+                        break;
+                      }
+                      case 104: {
                         InternalCoupler = input.ReadBool();
+                        break;
+                      }
+                      case 112: {
+                        CheckInternalCoupler = input.ReadBool();
                         break;
                       }
                     }
@@ -1618,6 +2343,7 @@ namespace LessonParametersSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Program(Program other) : this() {
           comsec_ = other.comsec_ != null ? other.comsec_.Clone() : null;
+          mode_ = other.mode_ != null ? other.mode_.Clone() : null;
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -1637,6 +2363,17 @@ namespace LessonParametersSet {
           }
         }
 
+        /// <summary>Field number for the "mode" field.</summary>
+        public const int ModeFieldNumber = 2;
+        private global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode mode_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode Mode {
+          get { return mode_; }
+          set {
+            mode_ = value;
+          }
+        }
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override bool Equals(object other) {
           return Equals(other as Program);
@@ -1651,6 +2388,7 @@ namespace LessonParametersSet {
             return true;
           }
           if (!object.Equals(Comsec, other.Comsec)) return false;
+          if (!object.Equals(Mode, other.Mode)) return false;
           return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -1658,6 +2396,7 @@ namespace LessonParametersSet {
         public override int GetHashCode() {
           int hash = 1;
           if (comsec_ != null) hash ^= Comsec.GetHashCode();
+          if (mode_ != null) hash ^= Mode.GetHashCode();
           if (_unknownFields != null) {
             hash ^= _unknownFields.GetHashCode();
           }
@@ -1675,6 +2414,10 @@ namespace LessonParametersSet {
             output.WriteRawTag(10);
             output.WriteMessage(Comsec);
           }
+          if (mode_ != null) {
+            output.WriteRawTag(18);
+            output.WriteMessage(Mode);
+          }
           if (_unknownFields != null) {
             _unknownFields.WriteTo(output);
           }
@@ -1685,6 +2428,9 @@ namespace LessonParametersSet {
           int size = 0;
           if (comsec_ != null) {
             size += 1 + pb::CodedOutputStream.ComputeMessageSize(Comsec);
+          }
+          if (mode_ != null) {
+            size += 1 + pb::CodedOutputStream.ComputeMessageSize(Mode);
           }
           if (_unknownFields != null) {
             size += _unknownFields.CalculateSize();
@@ -1703,6 +2449,12 @@ namespace LessonParametersSet {
             }
             Comsec.MergeFrom(other.Comsec);
           }
+          if (other.mode_ != null) {
+            if (mode_ == null) {
+              Mode = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode();
+            }
+            Mode.MergeFrom(other.Mode);
+          }
           _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
@@ -1719,6 +2471,13 @@ namespace LessonParametersSet {
                   Comsec = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec();
                 }
                 input.ReadMessage(Comsec);
+                break;
+              }
+              case 18: {
+                if (mode_ == null) {
+                  Mode = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode();
+                }
+                input.ReadMessage(Mode);
                 break;
               }
             }
@@ -1878,9 +2637,13 @@ namespace LessonParametersSet {
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public Key(Key other) : this() {
                   type_ = other.type_;
+                  checkType_ = other.checkType_;
                   name_ = other.name_;
+                  checkName_ = other.checkName_;
                   key_ = other.key_;
+                  checkKey_ = other.checkKey_;
                   awsKey_ = other.awsKey_;
+                  checkAwsKey_ = other.checkAwsKey_;
                   _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
                 }
 
@@ -1900,14 +2663,36 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkType" field.</summary>
+                public const int CheckTypeFieldNumber = 2;
+                private bool checkType_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckType {
+                  get { return checkType_; }
+                  set {
+                    checkType_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "name" field.</summary>
-                public const int NameFieldNumber = 2;
+                public const int NameFieldNumber = 3;
                 private string name_ = "";
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public string Name {
                   get { return name_; }
                   set {
                     name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                  }
+                }
+
+                /// <summary>Field number for the "checkName" field.</summary>
+                public const int CheckNameFieldNumber = 4;
+                private bool checkName_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckName {
+                  get { return checkName_; }
+                  set {
+                    checkName_ = value;
                   }
                 }
 
@@ -1922,14 +2707,36 @@ namespace LessonParametersSet {
                   }
                 }
 
+                /// <summary>Field number for the "checkKey" field.</summary>
+                public const int CheckKeyFieldNumber = 6;
+                private bool checkKey_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckKey {
+                  get { return checkKey_; }
+                  set {
+                    checkKey_ = value;
+                  }
+                }
+
                 /// <summary>Field number for the "awsKey" field.</summary>
-                public const int AwsKeyFieldNumber = 6;
+                public const int AwsKeyFieldNumber = 7;
                 private string awsKey_ = "";
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
                 public string AwsKey {
                   get { return awsKey_; }
                   set {
                     awsKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                  }
+                }
+
+                /// <summary>Field number for the "checkAwsKey" field.</summary>
+                public const int CheckAwsKeyFieldNumber = 8;
+                private bool checkAwsKey_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool CheckAwsKey {
+                  get { return checkAwsKey_; }
+                  set {
+                    checkAwsKey_ = value;
                   }
                 }
 
@@ -1947,9 +2754,13 @@ namespace LessonParametersSet {
                     return true;
                   }
                   if (Type != other.Type) return false;
+                  if (CheckType != other.CheckType) return false;
                   if (Name != other.Name) return false;
+                  if (CheckName != other.CheckName) return false;
                   if (Key_ != other.Key_) return false;
+                  if (CheckKey != other.CheckKey) return false;
                   if (AwsKey != other.AwsKey) return false;
+                  if (CheckAwsKey != other.CheckAwsKey) return false;
                   return Equals(_unknownFields, other._unknownFields);
                 }
 
@@ -1957,9 +2768,13 @@ namespace LessonParametersSet {
                 public override int GetHashCode() {
                   int hash = 1;
                   if (Type != global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Citadel) hash ^= Type.GetHashCode();
+                  if (CheckType != false) hash ^= CheckType.GetHashCode();
                   if (Name.Length != 0) hash ^= Name.GetHashCode();
+                  if (CheckName != false) hash ^= CheckName.GetHashCode();
                   if (Key_.Length != 0) hash ^= Key_.GetHashCode();
+                  if (CheckKey != false) hash ^= CheckKey.GetHashCode();
                   if (AwsKey.Length != 0) hash ^= AwsKey.GetHashCode();
+                  if (CheckAwsKey != false) hash ^= CheckAwsKey.GetHashCode();
                   if (_unknownFields != null) {
                     hash ^= _unknownFields.GetHashCode();
                   }
@@ -1977,17 +2792,33 @@ namespace LessonParametersSet {
                     output.WriteRawTag(8);
                     output.WriteEnum((int) Type);
                   }
+                  if (CheckType != false) {
+                    output.WriteRawTag(16);
+                    output.WriteBool(CheckType);
+                  }
                   if (Name.Length != 0) {
-                    output.WriteRawTag(18);
+                    output.WriteRawTag(26);
                     output.WriteString(Name);
+                  }
+                  if (CheckName != false) {
+                    output.WriteRawTag(32);
+                    output.WriteBool(CheckName);
                   }
                   if (Key_.Length != 0) {
                     output.WriteRawTag(42);
                     output.WriteString(Key_);
                   }
+                  if (CheckKey != false) {
+                    output.WriteRawTag(48);
+                    output.WriteBool(CheckKey);
+                  }
                   if (AwsKey.Length != 0) {
-                    output.WriteRawTag(50);
+                    output.WriteRawTag(58);
                     output.WriteString(AwsKey);
+                  }
+                  if (CheckAwsKey != false) {
+                    output.WriteRawTag(64);
+                    output.WriteBool(CheckAwsKey);
                   }
                   if (_unknownFields != null) {
                     _unknownFields.WriteTo(output);
@@ -2000,14 +2831,26 @@ namespace LessonParametersSet {
                   if (Type != global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Citadel) {
                     size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
                   }
+                  if (CheckType != false) {
+                    size += 1 + 1;
+                  }
                   if (Name.Length != 0) {
                     size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+                  }
+                  if (CheckName != false) {
+                    size += 1 + 1;
                   }
                   if (Key_.Length != 0) {
                     size += 1 + pb::CodedOutputStream.ComputeStringSize(Key_);
                   }
+                  if (CheckKey != false) {
+                    size += 1 + 1;
+                  }
                   if (AwsKey.Length != 0) {
                     size += 1 + pb::CodedOutputStream.ComputeStringSize(AwsKey);
+                  }
+                  if (CheckAwsKey != false) {
+                    size += 1 + 1;
                   }
                   if (_unknownFields != null) {
                     size += _unknownFields.CalculateSize();
@@ -2023,14 +2866,26 @@ namespace LessonParametersSet {
                   if (other.Type != global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType.Citadel) {
                     Type = other.Type;
                   }
+                  if (other.CheckType != false) {
+                    CheckType = other.CheckType;
+                  }
                   if (other.Name.Length != 0) {
                     Name = other.Name;
+                  }
+                  if (other.CheckName != false) {
+                    CheckName = other.CheckName;
                   }
                   if (other.Key_.Length != 0) {
                     Key_ = other.Key_;
                   }
+                  if (other.CheckKey != false) {
+                    CheckKey = other.CheckKey;
+                  }
                   if (other.AwsKey.Length != 0) {
                     AwsKey = other.AwsKey;
+                  }
+                  if (other.CheckAwsKey != false) {
+                    CheckAwsKey = other.CheckAwsKey;
                   }
                   _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
                 }
@@ -2047,16 +2902,32 @@ namespace LessonParametersSet {
                         Type = (global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType) input.ReadEnum();
                         break;
                       }
-                      case 18: {
+                      case 16: {
+                        CheckType = input.ReadBool();
+                        break;
+                      }
+                      case 26: {
                         Name = input.ReadString();
+                        break;
+                      }
+                      case 32: {
+                        CheckName = input.ReadBool();
                         break;
                       }
                       case 42: {
                         Key_ = input.ReadString();
                         break;
                       }
-                      case 50: {
+                      case 48: {
+                        CheckKey = input.ReadBool();
+                        break;
+                      }
+                      case 58: {
                         AwsKey = input.ReadString();
+                        break;
+                      }
+                      case 64: {
+                        CheckAwsKey = input.ReadBool();
                         break;
                       }
                     }
@@ -2071,6 +2942,2032 @@ namespace LessonParametersSet {
                     [pbr::OriginalName("CITADEL")] Citadel = 0,
                     [pbr::OriginalName("Aes256")] Aes256 = 1,
                     [pbr::OriginalName("Aes128")] Aes128 = 2,
+                    [pbr::OriginalName("None")] None = 3,
+                  }
+
+                }
+                #endregion
+
+              }
+
+            }
+            #endregion
+
+          }
+
+          public sealed partial class Mode : pb::IMessage<Mode> {
+            private static readonly pb::MessageParser<Mode> _parser = new pb::MessageParser<Mode>(() => new Mode());
+            private pb::UnknownFieldSet _unknownFields;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public static pb::MessageParser<Mode> Parser { get { return _parser; } }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public static pbr::MessageDescriptor Descriptor {
+              get { return global::LessonParametersSet.LessonParameters.Types.Program.Descriptor.NestedTypes[1]; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            pbr::MessageDescriptor pb::IMessage.Descriptor {
+              get { return Descriptor; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public Mode() {
+              OnConstruction();
+            }
+
+            partial void OnConstruction();
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public Mode(Mode other) : this() {
+              preset_ = other.preset_ != null ? other.preset_.Clone() : null;
+              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public Mode Clone() {
+              return new Mode(this);
+            }
+
+            /// <summary>Field number for the "preset" field.</summary>
+            public const int PresetFieldNumber = 1;
+            private global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset preset_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset Preset {
+              get { return preset_; }
+              set {
+                preset_ = value;
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public override bool Equals(object other) {
+              return Equals(other as Mode);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public bool Equals(Mode other) {
+              if (ReferenceEquals(other, null)) {
+                return false;
+              }
+              if (ReferenceEquals(other, this)) {
+                return true;
+              }
+              if (!object.Equals(Preset, other.Preset)) return false;
+              return Equals(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public override int GetHashCode() {
+              int hash = 1;
+              if (preset_ != null) hash ^= Preset.GetHashCode();
+              if (_unknownFields != null) {
+                hash ^= _unknownFields.GetHashCode();
+              }
+              return hash;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public override string ToString() {
+              return pb::JsonFormatter.ToDiagnosticString(this);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public void WriteTo(pb::CodedOutputStream output) {
+              if (preset_ != null) {
+                output.WriteRawTag(10);
+                output.WriteMessage(Preset);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(output);
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public int CalculateSize() {
+              int size = 0;
+              if (preset_ != null) {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Preset);
+              }
+              if (_unknownFields != null) {
+                size += _unknownFields.CalculateSize();
+              }
+              return size;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public void MergeFrom(Mode other) {
+              if (other == null) {
+                return;
+              }
+              if (other.preset_ != null) {
+                if (preset_ == null) {
+                  Preset = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset();
+                }
+                Preset.MergeFrom(other.Preset);
+              }
+              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public void MergeFrom(pb::CodedInputStream input) {
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                    break;
+                  case 10: {
+                    if (preset_ == null) {
+                      Preset = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset();
+                    }
+                    input.ReadMessage(Preset);
+                    break;
+                  }
+                }
+              }
+            }
+
+            #region Nested types
+            /// <summary>Container for nested types declared in the Mode message type.</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            public static partial class Types {
+              public sealed partial class Preset : pb::IMessage<Preset> {
+                private static readonly pb::MessageParser<Preset> _parser = new pb::MessageParser<Preset>(() => new Preset());
+                private pb::UnknownFieldSet _unknownFields;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public static pb::MessageParser<Preset> Parser { get { return _parser; } }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public static pbr::MessageDescriptor Descriptor {
+                  get { return global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Descriptor.NestedTypes[0]; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                pbr::MessageDescriptor pb::IMessage.Descriptor {
+                  get { return Descriptor; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public Preset() {
+                  OnConstruction();
+                }
+
+                partial void OnConstruction();
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public Preset(Preset other) : this() {
+                  channels_ = other.channels_.Clone();
+                  modems_ = other.modems_.Clone();
+                  systems_ = other.systems_.Clone();
+                  _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public Preset Clone() {
+                  return new Preset(this);
+                }
+
+                /// <summary>Field number for the "channels" field.</summary>
+                public const int ChannelsFieldNumber = 1;
+                private static readonly pb::FieldCodec<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel> _repeated_channels_codec
+                    = pb::FieldCodec.ForMessage(10, global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel.Parser);
+                private readonly pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel> channels_ = new pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel>();
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel> Channels {
+                  get { return channels_; }
+                }
+
+                /// <summary>Field number for the "modems" field.</summary>
+                public const int ModemsFieldNumber = 2;
+                private static readonly pb::FieldCodec<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem> _repeated_modems_codec
+                    = pb::FieldCodec.ForMessage(18, global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem.Parser);
+                private readonly pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem> modems_ = new pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem>();
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem> Modems {
+                  get { return modems_; }
+                }
+
+                /// <summary>Field number for the "systems" field.</summary>
+                public const int SystemsFieldNumber = 3;
+                private static readonly pb::FieldCodec<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System> _repeated_systems_codec
+                    = pb::FieldCodec.ForMessage(26, global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System.Parser);
+                private readonly pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System> systems_ = new pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System>();
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public pbc::RepeatedField<global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System> Systems {
+                  get { return systems_; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public override bool Equals(object other) {
+                  return Equals(other as Preset);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public bool Equals(Preset other) {
+                  if (ReferenceEquals(other, null)) {
+                    return false;
+                  }
+                  if (ReferenceEquals(other, this)) {
+                    return true;
+                  }
+                  if(!channels_.Equals(other.channels_)) return false;
+                  if(!modems_.Equals(other.modems_)) return false;
+                  if(!systems_.Equals(other.systems_)) return false;
+                  return Equals(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public override int GetHashCode() {
+                  int hash = 1;
+                  hash ^= channels_.GetHashCode();
+                  hash ^= modems_.GetHashCode();
+                  hash ^= systems_.GetHashCode();
+                  if (_unknownFields != null) {
+                    hash ^= _unknownFields.GetHashCode();
+                  }
+                  return hash;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public override string ToString() {
+                  return pb::JsonFormatter.ToDiagnosticString(this);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public void WriteTo(pb::CodedOutputStream output) {
+                  channels_.WriteTo(output, _repeated_channels_codec);
+                  modems_.WriteTo(output, _repeated_modems_codec);
+                  systems_.WriteTo(output, _repeated_systems_codec);
+                  if (_unknownFields != null) {
+                    _unknownFields.WriteTo(output);
+                  }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public int CalculateSize() {
+                  int size = 0;
+                  size += channels_.CalculateSize(_repeated_channels_codec);
+                  size += modems_.CalculateSize(_repeated_modems_codec);
+                  size += systems_.CalculateSize(_repeated_systems_codec);
+                  if (_unknownFields != null) {
+                    size += _unknownFields.CalculateSize();
+                  }
+                  return size;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public void MergeFrom(Preset other) {
+                  if (other == null) {
+                    return;
+                  }
+                  channels_.Add(other.channels_);
+                  modems_.Add(other.modems_);
+                  systems_.Add(other.systems_);
+                  _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public void MergeFrom(pb::CodedInputStream input) {
+                  uint tag;
+                  while ((tag = input.ReadTag()) != 0) {
+                    switch(tag) {
+                      default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                      case 10: {
+                        channels_.AddEntriesFrom(input, _repeated_channels_codec);
+                        break;
+                      }
+                      case 18: {
+                        modems_.AddEntriesFrom(input, _repeated_modems_codec);
+                        break;
+                      }
+                      case 26: {
+                        systems_.AddEntriesFrom(input, _repeated_systems_codec);
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                #region Nested types
+                /// <summary>Container for nested types declared in the Preset message type.</summary>
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                public static partial class Types {
+                  public sealed partial class Channel : pb::IMessage<Channel> {
+                    private static readonly pb::MessageParser<Channel> _parser = new pb::MessageParser<Channel>(() => new Channel());
+                    private pb::UnknownFieldSet _unknownFields;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pb::MessageParser<Channel> Parser { get { return _parser; } }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pbr::MessageDescriptor Descriptor {
+                      get { return global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Descriptor.NestedTypes[0]; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    pbr::MessageDescriptor pb::IMessage.Descriptor {
+                      get { return Descriptor; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Channel() {
+                      OnConstruction();
+                    }
+
+                    partial void OnConstruction();
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Channel(Channel other) : this() {
+                      num_ = other.num_;
+                      checkNum_ = other.checkNum_;
+                      rxFrequency_ = other.rxFrequency_;
+                      checkRxFrequency_ = other.checkRxFrequency_;
+                      txFrequency_ = other.txFrequency_;
+                      checkTxFrequency_ = other.checkTxFrequency_;
+                      modulation_ = other.modulation_;
+                      checkModulation_ = other.checkModulation_;
+                      mode_ = other.mode_;
+                      checkMode_ = other.checkMode_;
+                      hailKey_ = other.hailKey_;
+                      checkHailKey_ = other.checkHailKey_;
+                      enableSsbScan_ = other.enableSsbScan_;
+                      checkEnableSsbScan_ = other.checkEnableSsbScan_;
+                      maxBandwidth_ = other.maxBandwidth_;
+                      checkMaxBandwidth_ = other.checkMaxBandwidth_;
+                      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Channel Clone() {
+                      return new Channel(this);
+                    }
+
+                    /// <summary>Field number for the "num" field.</summary>
+                    public const int NumFieldNumber = 1;
+                    private string num_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Num {
+                      get { return num_; }
+                      set {
+                        num_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkNum" field.</summary>
+                    public const int CheckNumFieldNumber = 2;
+                    private bool checkNum_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckNum {
+                      get { return checkNum_; }
+                      set {
+                        checkNum_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "rxFrequency" field.</summary>
+                    public const int RxFrequencyFieldNumber = 3;
+                    private string rxFrequency_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string RxFrequency {
+                      get { return rxFrequency_; }
+                      set {
+                        rxFrequency_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkRxFrequency" field.</summary>
+                    public const int CheckRxFrequencyFieldNumber = 4;
+                    private bool checkRxFrequency_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckRxFrequency {
+                      get { return checkRxFrequency_; }
+                      set {
+                        checkRxFrequency_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "txFrequency" field.</summary>
+                    public const int TxFrequencyFieldNumber = 5;
+                    private string txFrequency_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string TxFrequency {
+                      get { return txFrequency_; }
+                      set {
+                        txFrequency_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkTxFrequency" field.</summary>
+                    public const int CheckTxFrequencyFieldNumber = 6;
+                    private bool checkTxFrequency_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckTxFrequency {
+                      get { return checkTxFrequency_; }
+                      set {
+                        checkTxFrequency_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "modulation" field.</summary>
+                    public const int ModulationFieldNumber = 7;
+                    private string modulation_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Modulation {
+                      get { return modulation_; }
+                      set {
+                        modulation_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkModulation" field.</summary>
+                    public const int CheckModulationFieldNumber = 8;
+                    private bool checkModulation_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckModulation {
+                      get { return checkModulation_; }
+                      set {
+                        checkModulation_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "mode" field.</summary>
+                    public const int ModeFieldNumber = 9;
+                    private bool mode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool Mode {
+                      get { return mode_; }
+                      set {
+                        mode_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkMode" field.</summary>
+                    public const int CheckModeFieldNumber = 10;
+                    private bool checkMode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckMode {
+                      get { return checkMode_; }
+                      set {
+                        checkMode_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "hailKey" field.</summary>
+                    public const int HailKeyFieldNumber = 11;
+                    private string hailKey_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string HailKey {
+                      get { return hailKey_; }
+                      set {
+                        hailKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkHailKey" field.</summary>
+                    public const int CheckHailKeyFieldNumber = 12;
+                    private bool checkHailKey_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckHailKey {
+                      get { return checkHailKey_; }
+                      set {
+                        checkHailKey_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "enableSsbScan" field.</summary>
+                    public const int EnableSsbScanFieldNumber = 13;
+                    private bool enableSsbScan_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool EnableSsbScan {
+                      get { return enableSsbScan_; }
+                      set {
+                        enableSsbScan_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkEnableSsbScan" field.</summary>
+                    public const int CheckEnableSsbScanFieldNumber = 14;
+                    private bool checkEnableSsbScan_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckEnableSsbScan {
+                      get { return checkEnableSsbScan_; }
+                      set {
+                        checkEnableSsbScan_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "maxBandwidth" field.</summary>
+                    public const int MaxBandwidthFieldNumber = 15;
+                    private string maxBandwidth_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string MaxBandwidth {
+                      get { return maxBandwidth_; }
+                      set {
+                        maxBandwidth_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkMaxBandwidth" field.</summary>
+                    public const int CheckMaxBandwidthFieldNumber = 16;
+                    private bool checkMaxBandwidth_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckMaxBandwidth {
+                      get { return checkMaxBandwidth_; }
+                      set {
+                        checkMaxBandwidth_ = value;
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override bool Equals(object other) {
+                      return Equals(other as Channel);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool Equals(Channel other) {
+                      if (ReferenceEquals(other, null)) {
+                        return false;
+                      }
+                      if (ReferenceEquals(other, this)) {
+                        return true;
+                      }
+                      if (Num != other.Num) return false;
+                      if (CheckNum != other.CheckNum) return false;
+                      if (RxFrequency != other.RxFrequency) return false;
+                      if (CheckRxFrequency != other.CheckRxFrequency) return false;
+                      if (TxFrequency != other.TxFrequency) return false;
+                      if (CheckTxFrequency != other.CheckTxFrequency) return false;
+                      if (Modulation != other.Modulation) return false;
+                      if (CheckModulation != other.CheckModulation) return false;
+                      if (Mode != other.Mode) return false;
+                      if (CheckMode != other.CheckMode) return false;
+                      if (HailKey != other.HailKey) return false;
+                      if (CheckHailKey != other.CheckHailKey) return false;
+                      if (EnableSsbScan != other.EnableSsbScan) return false;
+                      if (CheckEnableSsbScan != other.CheckEnableSsbScan) return false;
+                      if (MaxBandwidth != other.MaxBandwidth) return false;
+                      if (CheckMaxBandwidth != other.CheckMaxBandwidth) return false;
+                      return Equals(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override int GetHashCode() {
+                      int hash = 1;
+                      if (Num.Length != 0) hash ^= Num.GetHashCode();
+                      if (CheckNum != false) hash ^= CheckNum.GetHashCode();
+                      if (RxFrequency.Length != 0) hash ^= RxFrequency.GetHashCode();
+                      if (CheckRxFrequency != false) hash ^= CheckRxFrequency.GetHashCode();
+                      if (TxFrequency.Length != 0) hash ^= TxFrequency.GetHashCode();
+                      if (CheckTxFrequency != false) hash ^= CheckTxFrequency.GetHashCode();
+                      if (Modulation.Length != 0) hash ^= Modulation.GetHashCode();
+                      if (CheckModulation != false) hash ^= CheckModulation.GetHashCode();
+                      if (Mode != false) hash ^= Mode.GetHashCode();
+                      if (CheckMode != false) hash ^= CheckMode.GetHashCode();
+                      if (HailKey.Length != 0) hash ^= HailKey.GetHashCode();
+                      if (CheckHailKey != false) hash ^= CheckHailKey.GetHashCode();
+                      if (EnableSsbScan != false) hash ^= EnableSsbScan.GetHashCode();
+                      if (CheckEnableSsbScan != false) hash ^= CheckEnableSsbScan.GetHashCode();
+                      if (MaxBandwidth.Length != 0) hash ^= MaxBandwidth.GetHashCode();
+                      if (CheckMaxBandwidth != false) hash ^= CheckMaxBandwidth.GetHashCode();
+                      if (_unknownFields != null) {
+                        hash ^= _unknownFields.GetHashCode();
+                      }
+                      return hash;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override string ToString() {
+                      return pb::JsonFormatter.ToDiagnosticString(this);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void WriteTo(pb::CodedOutputStream output) {
+                      if (Num.Length != 0) {
+                        output.WriteRawTag(10);
+                        output.WriteString(Num);
+                      }
+                      if (CheckNum != false) {
+                        output.WriteRawTag(16);
+                        output.WriteBool(CheckNum);
+                      }
+                      if (RxFrequency.Length != 0) {
+                        output.WriteRawTag(26);
+                        output.WriteString(RxFrequency);
+                      }
+                      if (CheckRxFrequency != false) {
+                        output.WriteRawTag(32);
+                        output.WriteBool(CheckRxFrequency);
+                      }
+                      if (TxFrequency.Length != 0) {
+                        output.WriteRawTag(42);
+                        output.WriteString(TxFrequency);
+                      }
+                      if (CheckTxFrequency != false) {
+                        output.WriteRawTag(48);
+                        output.WriteBool(CheckTxFrequency);
+                      }
+                      if (Modulation.Length != 0) {
+                        output.WriteRawTag(58);
+                        output.WriteString(Modulation);
+                      }
+                      if (CheckModulation != false) {
+                        output.WriteRawTag(64);
+                        output.WriteBool(CheckModulation);
+                      }
+                      if (Mode != false) {
+                        output.WriteRawTag(72);
+                        output.WriteBool(Mode);
+                      }
+                      if (CheckMode != false) {
+                        output.WriteRawTag(80);
+                        output.WriteBool(CheckMode);
+                      }
+                      if (HailKey.Length != 0) {
+                        output.WriteRawTag(90);
+                        output.WriteString(HailKey);
+                      }
+                      if (CheckHailKey != false) {
+                        output.WriteRawTag(96);
+                        output.WriteBool(CheckHailKey);
+                      }
+                      if (EnableSsbScan != false) {
+                        output.WriteRawTag(104);
+                        output.WriteBool(EnableSsbScan);
+                      }
+                      if (CheckEnableSsbScan != false) {
+                        output.WriteRawTag(112);
+                        output.WriteBool(CheckEnableSsbScan);
+                      }
+                      if (MaxBandwidth.Length != 0) {
+                        output.WriteRawTag(122);
+                        output.WriteString(MaxBandwidth);
+                      }
+                      if (CheckMaxBandwidth != false) {
+                        output.WriteRawTag(128, 1);
+                        output.WriteBool(CheckMaxBandwidth);
+                      }
+                      if (_unknownFields != null) {
+                        _unknownFields.WriteTo(output);
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public int CalculateSize() {
+                      int size = 0;
+                      if (Num.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Num);
+                      }
+                      if (CheckNum != false) {
+                        size += 1 + 1;
+                      }
+                      if (RxFrequency.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(RxFrequency);
+                      }
+                      if (CheckRxFrequency != false) {
+                        size += 1 + 1;
+                      }
+                      if (TxFrequency.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(TxFrequency);
+                      }
+                      if (CheckTxFrequency != false) {
+                        size += 1 + 1;
+                      }
+                      if (Modulation.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Modulation);
+                      }
+                      if (CheckModulation != false) {
+                        size += 1 + 1;
+                      }
+                      if (Mode != false) {
+                        size += 1 + 1;
+                      }
+                      if (CheckMode != false) {
+                        size += 1 + 1;
+                      }
+                      if (HailKey.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(HailKey);
+                      }
+                      if (CheckHailKey != false) {
+                        size += 1 + 1;
+                      }
+                      if (EnableSsbScan != false) {
+                        size += 1 + 1;
+                      }
+                      if (CheckEnableSsbScan != false) {
+                        size += 1 + 1;
+                      }
+                      if (MaxBandwidth.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(MaxBandwidth);
+                      }
+                      if (CheckMaxBandwidth != false) {
+                        size += 2 + 1;
+                      }
+                      if (_unknownFields != null) {
+                        size += _unknownFields.CalculateSize();
+                      }
+                      return size;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(Channel other) {
+                      if (other == null) {
+                        return;
+                      }
+                      if (other.Num.Length != 0) {
+                        Num = other.Num;
+                      }
+                      if (other.CheckNum != false) {
+                        CheckNum = other.CheckNum;
+                      }
+                      if (other.RxFrequency.Length != 0) {
+                        RxFrequency = other.RxFrequency;
+                      }
+                      if (other.CheckRxFrequency != false) {
+                        CheckRxFrequency = other.CheckRxFrequency;
+                      }
+                      if (other.TxFrequency.Length != 0) {
+                        TxFrequency = other.TxFrequency;
+                      }
+                      if (other.CheckTxFrequency != false) {
+                        CheckTxFrequency = other.CheckTxFrequency;
+                      }
+                      if (other.Modulation.Length != 0) {
+                        Modulation = other.Modulation;
+                      }
+                      if (other.CheckModulation != false) {
+                        CheckModulation = other.CheckModulation;
+                      }
+                      if (other.Mode != false) {
+                        Mode = other.Mode;
+                      }
+                      if (other.CheckMode != false) {
+                        CheckMode = other.CheckMode;
+                      }
+                      if (other.HailKey.Length != 0) {
+                        HailKey = other.HailKey;
+                      }
+                      if (other.CheckHailKey != false) {
+                        CheckHailKey = other.CheckHailKey;
+                      }
+                      if (other.EnableSsbScan != false) {
+                        EnableSsbScan = other.EnableSsbScan;
+                      }
+                      if (other.CheckEnableSsbScan != false) {
+                        CheckEnableSsbScan = other.CheckEnableSsbScan;
+                      }
+                      if (other.MaxBandwidth.Length != 0) {
+                        MaxBandwidth = other.MaxBandwidth;
+                      }
+                      if (other.CheckMaxBandwidth != false) {
+                        CheckMaxBandwidth = other.CheckMaxBandwidth;
+                      }
+                      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(pb::CodedInputStream input) {
+                      uint tag;
+                      while ((tag = input.ReadTag()) != 0) {
+                        switch(tag) {
+                          default:
+                            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                            break;
+                          case 10: {
+                            Num = input.ReadString();
+                            break;
+                          }
+                          case 16: {
+                            CheckNum = input.ReadBool();
+                            break;
+                          }
+                          case 26: {
+                            RxFrequency = input.ReadString();
+                            break;
+                          }
+                          case 32: {
+                            CheckRxFrequency = input.ReadBool();
+                            break;
+                          }
+                          case 42: {
+                            TxFrequency = input.ReadString();
+                            break;
+                          }
+                          case 48: {
+                            CheckTxFrequency = input.ReadBool();
+                            break;
+                          }
+                          case 58: {
+                            Modulation = input.ReadString();
+                            break;
+                          }
+                          case 64: {
+                            CheckModulation = input.ReadBool();
+                            break;
+                          }
+                          case 72: {
+                            Mode = input.ReadBool();
+                            break;
+                          }
+                          case 80: {
+                            CheckMode = input.ReadBool();
+                            break;
+                          }
+                          case 90: {
+                            HailKey = input.ReadString();
+                            break;
+                          }
+                          case 96: {
+                            CheckHailKey = input.ReadBool();
+                            break;
+                          }
+                          case 104: {
+                            EnableSsbScan = input.ReadBool();
+                            break;
+                          }
+                          case 112: {
+                            CheckEnableSsbScan = input.ReadBool();
+                            break;
+                          }
+                          case 122: {
+                            MaxBandwidth = input.ReadString();
+                            break;
+                          }
+                          case 128: {
+                            CheckMaxBandwidth = input.ReadBool();
+                            break;
+                          }
+                        }
+                      }
+                    }
+
+                  }
+
+                  public sealed partial class Modem : pb::IMessage<Modem> {
+                    private static readonly pb::MessageParser<Modem> _parser = new pb::MessageParser<Modem>(() => new Modem());
+                    private pb::UnknownFieldSet _unknownFields;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pb::MessageParser<Modem> Parser { get { return _parser; } }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pbr::MessageDescriptor Descriptor {
+                      get { return global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Descriptor.NestedTypes[1]; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    pbr::MessageDescriptor pb::IMessage.Descriptor {
+                      get { return Descriptor; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Modem() {
+                      OnConstruction();
+                    }
+
+                    partial void OnConstruction();
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Modem(Modem other) : this() {
+                      name_ = other.name_;
+                      checkName_ = other.checkName_;
+                      modemType_ = other.modemType_;
+                      checkModemType_ = other.checkModemType_;
+                      dataRate_ = other.dataRate_;
+                      checkDataRate_ = other.checkDataRate_;
+                      mode_ = other.mode_;
+                      checkMode_ = other.checkMode_;
+                      dataBits_ = other.dataBits_;
+                      checkDataBits_ = other.checkDataBits_;
+                      stopBits_ = other.stopBits_;
+                      checkStopBits_ = other.checkStopBits_;
+                      parity_ = other.parity_;
+                      checkParity_ = other.checkParity_;
+                      enable_ = other.enable_;
+                      checkEnable_ = other.checkEnable_;
+                      originalName_ = other.originalName_;
+                      checkOriginalName_ = other.checkOriginalName_;
+                      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public Modem Clone() {
+                      return new Modem(this);
+                    }
+
+                    /// <summary>Field number for the "name" field.</summary>
+                    public const int NameFieldNumber = 1;
+                    private string name_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Name {
+                      get { return name_; }
+                      set {
+                        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkName" field.</summary>
+                    public const int CheckNameFieldNumber = 2;
+                    private bool checkName_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckName {
+                      get { return checkName_; }
+                      set {
+                        checkName_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "modemType" field.</summary>
+                    public const int ModemTypeFieldNumber = 3;
+                    private string modemType_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string ModemType {
+                      get { return modemType_; }
+                      set {
+                        modemType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkModemType" field.</summary>
+                    public const int CheckModemTypeFieldNumber = 4;
+                    private bool checkModemType_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckModemType {
+                      get { return checkModemType_; }
+                      set {
+                        checkModemType_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "dataRate" field.</summary>
+                    public const int DataRateFieldNumber = 5;
+                    private string dataRate_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string DataRate {
+                      get { return dataRate_; }
+                      set {
+                        dataRate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkDataRate" field.</summary>
+                    public const int CheckDataRateFieldNumber = 6;
+                    private bool checkDataRate_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckDataRate {
+                      get { return checkDataRate_; }
+                      set {
+                        checkDataRate_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "mode" field.</summary>
+                    public const int ModeFieldNumber = 7;
+                    private string mode_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Mode {
+                      get { return mode_; }
+                      set {
+                        mode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkMode" field.</summary>
+                    public const int CheckModeFieldNumber = 8;
+                    private bool checkMode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckMode {
+                      get { return checkMode_; }
+                      set {
+                        checkMode_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "dataBits" field.</summary>
+                    public const int DataBitsFieldNumber = 9;
+                    private string dataBits_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string DataBits {
+                      get { return dataBits_; }
+                      set {
+                        dataBits_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkDataBits" field.</summary>
+                    public const int CheckDataBitsFieldNumber = 10;
+                    private bool checkDataBits_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckDataBits {
+                      get { return checkDataBits_; }
+                      set {
+                        checkDataBits_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "stopBits" field.</summary>
+                    public const int StopBitsFieldNumber = 11;
+                    private string stopBits_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string StopBits {
+                      get { return stopBits_; }
+                      set {
+                        stopBits_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkStopBits" field.</summary>
+                    public const int CheckStopBitsFieldNumber = 12;
+                    private bool checkStopBits_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckStopBits {
+                      get { return checkStopBits_; }
+                      set {
+                        checkStopBits_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "parity" field.</summary>
+                    public const int ParityFieldNumber = 13;
+                    private string parity_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Parity {
+                      get { return parity_; }
+                      set {
+                        parity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkParity" field.</summary>
+                    public const int CheckParityFieldNumber = 14;
+                    private bool checkParity_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckParity {
+                      get { return checkParity_; }
+                      set {
+                        checkParity_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "enable" field.</summary>
+                    public const int EnableFieldNumber = 15;
+                    private string enable_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Enable {
+                      get { return enable_; }
+                      set {
+                        enable_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkEnable" field.</summary>
+                    public const int CheckEnableFieldNumber = 16;
+                    private bool checkEnable_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckEnable {
+                      get { return checkEnable_; }
+                      set {
+                        checkEnable_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "originalName" field.</summary>
+                    public const int OriginalNameFieldNumber = 17;
+                    private string originalName_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string OriginalName {
+                      get { return originalName_; }
+                      set {
+                        originalName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkOriginalName" field.</summary>
+                    public const int CheckOriginalNameFieldNumber = 18;
+                    private bool checkOriginalName_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckOriginalName {
+                      get { return checkOriginalName_; }
+                      set {
+                        checkOriginalName_ = value;
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override bool Equals(object other) {
+                      return Equals(other as Modem);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool Equals(Modem other) {
+                      if (ReferenceEquals(other, null)) {
+                        return false;
+                      }
+                      if (ReferenceEquals(other, this)) {
+                        return true;
+                      }
+                      if (Name != other.Name) return false;
+                      if (CheckName != other.CheckName) return false;
+                      if (ModemType != other.ModemType) return false;
+                      if (CheckModemType != other.CheckModemType) return false;
+                      if (DataRate != other.DataRate) return false;
+                      if (CheckDataRate != other.CheckDataRate) return false;
+                      if (Mode != other.Mode) return false;
+                      if (CheckMode != other.CheckMode) return false;
+                      if (DataBits != other.DataBits) return false;
+                      if (CheckDataBits != other.CheckDataBits) return false;
+                      if (StopBits != other.StopBits) return false;
+                      if (CheckStopBits != other.CheckStopBits) return false;
+                      if (Parity != other.Parity) return false;
+                      if (CheckParity != other.CheckParity) return false;
+                      if (Enable != other.Enable) return false;
+                      if (CheckEnable != other.CheckEnable) return false;
+                      if (OriginalName != other.OriginalName) return false;
+                      if (CheckOriginalName != other.CheckOriginalName) return false;
+                      return Equals(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override int GetHashCode() {
+                      int hash = 1;
+                      if (Name.Length != 0) hash ^= Name.GetHashCode();
+                      if (CheckName != false) hash ^= CheckName.GetHashCode();
+                      if (ModemType.Length != 0) hash ^= ModemType.GetHashCode();
+                      if (CheckModemType != false) hash ^= CheckModemType.GetHashCode();
+                      if (DataRate.Length != 0) hash ^= DataRate.GetHashCode();
+                      if (CheckDataRate != false) hash ^= CheckDataRate.GetHashCode();
+                      if (Mode.Length != 0) hash ^= Mode.GetHashCode();
+                      if (CheckMode != false) hash ^= CheckMode.GetHashCode();
+                      if (DataBits.Length != 0) hash ^= DataBits.GetHashCode();
+                      if (CheckDataBits != false) hash ^= CheckDataBits.GetHashCode();
+                      if (StopBits.Length != 0) hash ^= StopBits.GetHashCode();
+                      if (CheckStopBits != false) hash ^= CheckStopBits.GetHashCode();
+                      if (Parity.Length != 0) hash ^= Parity.GetHashCode();
+                      if (CheckParity != false) hash ^= CheckParity.GetHashCode();
+                      if (Enable.Length != 0) hash ^= Enable.GetHashCode();
+                      if (CheckEnable != false) hash ^= CheckEnable.GetHashCode();
+                      if (OriginalName.Length != 0) hash ^= OriginalName.GetHashCode();
+                      if (CheckOriginalName != false) hash ^= CheckOriginalName.GetHashCode();
+                      if (_unknownFields != null) {
+                        hash ^= _unknownFields.GetHashCode();
+                      }
+                      return hash;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override string ToString() {
+                      return pb::JsonFormatter.ToDiagnosticString(this);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void WriteTo(pb::CodedOutputStream output) {
+                      if (Name.Length != 0) {
+                        output.WriteRawTag(10);
+                        output.WriteString(Name);
+                      }
+                      if (CheckName != false) {
+                        output.WriteRawTag(16);
+                        output.WriteBool(CheckName);
+                      }
+                      if (ModemType.Length != 0) {
+                        output.WriteRawTag(26);
+                        output.WriteString(ModemType);
+                      }
+                      if (CheckModemType != false) {
+                        output.WriteRawTag(32);
+                        output.WriteBool(CheckModemType);
+                      }
+                      if (DataRate.Length != 0) {
+                        output.WriteRawTag(42);
+                        output.WriteString(DataRate);
+                      }
+                      if (CheckDataRate != false) {
+                        output.WriteRawTag(48);
+                        output.WriteBool(CheckDataRate);
+                      }
+                      if (Mode.Length != 0) {
+                        output.WriteRawTag(58);
+                        output.WriteString(Mode);
+                      }
+                      if (CheckMode != false) {
+                        output.WriteRawTag(64);
+                        output.WriteBool(CheckMode);
+                      }
+                      if (DataBits.Length != 0) {
+                        output.WriteRawTag(74);
+                        output.WriteString(DataBits);
+                      }
+                      if (CheckDataBits != false) {
+                        output.WriteRawTag(80);
+                        output.WriteBool(CheckDataBits);
+                      }
+                      if (StopBits.Length != 0) {
+                        output.WriteRawTag(90);
+                        output.WriteString(StopBits);
+                      }
+                      if (CheckStopBits != false) {
+                        output.WriteRawTag(96);
+                        output.WriteBool(CheckStopBits);
+                      }
+                      if (Parity.Length != 0) {
+                        output.WriteRawTag(106);
+                        output.WriteString(Parity);
+                      }
+                      if (CheckParity != false) {
+                        output.WriteRawTag(112);
+                        output.WriteBool(CheckParity);
+                      }
+                      if (Enable.Length != 0) {
+                        output.WriteRawTag(122);
+                        output.WriteString(Enable);
+                      }
+                      if (CheckEnable != false) {
+                        output.WriteRawTag(128, 1);
+                        output.WriteBool(CheckEnable);
+                      }
+                      if (OriginalName.Length != 0) {
+                        output.WriteRawTag(138, 1);
+                        output.WriteString(OriginalName);
+                      }
+                      if (CheckOriginalName != false) {
+                        output.WriteRawTag(144, 1);
+                        output.WriteBool(CheckOriginalName);
+                      }
+                      if (_unknownFields != null) {
+                        _unknownFields.WriteTo(output);
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public int CalculateSize() {
+                      int size = 0;
+                      if (Name.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+                      }
+                      if (CheckName != false) {
+                        size += 1 + 1;
+                      }
+                      if (ModemType.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(ModemType);
+                      }
+                      if (CheckModemType != false) {
+                        size += 1 + 1;
+                      }
+                      if (DataRate.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataRate);
+                      }
+                      if (CheckDataRate != false) {
+                        size += 1 + 1;
+                      }
+                      if (Mode.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Mode);
+                      }
+                      if (CheckMode != false) {
+                        size += 1 + 1;
+                      }
+                      if (DataBits.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataBits);
+                      }
+                      if (CheckDataBits != false) {
+                        size += 1 + 1;
+                      }
+                      if (StopBits.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(StopBits);
+                      }
+                      if (CheckStopBits != false) {
+                        size += 1 + 1;
+                      }
+                      if (Parity.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Parity);
+                      }
+                      if (CheckParity != false) {
+                        size += 1 + 1;
+                      }
+                      if (Enable.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Enable);
+                      }
+                      if (CheckEnable != false) {
+                        size += 2 + 1;
+                      }
+                      if (OriginalName.Length != 0) {
+                        size += 2 + pb::CodedOutputStream.ComputeStringSize(OriginalName);
+                      }
+                      if (CheckOriginalName != false) {
+                        size += 2 + 1;
+                      }
+                      if (_unknownFields != null) {
+                        size += _unknownFields.CalculateSize();
+                      }
+                      return size;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(Modem other) {
+                      if (other == null) {
+                        return;
+                      }
+                      if (other.Name.Length != 0) {
+                        Name = other.Name;
+                      }
+                      if (other.CheckName != false) {
+                        CheckName = other.CheckName;
+                      }
+                      if (other.ModemType.Length != 0) {
+                        ModemType = other.ModemType;
+                      }
+                      if (other.CheckModemType != false) {
+                        CheckModemType = other.CheckModemType;
+                      }
+                      if (other.DataRate.Length != 0) {
+                        DataRate = other.DataRate;
+                      }
+                      if (other.CheckDataRate != false) {
+                        CheckDataRate = other.CheckDataRate;
+                      }
+                      if (other.Mode.Length != 0) {
+                        Mode = other.Mode;
+                      }
+                      if (other.CheckMode != false) {
+                        CheckMode = other.CheckMode;
+                      }
+                      if (other.DataBits.Length != 0) {
+                        DataBits = other.DataBits;
+                      }
+                      if (other.CheckDataBits != false) {
+                        CheckDataBits = other.CheckDataBits;
+                      }
+                      if (other.StopBits.Length != 0) {
+                        StopBits = other.StopBits;
+                      }
+                      if (other.CheckStopBits != false) {
+                        CheckStopBits = other.CheckStopBits;
+                      }
+                      if (other.Parity.Length != 0) {
+                        Parity = other.Parity;
+                      }
+                      if (other.CheckParity != false) {
+                        CheckParity = other.CheckParity;
+                      }
+                      if (other.Enable.Length != 0) {
+                        Enable = other.Enable;
+                      }
+                      if (other.CheckEnable != false) {
+                        CheckEnable = other.CheckEnable;
+                      }
+                      if (other.OriginalName.Length != 0) {
+                        OriginalName = other.OriginalName;
+                      }
+                      if (other.CheckOriginalName != false) {
+                        CheckOriginalName = other.CheckOriginalName;
+                      }
+                      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(pb::CodedInputStream input) {
+                      uint tag;
+                      while ((tag = input.ReadTag()) != 0) {
+                        switch(tag) {
+                          default:
+                            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                            break;
+                          case 10: {
+                            Name = input.ReadString();
+                            break;
+                          }
+                          case 16: {
+                            CheckName = input.ReadBool();
+                            break;
+                          }
+                          case 26: {
+                            ModemType = input.ReadString();
+                            break;
+                          }
+                          case 32: {
+                            CheckModemType = input.ReadBool();
+                            break;
+                          }
+                          case 42: {
+                            DataRate = input.ReadString();
+                            break;
+                          }
+                          case 48: {
+                            CheckDataRate = input.ReadBool();
+                            break;
+                          }
+                          case 58: {
+                            Mode = input.ReadString();
+                            break;
+                          }
+                          case 64: {
+                            CheckMode = input.ReadBool();
+                            break;
+                          }
+                          case 74: {
+                            DataBits = input.ReadString();
+                            break;
+                          }
+                          case 80: {
+                            CheckDataBits = input.ReadBool();
+                            break;
+                          }
+                          case 90: {
+                            StopBits = input.ReadString();
+                            break;
+                          }
+                          case 96: {
+                            CheckStopBits = input.ReadBool();
+                            break;
+                          }
+                          case 106: {
+                            Parity = input.ReadString();
+                            break;
+                          }
+                          case 112: {
+                            CheckParity = input.ReadBool();
+                            break;
+                          }
+                          case 122: {
+                            Enable = input.ReadString();
+                            break;
+                          }
+                          case 128: {
+                            CheckEnable = input.ReadBool();
+                            break;
+                          }
+                          case 138: {
+                            OriginalName = input.ReadString();
+                            break;
+                          }
+                          case 144: {
+                            CheckOriginalName = input.ReadBool();
+                            break;
+                          }
+                        }
+                      }
+                    }
+
+                  }
+
+                  public sealed partial class System : pb::IMessage<System> {
+                    private static readonly pb::MessageParser<System> _parser = new pb::MessageParser<System>(() => new System());
+                    private pb::UnknownFieldSet _unknownFields;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pb::MessageParser<System> Parser { get { return _parser; } }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public static pbr::MessageDescriptor Descriptor {
+                      get { return global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Descriptor.NestedTypes[2]; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    pbr::MessageDescriptor pb::IMessage.Descriptor {
+                      get { return Descriptor; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public System() {
+                      OnConstruction();
+                    }
+
+                    partial void OnConstruction();
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public System(System other) : this() {
+                      name_ = other.name_;
+                      checkName_ = other.checkName_;
+                      channelNumber_ = other.channelNumber_;
+                      checkChannelNumber_ = other.checkChannelNumber_;
+                      modemPreset_ = other.modemPreset_ != null ? other.modemPreset_.Clone() : null;
+                      checkModemPreset_ = other.checkModemPreset_;
+                      key_ = other.key_ != null ? other.key_.Clone() : null;
+                      checkKey_ = other.checkKey_;
+                      ptVoiceMode_ = other.ptVoiceMode_;
+                      checkPtVoiceMode_ = other.checkPtVoiceMode_;
+                      ctVoiceMode_ = other.ctVoiceMode_;
+                      checkCtVoiceMode_ = other.checkCtVoiceMode_;
+                      enable_ = other.enable_;
+                      checkEnable_ = other.checkEnable_;
+                      checkKeyValue_ = other.checkKeyValue_;
+                      checkRadioMode_ = other.checkRadioMode_;
+                      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public System Clone() {
+                      return new System(this);
+                    }
+
+                    /// <summary>Field number for the "name" field.</summary>
+                    public const int NameFieldNumber = 1;
+                    private string name_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Name {
+                      get { return name_; }
+                      set {
+                        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkName" field.</summary>
+                    public const int CheckNameFieldNumber = 2;
+                    private bool checkName_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckName {
+                      get { return checkName_; }
+                      set {
+                        checkName_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "channelNumber" field.</summary>
+                    public const int ChannelNumberFieldNumber = 3;
+                    private string channelNumber_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string ChannelNumber {
+                      get { return channelNumber_; }
+                      set {
+                        channelNumber_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkChannelNumber" field.</summary>
+                    public const int CheckChannelNumberFieldNumber = 4;
+                    private bool checkChannelNumber_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckChannelNumber {
+                      get { return checkChannelNumber_; }
+                      set {
+                        checkChannelNumber_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "modemPreset" field.</summary>
+                    public const int ModemPresetFieldNumber = 5;
+                    private global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem modemPreset_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem ModemPreset {
+                      get { return modemPreset_; }
+                      set {
+                        modemPreset_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkModemPreset" field.</summary>
+                    public const int CheckModemPresetFieldNumber = 6;
+                    private bool checkModemPreset_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckModemPreset {
+                      get { return checkModemPreset_; }
+                      set {
+                        checkModemPreset_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "key" field.</summary>
+                    public const int KeyFieldNumber = 7;
+                    private global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key key_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key Key {
+                      get { return key_; }
+                      set {
+                        key_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkKey" field.</summary>
+                    public const int CheckKeyFieldNumber = 8;
+                    private bool checkKey_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckKey {
+                      get { return checkKey_; }
+                      set {
+                        checkKey_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "ptVoiceMode" field.</summary>
+                    public const int PtVoiceModeFieldNumber = 9;
+                    private string ptVoiceMode_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string PtVoiceMode {
+                      get { return ptVoiceMode_; }
+                      set {
+                        ptVoiceMode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkPtVoiceMode" field.</summary>
+                    public const int CheckPtVoiceModeFieldNumber = 10;
+                    private bool checkPtVoiceMode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckPtVoiceMode {
+                      get { return checkPtVoiceMode_; }
+                      set {
+                        checkPtVoiceMode_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "ctVoiceMode" field.</summary>
+                    public const int CtVoiceModeFieldNumber = 11;
+                    private string ctVoiceMode_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string CtVoiceMode {
+                      get { return ctVoiceMode_; }
+                      set {
+                        ctVoiceMode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkCtVoiceMode" field.</summary>
+                    public const int CheckCtVoiceModeFieldNumber = 12;
+                    private bool checkCtVoiceMode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckCtVoiceMode {
+                      get { return checkCtVoiceMode_; }
+                      set {
+                        checkCtVoiceMode_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "enable" field.</summary>
+                    public const int EnableFieldNumber = 13;
+                    private string enable_ = "";
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public string Enable {
+                      get { return enable_; }
+                      set {
+                        enable_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkEnable" field.</summary>
+                    public const int CheckEnableFieldNumber = 14;
+                    private bool checkEnable_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckEnable {
+                      get { return checkEnable_; }
+                      set {
+                        checkEnable_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkKeyValue" field.</summary>
+                    public const int CheckKeyValueFieldNumber = 15;
+                    private bool checkKeyValue_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckKeyValue {
+                      get { return checkKeyValue_; }
+                      set {
+                        checkKeyValue_ = value;
+                      }
+                    }
+
+                    /// <summary>Field number for the "checkRadioMode" field.</summary>
+                    public const int CheckRadioModeFieldNumber = 16;
+                    private bool checkRadioMode_;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool CheckRadioMode {
+                      get { return checkRadioMode_; }
+                      set {
+                        checkRadioMode_ = value;
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override bool Equals(object other) {
+                      return Equals(other as System);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public bool Equals(System other) {
+                      if (ReferenceEquals(other, null)) {
+                        return false;
+                      }
+                      if (ReferenceEquals(other, this)) {
+                        return true;
+                      }
+                      if (Name != other.Name) return false;
+                      if (CheckName != other.CheckName) return false;
+                      if (ChannelNumber != other.ChannelNumber) return false;
+                      if (CheckChannelNumber != other.CheckChannelNumber) return false;
+                      if (!object.Equals(ModemPreset, other.ModemPreset)) return false;
+                      if (CheckModemPreset != other.CheckModemPreset) return false;
+                      if (!object.Equals(Key, other.Key)) return false;
+                      if (CheckKey != other.CheckKey) return false;
+                      if (PtVoiceMode != other.PtVoiceMode) return false;
+                      if (CheckPtVoiceMode != other.CheckPtVoiceMode) return false;
+                      if (CtVoiceMode != other.CtVoiceMode) return false;
+                      if (CheckCtVoiceMode != other.CheckCtVoiceMode) return false;
+                      if (Enable != other.Enable) return false;
+                      if (CheckEnable != other.CheckEnable) return false;
+                      if (CheckKeyValue != other.CheckKeyValue) return false;
+                      if (CheckRadioMode != other.CheckRadioMode) return false;
+                      return Equals(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override int GetHashCode() {
+                      int hash = 1;
+                      if (Name.Length != 0) hash ^= Name.GetHashCode();
+                      if (CheckName != false) hash ^= CheckName.GetHashCode();
+                      if (ChannelNumber.Length != 0) hash ^= ChannelNumber.GetHashCode();
+                      if (CheckChannelNumber != false) hash ^= CheckChannelNumber.GetHashCode();
+                      if (modemPreset_ != null) hash ^= ModemPreset.GetHashCode();
+                      if (CheckModemPreset != false) hash ^= CheckModemPreset.GetHashCode();
+                      if (key_ != null) hash ^= Key.GetHashCode();
+                      if (CheckKey != false) hash ^= CheckKey.GetHashCode();
+                      if (PtVoiceMode.Length != 0) hash ^= PtVoiceMode.GetHashCode();
+                      if (CheckPtVoiceMode != false) hash ^= CheckPtVoiceMode.GetHashCode();
+                      if (CtVoiceMode.Length != 0) hash ^= CtVoiceMode.GetHashCode();
+                      if (CheckCtVoiceMode != false) hash ^= CheckCtVoiceMode.GetHashCode();
+                      if (Enable.Length != 0) hash ^= Enable.GetHashCode();
+                      if (CheckEnable != false) hash ^= CheckEnable.GetHashCode();
+                      if (CheckKeyValue != false) hash ^= CheckKeyValue.GetHashCode();
+                      if (CheckRadioMode != false) hash ^= CheckRadioMode.GetHashCode();
+                      if (_unknownFields != null) {
+                        hash ^= _unknownFields.GetHashCode();
+                      }
+                      return hash;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public override string ToString() {
+                      return pb::JsonFormatter.ToDiagnosticString(this);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void WriteTo(pb::CodedOutputStream output) {
+                      if (Name.Length != 0) {
+                        output.WriteRawTag(10);
+                        output.WriteString(Name);
+                      }
+                      if (CheckName != false) {
+                        output.WriteRawTag(16);
+                        output.WriteBool(CheckName);
+                      }
+                      if (ChannelNumber.Length != 0) {
+                        output.WriteRawTag(26);
+                        output.WriteString(ChannelNumber);
+                      }
+                      if (CheckChannelNumber != false) {
+                        output.WriteRawTag(32);
+                        output.WriteBool(CheckChannelNumber);
+                      }
+                      if (modemPreset_ != null) {
+                        output.WriteRawTag(42);
+                        output.WriteMessage(ModemPreset);
+                      }
+                      if (CheckModemPreset != false) {
+                        output.WriteRawTag(48);
+                        output.WriteBool(CheckModemPreset);
+                      }
+                      if (key_ != null) {
+                        output.WriteRawTag(58);
+                        output.WriteMessage(Key);
+                      }
+                      if (CheckKey != false) {
+                        output.WriteRawTag(64);
+                        output.WriteBool(CheckKey);
+                      }
+                      if (PtVoiceMode.Length != 0) {
+                        output.WriteRawTag(74);
+                        output.WriteString(PtVoiceMode);
+                      }
+                      if (CheckPtVoiceMode != false) {
+                        output.WriteRawTag(80);
+                        output.WriteBool(CheckPtVoiceMode);
+                      }
+                      if (CtVoiceMode.Length != 0) {
+                        output.WriteRawTag(90);
+                        output.WriteString(CtVoiceMode);
+                      }
+                      if (CheckCtVoiceMode != false) {
+                        output.WriteRawTag(96);
+                        output.WriteBool(CheckCtVoiceMode);
+                      }
+                      if (Enable.Length != 0) {
+                        output.WriteRawTag(106);
+                        output.WriteString(Enable);
+                      }
+                      if (CheckEnable != false) {
+                        output.WriteRawTag(112);
+                        output.WriteBool(CheckEnable);
+                      }
+                      if (CheckKeyValue != false) {
+                        output.WriteRawTag(120);
+                        output.WriteBool(CheckKeyValue);
+                      }
+                      if (CheckRadioMode != false) {
+                        output.WriteRawTag(128, 1);
+                        output.WriteBool(CheckRadioMode);
+                      }
+                      if (_unknownFields != null) {
+                        _unknownFields.WriteTo(output);
+                      }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public int CalculateSize() {
+                      int size = 0;
+                      if (Name.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+                      }
+                      if (CheckName != false) {
+                        size += 1 + 1;
+                      }
+                      if (ChannelNumber.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(ChannelNumber);
+                      }
+                      if (CheckChannelNumber != false) {
+                        size += 1 + 1;
+                      }
+                      if (modemPreset_ != null) {
+                        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ModemPreset);
+                      }
+                      if (CheckModemPreset != false) {
+                        size += 1 + 1;
+                      }
+                      if (key_ != null) {
+                        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Key);
+                      }
+                      if (CheckKey != false) {
+                        size += 1 + 1;
+                      }
+                      if (PtVoiceMode.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(PtVoiceMode);
+                      }
+                      if (CheckPtVoiceMode != false) {
+                        size += 1 + 1;
+                      }
+                      if (CtVoiceMode.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(CtVoiceMode);
+                      }
+                      if (CheckCtVoiceMode != false) {
+                        size += 1 + 1;
+                      }
+                      if (Enable.Length != 0) {
+                        size += 1 + pb::CodedOutputStream.ComputeStringSize(Enable);
+                      }
+                      if (CheckEnable != false) {
+                        size += 1 + 1;
+                      }
+                      if (CheckKeyValue != false) {
+                        size += 1 + 1;
+                      }
+                      if (CheckRadioMode != false) {
+                        size += 2 + 1;
+                      }
+                      if (_unknownFields != null) {
+                        size += _unknownFields.CalculateSize();
+                      }
+                      return size;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(System other) {
+                      if (other == null) {
+                        return;
+                      }
+                      if (other.Name.Length != 0) {
+                        Name = other.Name;
+                      }
+                      if (other.CheckName != false) {
+                        CheckName = other.CheckName;
+                      }
+                      if (other.ChannelNumber.Length != 0) {
+                        ChannelNumber = other.ChannelNumber;
+                      }
+                      if (other.CheckChannelNumber != false) {
+                        CheckChannelNumber = other.CheckChannelNumber;
+                      }
+                      if (other.modemPreset_ != null) {
+                        if (modemPreset_ == null) {
+                          ModemPreset = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem();
+                        }
+                        ModemPreset.MergeFrom(other.ModemPreset);
+                      }
+                      if (other.CheckModemPreset != false) {
+                        CheckModemPreset = other.CheckModemPreset;
+                      }
+                      if (other.key_ != null) {
+                        if (key_ == null) {
+                          Key = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key();
+                        }
+                        Key.MergeFrom(other.Key);
+                      }
+                      if (other.CheckKey != false) {
+                        CheckKey = other.CheckKey;
+                      }
+                      if (other.PtVoiceMode.Length != 0) {
+                        PtVoiceMode = other.PtVoiceMode;
+                      }
+                      if (other.CheckPtVoiceMode != false) {
+                        CheckPtVoiceMode = other.CheckPtVoiceMode;
+                      }
+                      if (other.CtVoiceMode.Length != 0) {
+                        CtVoiceMode = other.CtVoiceMode;
+                      }
+                      if (other.CheckCtVoiceMode != false) {
+                        CheckCtVoiceMode = other.CheckCtVoiceMode;
+                      }
+                      if (other.Enable.Length != 0) {
+                        Enable = other.Enable;
+                      }
+                      if (other.CheckEnable != false) {
+                        CheckEnable = other.CheckEnable;
+                      }
+                      if (other.CheckKeyValue != false) {
+                        CheckKeyValue = other.CheckKeyValue;
+                      }
+                      if (other.CheckRadioMode != false) {
+                        CheckRadioMode = other.CheckRadioMode;
+                      }
+                      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    public void MergeFrom(pb::CodedInputStream input) {
+                      uint tag;
+                      while ((tag = input.ReadTag()) != 0) {
+                        switch(tag) {
+                          default:
+                            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                            break;
+                          case 10: {
+                            Name = input.ReadString();
+                            break;
+                          }
+                          case 16: {
+                            CheckName = input.ReadBool();
+                            break;
+                          }
+                          case 26: {
+                            ChannelNumber = input.ReadString();
+                            break;
+                          }
+                          case 32: {
+                            CheckChannelNumber = input.ReadBool();
+                            break;
+                          }
+                          case 42: {
+                            if (modemPreset_ == null) {
+                              ModemPreset = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem();
+                            }
+                            input.ReadMessage(ModemPreset);
+                            break;
+                          }
+                          case 48: {
+                            CheckModemPreset = input.ReadBool();
+                            break;
+                          }
+                          case 58: {
+                            if (key_ == null) {
+                              Key = new global::LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key();
+                            }
+                            input.ReadMessage(Key);
+                            break;
+                          }
+                          case 64: {
+                            CheckKey = input.ReadBool();
+                            break;
+                          }
+                          case 74: {
+                            PtVoiceMode = input.ReadString();
+                            break;
+                          }
+                          case 80: {
+                            CheckPtVoiceMode = input.ReadBool();
+                            break;
+                          }
+                          case 90: {
+                            CtVoiceMode = input.ReadString();
+                            break;
+                          }
+                          case 96: {
+                            CheckCtVoiceMode = input.ReadBool();
+                            break;
+                          }
+                          case 106: {
+                            Enable = input.ReadString();
+                            break;
+                          }
+                          case 112: {
+                            CheckEnable = input.ReadBool();
+                            break;
+                          }
+                          case 120: {
+                            CheckKeyValue = input.ReadBool();
+                            break;
+                          }
+                          case 128: {
+                            CheckRadioMode = input.ReadBool();
+                            break;
+                          }
+                        }
+                      }
+                    }
+
                   }
 
                 }

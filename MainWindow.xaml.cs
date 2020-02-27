@@ -125,11 +125,7 @@ namespace WpfHarris78
             this.btVolUp.Name = buttonKeyString[ButtonKey.VOLUME_PLUS];
             this.btZero.Name = buttonKeyString[ButtonKey.ZERO];
 
-
-            //SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             switcher.InitToOff();
-            //displayFonts.AddFontFile(@"pixelmix.ttf");
-            //richDispley.FontFamily = new FontFamily(displayFonts.Families[0].Name);
             richDispley.FontWeight = FontWeight.FromOpenTypeWeight(500);
             richDispley.Background = new SolidColorBrush(displayColor);
 
@@ -161,11 +157,14 @@ namespace WpfHarris78
                 Common = new LessonParametersSet.LessonParameters.Types.Common(),
                 Program = new LessonParametersSet.LessonParameters.Types.Program()
                 {
-                    Comsec = new LessonParametersSet.LessonParameters.Types.Program.Types.Comsec()
+                    Comsec = new LessonParametersSet.LessonParameters.Types.Program.Types.Comsec(),
+                    Mode = new LessonParametersSet.LessonParameters.Types.Program.Types.Mode()
+                    {
+                        Preset = new LessonParametersSet.LessonParameters.Types.Program.Types.Mode.Types.Preset(),
+                    }
                 }
             };
 
-            //ProtobufTest.test();
         }
 
         private void global_timer_Tick(object sender, EventArgs e)
@@ -181,7 +180,6 @@ namespace WpfHarris78
         {
             if (radioStation.IsOff())
             {
-                //richDisplay.Clear();
                 timer1.Stop();
                 return;
             }
@@ -197,7 +195,6 @@ namespace WpfHarris78
 
             currentWidget.Update();
             var lines = currentWidget.ToLines();
-            //richDisplay.Text = string.Join("\n", lines);
 
             FlowDocument myFlowDoc = new FlowDocument();
 
@@ -236,7 +233,6 @@ namespace WpfHarris78
                 selectTextRichDisplay(lines[0].Length + lines[1].Length + 2, lines[2].Length);
                 line3.FontSize = currentWidget.LineSize[2];
                 line3.Margin = new Thickness(0, 0, 0, currentWidget.LineCharOffset[2]);
-                //line3.LineHeight = currentWidget.LineCharOffset[2]
             }
             if (lines.Length > 3)
             {
@@ -409,46 +405,12 @@ namespace WpfHarris78
 
         private void selectActiveParam(Param param, Paragraph paragraph)
         {
-            TextRange allText = new TextRange(richDispley.Document.ContentStart, richDispley.Document.ContentEnd);
-            string[] lines = allText.Text.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
-
             var pos1 = paragraph.ContentStart.GetPositionAtOffset(param.Y + 1 + param.ActiveFrom, LogicalDirection.Forward);
             richDispley.Selection.Select(pos1, pos1.GetPositionAtOffset(param.ActiveTo, LogicalDirection.Backward));
 
             richDispley.Selection.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
             richDispley.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(displayTextColor));
-            //var t = richDispley.Selection.Text;
-
-            /*
-             * int indexFrom = 2;
-            for(int i = 0; i < lines.Length; i++)
-            {
-                if (param.X - 1 == i)
-                {
-                    //indexFrom += param.Y + 2;
-                    //indexFrom += param.ActiveFrom;
-                    //selectTextRichDisplay(indexFrom, param.ActiveTo);
-                    //var tt = richDispley.CaretPosition.Paragraph.Name;
-                    //var t = richDispley.Selection.Text;
-                    //richDispley.Selection.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-                    ////richDispley.Selection.ApplyPropertyValue(
-                    indexFrom += param.Y + 2;
-                    indexFrom += param.ActiveFrom;
-                }
-                indexFrom += lines[i].Length + 2;
-            }
-                    var activeParam = param;
-                    var pText = activeParam.Text;
-                    var index = richDisplay.Lines[activeParam.X - 1].IndexOf(pText, StringComparison.Ordinal);
-                    for (var i = 0; i < richDisplay.Lines.Length && i < activeParam.X - 1; i++)
-                    {
-                        index += richDisplay.Lines[i].Length + 1;
-                    }
-                    index += activeParam.ActiveFrom;
-                    richDisplay.Select(index, activeParam.ActiveTo);
-                    richDisplay.SelectionBackColor = Color.Black;
-                    richDisplay.SelectionColor = displayTextColor; 
-            */
+            
         }
 
         private void btKeyBoard_Click(object sender, RoutedEventArgs e)
@@ -457,7 +419,6 @@ namespace WpfHarris78
             currentWidget.BtnClick(btn.Name, radioStation);
             WidgetTextToRichText(currentWidget);
 
-            //Debug.WriteLine($"Checker return: {Src.Checker.LessonParametersChecker.IsEquals(LessonParameters, Src.Checker.LessonParametersHolder.Holder.Parameters)}");
         }
 
         private void richDispley_TextChanged(object sender, TextChangedEventArgs e)

@@ -1,0 +1,66 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HarrisAdmin.Pages"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="HarrisAdmin.Pages.LessonsSettingsProgramModeChannel"
+      mc:Ignorable="d" 
+      Width="531"
+      Height="335"
+      Title="LessonsSettingsProgramModeChannel">
+
+    <Grid>
+        <ListBox x:Name="lbChannels" HorizontalAlignment="Left" Height="282" Margin="10,10,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="lbChannels_SelectionChanged"/>
+        <GroupBox x:Name="gbChannelSettings" Header="" HorizontalAlignment="Left" Height="326" Margin="170,0,0,0" VerticalAlignment="Top" Width="351">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="31,15,0,0" TextWrapping="Wrap" Text="Number:" VerticalAlignment="Top"/>
+
+                <syncfusion:SfMaskedEdit Name="maskEditNumber" HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"
+                                 Mask="000" TextChanged="maskEditNumber_TextChanged" />
+                <TextBlock HorizontalAlignment="Left" Margin="31,43,0,0" TextWrapping="Wrap" Text="RX Frequency:" VerticalAlignment="Top"/>
+                <syncfusion:SfMaskedEdit Name="maskEditRxFrequency" HorizontalAlignment="Left" Height="23" Margin="129,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"
+            Mask="00.0000" ValidationMode="KeyPress" MaskType="Simple" TextChanged="maskEditRxFrequency_TextChanged"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,71,0,0" TextWrapping="Wrap" Text="TX Frequency:" VerticalAlignment="Top"/>
+                <syncfusion:SfMaskedEdit Name="maskEditTxFrequency" HorizontalAlignment="Left" Height="23" Margin="129,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"
+            Mask="00.0000" MaskType="Simple" TextChanged="maskEditTxFrequency_TextChanged"/>
+                <ComboBox Name="cbModulation" HorizontalAlignment="Left" Margin="129,95,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbModulation_SelectionChanged">
+                    <ComboBoxItem Content="USB" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="LSB" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="AME" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="CW" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="FM" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,99,0,0" TextWrapping="Wrap" Text="Modulation:" VerticalAlignment="Top"/>
+                <CheckBox Name="chbMode" Content="" HorizontalAlignment="Left" Margin="64,128,0,0" VerticalAlignment="Top" Checked="chbMode_Checked" Unchecked="chbMode_Unchecked"/>
+                <syncfusion:SfMaskedEdit Name="maskEditHailKey" HorizontalAlignment="Left" Height="23" Margin="81,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"
+            Mask="00" TextChanged="maskEditHailKey_TextChanged"/>
+                <CheckBox Name="chbEnableSsbScan" Content="Enable SSB Scan" HorizontalAlignment="Left" Margin="35,184,0,0" VerticalAlignment="Top" Checked="chbEnableSsbScan_Checked" Unchecked="chbEnableSsbScan_Unchecked"/>
+                <ComboBox Name="cbMaxBandWidth" HorizontalAlignment="Left" Margin="130,209,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbMaxBandWidth_SelectionChanged">
+                    <ComboBoxItem Content="24 KHZ" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="21 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="18 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="15 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="12 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="9 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="6 KHZ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="3 KHZ" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="33,213,0,0" TextWrapping="Wrap" Text="Max. Bandwidth:" VerticalAlignment="Top"/>
+
+                <CheckBox x:Name="checkRX" Content="" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+
+                <CheckBox x:Name="checkMaxBandwidth" Content="" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkModulation" Content="" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"  Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkTX" Content="" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"  Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkHailKey" Content="Hail Key" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkMode" Content="Mode" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkEnableSSbScan" Content="" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+                <CheckBox x:Name="checkNumber" Content="" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Checked="checkMaxBandwidth_Checked" Unchecked="checkMaxBandwidth_Checked"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btnRemoveChannel" Content="-" HorizontalAlignment="Left" Margin="90,297,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource UIButton}" Click="btnRemoveChannel_Click"/>
+        <Button x:Name="btnAddChannel" Content="+" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource UIButton}" Click="btnAddChannel_Click"/>
+
+    </Grid>
+</Page>

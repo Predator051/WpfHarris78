@@ -1,0 +1,102 @@
+﻿<Page x:Class="HarrisAdmin.Pages.LessonSettingsProgramModeSystem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HarrisAdmin.Pages"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      mc:Ignorable="d" 
+      Width="531"
+      Height="335"
+      Title="LessonSettingsProgramModeSystem">
+
+    <Grid>
+        <ListBox x:Name="lbSystem" HorizontalAlignment="Left" Height="272" Margin="10,10,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="lbSystem_SelectionChanged"/>
+        <GroupBox x:Name="gbSystem" Header="" HorizontalAlignment="Left" Height="325" Margin="170,0,0,0" VerticalAlignment="Top" Width="351">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="32,10,0,0" TextWrapping="Wrap" Text="Ім'я:" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbRadioMode" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" 
+                          Checked="chb_Checked" 
+                          Unchecked="chb_Checked"
+                          IsChecked="False"/>
+                <ComboBox x:Name="cbRadioMode" SelectionChanged="cbRadioMode_SelectionChanged" HorizontalAlignment="Left" Margin="127,39,0,0" VerticalAlignment="Top" Width="120">
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,44,0,0" TextWrapping="Wrap" Text="Radio mode" VerticalAlignment="Top"/>
+                <syncfusion:SfMaskedEdit Name="maskedEditName" HorizontalAlignment="Left" Height="23" Margin="126,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                                         TextChanged="maskedEditName_TextChanged"
+                                         MaskType="Regular"
+                                         Mask="[0-9A-Za-z]{8}"
+                                         PromptChar="_"/>
+                <CheckBox x:Name="chbChannelNumber" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="31,76,0,0" TextWrapping="Wrap" Text="Channel number" VerticalAlignment="Top"/>
+                <syncfusion:SfMaskedEdit x:Name="maskedEditNumber" HorizontalAlignment="Left" Height="23" Margin="126,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                    TextChanged="maskedEditNumber_TextChanged"
+                    MaskType="Regular"
+                    Mask="[0-9]{3}"
+                    PromptChar="_" 
+                    Value="000"/>
+                <CheckBox x:Name="chbModemPreset" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="31,110,0,0" TextWrapping="Wrap" Text="Modem preset" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbModemPreset" SelectionChanged="cbModemPreset_SelectionChanged" HorizontalAlignment="Left" Margin="127,107,0,0" VerticalAlignment="Top" Width="120" PreviewMouseDown="cbModemPreset_PreviewMouseDown"/>
+                <CheckBox x:Name="chbEncryptionType" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,143,0,0" TextWrapping="Wrap" Text="Encyprion type" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbEncryptionType" SelectionChanged="cbEncryptionType_SelectionChanged" HorizontalAlignment="Left" Margin="127,140,0,0" VerticalAlignment="Top" Width="119"/>
+                <ComboBox x:Name="cbEncryptionKey" SelectionChanged="cbEncryptionKey_SelectionChanged" HorizontalAlignment="Left" Margin="127,175,0,0" VerticalAlignment="Top" Width="117"/>
+                <CheckBox x:Name="chbEncryptionKey" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,178,0,0" TextWrapping="Wrap" Text="Encyprion key" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbPTVoiceMode" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,211,0,0" TextWrapping="Wrap" Text="PT voice mode" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbPTVoiceMode" SelectionChanged="cbPTVoiceMode_SelectionChanged" HorizontalAlignment="Left" Margin="127,208,0,0" VerticalAlignment="Top" Width="119">
+                    <ComboBoxItem Content="NONE" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="CLR" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="CVSD" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="AVS" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="DV6" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="DV24" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME6" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME12" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME24" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="LDV" HorizontalAlignment="Left" Width="117"/>
+                </ComboBox>
+                <CheckBox x:Name="chbCTVoiceMode" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+                <TextBlock HorizontalAlignment="Left" Margin="30,244,0,0" TextWrapping="Wrap" Text="CT voice mode" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbCTVoiceMode" SelectionChanged="cbCTVoiceMode_Copy_SelectionChanged" HorizontalAlignment="Left" Margin="127,241,0,0" VerticalAlignment="Top" Width="119">
+                    <ComboBoxItem Content="NONE" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="DV6" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="DV24" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME6" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME12" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="ME24" HorizontalAlignment="Left" Width="117"/>
+                    <ComboBoxItem Content="LDV" HorizontalAlignment="Left" Width="117"/>
+                </ComboBox>
+                <CheckBox x:Name="chbEnableCheck" Content="Enable" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Checked="chb_Checked" Unchecked="chb_Checked"/>
+                <CheckBox x:Name="chbEnable" Content="OFF" HorizontalAlignment="Left" Margin="126,273,0,0" VerticalAlignment="Top" Checked="chbEnable_Checked" Unchecked="chbEnable_Checked"/>
+                <CheckBox x:Name="chbName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Checked"
+                    IsChecked="False"/>
+
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btnRemoveSystem" Content="-" HorizontalAlignment="Left" Margin="90,289,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource UIButton}" Click="btnRemoveSystem_Click"/>
+        <Button x:Name="btnAddSystem" Content="+" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top" Width="75" Style="{StaticResource UIButton}" Click="btnAddSystem_Click"/>
+    </Grid>
+</Page>

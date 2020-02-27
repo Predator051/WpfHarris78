@@ -57,18 +57,28 @@ namespace HarrisAdmin.Pages
                 test.Bit = new LessonParametersSet.LessonParameters.Types.Option.Types.Test.Types.Bit
                 {
                     ExternalPa = (bool)chbExternalPa.IsChecked,
+                    CheckExternalPa = (bool)chbExternalPa.IsChecked,
                     InternalCoupler = (bool)chbInternalCoupler.IsChecked,
+                    CheckInternalCoupler = (bool)chbInternalCoupler.IsChecked,
                     Kdp = (bool)chbKdp.IsChecked,
+                    CheckKdp = (bool)chbKdp.IsChecked,
                     Kdu = (bool)chbKdu.IsChecked,
+                    CheckKdu = (bool)chbKdu.IsChecked,
                     Prepost = (bool)chbPrepost.IsChecked,
+                    CheckPrepost = (bool)chbPrepost.IsChecked,
                     RfCoupler = (bool)chbRfCoupler.IsChecked,
-                    System = (bool)chbSystem.IsChecked
+                    CheckRfCoupler = (bool)chbRfCoupler.IsChecked,
+                    System = (bool)chbSystem.IsChecked,
+                    CheckSystem = (bool)chbSystem.IsChecked,
                 };
             }
 
             test.VswrFrequency = (bool)chbVswr.IsChecked ? tbVswrFrequency.Value : "";
+            test.CheckVswrFrequency = (bool)chbVswr.IsChecked;
             test.Battery = (bool)chbBattery.IsChecked;
+            test.CheckBattery = (bool)chbBattery.IsChecked;
             test.Temp = (bool)chbTemp.IsChecked;
+            test.CheckTemp = (bool)chbTemp.IsChecked;
             return test;
         }
     }

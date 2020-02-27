@@ -48,6 +48,15 @@ namespace HarrisAdmin.Pages
         {
             LessonParametersSet.LessonParameters.Types.Option.Types.Radio radio = new LessonParametersSet.LessonParameters.Types.Option.Types.Radio();
 
+            radio.CheckBfo = (bool)this.checkedBfo.IsChecked;
+            radio.CheckInternalCoupler = (bool)this.checkedInternalCoupler.IsChecked;
+            radio.CheckRadioLock = (bool)this.checkedRadioLock.IsChecked;
+            radio.CheckRadioSilence = (bool)this.checkedRadioSilence.IsChecked;
+            radio.CheckRxNoiceBlanking = (bool)this.checkedNoiceBlanking.IsChecked;
+            radio.CheckSquelchLevel = (bool)this.checkedNoiceBlanking.IsChecked;
+            radio.CheckTxPowerLevel = (bool)this.checkedPowerLevel.IsChecked;
+
+
             if ((bool)this.checkedBfo.IsChecked)
             {
                 radio.Bfo = this.cbBfo.Text;

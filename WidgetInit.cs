@@ -8540,7 +8540,6 @@ namespace Harris7800HMP
         }
         public static Widget InitProgramModePresetChannelMenu(RadioStation station)
         {
-
             var programMenu = new Widget(GetNameMenu(MenuNames.ProgramModePresetChannelMenu));
 
             programMenu.LineSize[0] = 7;
@@ -8561,7 +8560,7 @@ namespace Harris7800HMP
                 cParam.text = cParam.Text.Insert(cParam.ActiveFrom, text);
 
             }, "000", 3, 15));
-            programMenu.AddParam(new Param("Info", null, "ENT TO SAVE - CLR TO EXIT", 4, 15));
+            programMenu.AddParam(new Param("Info", null, "ENT TO SAVE - CLR TO EXIT", 4, 10));
 
             programMenu.GetParam("KeyValue").IsActive = true;
             programMenu.GetParam("KeyValue").Y = Helper.CalcCenterIndent(programMenu.GetParam("KeyValue").Text.Length, 25);
@@ -8585,7 +8584,6 @@ namespace Harris7800HMP
             var maximumBandwidth = new WidgetTextParams("MAXIMUM BANDWIDTH");
             maximumBandwidth.AddParam("3 KHZ").AddParam("24 KHZ").AddParam("21 KHZ").AddParam("18 KHZ").AddParam("15 KHZ").AddParam("12 KHZ").AddParam("9 KHZ").AddParam("6 KHZ");
 
-
             var radioParams = new List<WidgetTextParams>
             {
                 channelNumberTp,
@@ -8598,7 +8596,6 @@ namespace Harris7800HMP
                 enableSsbScan,
                 maximumBandwidth
             };
-
 
             programMenu.AddActionToParam(programMenu.GetParam("KeyValue"), new Button("DOWN", (Button btn, RadioStation rs, Widget wdg) =>
             {
@@ -8959,6 +8956,25 @@ namespace Harris7800HMP
                 if (titleParam.Text == "CHANNEL NUMBER")
                 {
                     programMenu.GetParam("KeyTitleCont").IsVisible = true;
+
+                    StationChannel channel = new StationChannel
+                    {
+                        enableSsbScan = enableSsbScan.CurrParam() == "YES",
+                        hailKey = hailKeyPt.CurrParam(),
+                        maxBandwidth = maximumBandwidth.CurrParam(),
+                        mode = rxOnlyPt.CurrParam() == "YES",
+                        modulation = modulationPt.CurrParam(),
+                        number = channelNumberTp.CurrParam(),
+                        rxFrequency = rxFrequencyPt.CurrParam(),
+                        txFrequency = txFrequencyPt.CurrParam()
+                    };
+
+                    var protoChannels = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Mode.Preset.Channels;
+                    foreach(var item in protoChannels)
+                    {
+                        if (item.Num == channel.number) protoChannels.Remove(item);
+                    }
+                    protoChannels.Add(channel.SerializeToProtobuf());
                 }
                 else
                 {
@@ -8974,7 +8990,7 @@ namespace Harris7800HMP
                 wdg.ShowPreviousWidget();
 
                 var activeParam = wdg.ActiveParam();
-                var titleParam = wdg.GetParam("KeyValue");
+                var titleParam = wdg.GetParam("KeyTitle");
 
                 activeParam.Text = radioParams[0].CurrParam();
                 titleParam.Text = radioParams[0].Name;
@@ -9425,7 +9441,19 @@ namespace Harris7800HMP
                     var presetNameParam = radioParams.Find(p => p.Name == "MODEM PRESET");
                     presetNameParam.Parameters[presetNameParam.CurrIndex] = radioParams.Find(p => p.Name == "PRESET NAME").CurrParam();
                     var newModem = StationPresetModemModule.Parse(radioParams);
-                    station.UpdatePresetModem(newModem, oldPresetName);
+
+                    newModem = station.UpdatePresetModem(newModem, oldPresetName);
+
+                    var protobufModems = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Mode.Preset.Modems;
+                    foreach( var item in protobufModems)
+                    {
+                        if (item.OriginalName == newModem.originalName) 
+                        { 
+                            protobufModems.Remove(item);
+                            break;
+                        }
+                    }
+                    protobufModems.Add(newModem.SerializeToProtobuf());
                 }
 
                 var nextIndex = radioParams.IndexOf(radioParams.Find(p => p.Name == paramTitle)) + 1;
@@ -9494,7 +9522,7 @@ namespace Harris7800HMP
                 cParam.text = cParam.Text.Insert(cParam.ActiveFrom, text);
 
             }, "SYSPRE01", 3, 10));
-            programMenu.AddParam(new Param("Info", null, "ENT TO SAVE - CLR TO EXIT", 4, 15));
+            programMenu.AddParam(new Param("Info", null, "ENT TO SAVE - CLR TO EXIT", 4, 10));
 
             programMenu.GetParam("KeyValue").IsActive = true;
 
@@ -9526,6 +9554,7 @@ namespace Harris7800HMP
             var enableTp = new WidgetTextParams("ENABLE");
             enableTp.AddParam("YES").AddParam("NO");
 
+            programMenu.GetParam("KeyTitle").Y = Helper.CalcCenterIndent(programMenu.GetParam("KeyTitle").Text.Length, 25);
 
             var radioParams = new List<WidgetTextParams>
             {
@@ -9967,7 +9996,17 @@ namespace Harris7800HMP
                 {
                     var presetNameParam = radioParams.Find(p => p.Name == "SYSTEM PRESET");
                     presetNameParam.Parameters[presetNameParam.CurrIndex] = radioParams.Find(p => p.Name == "PRESET NAME").CurrParam();
-                    station.AddPresetSystem(radioParams, oldPresetName);
+                    var newStationPreset = station.AddPresetSystem(radioParams, oldPresetName);
+                    var protoSystems = WpfHarris78.Src.Checker.LessonParametersHolder.Holder.Parameters.Program.Mode.Preset.Systems;
+                    foreach(var sys in protoSystems.ToArray())
+                    {
+                        if (sys.Name == newStationPreset.name)
+                        {
+                            protoSystems.Remove(sys);
+                            break;
+                        }
+                    }
+                    protoSystems.Add(newStationPreset.SerializeToProtobuf());
                 }
 
                 if (titleParam.Text == "ENCRYPTION TYPE")
@@ -10026,7 +10065,8 @@ namespace Harris7800HMP
                 activeParam.Text = presetNameTp.CurrParam();
                 titleParam.Text = presetNameTp.Name;
                 activeParam.Y = Helper.CalcCenterIndent(activeParam.Text.Length, 25);
-                titleParam.Y = Helper.CalcCenterIndent(titleParam.Text.Length, 25);
+                titleParam.Y = 10; 
+                programMenu.GetParam("KeyTitleCont").IsVisible = true;
             }));
 
             return programMenu;

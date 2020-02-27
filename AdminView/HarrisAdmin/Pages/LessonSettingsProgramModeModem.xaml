@@ -1,0 +1,89 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HarrisAdmin.Pages"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="HarrisAdmin.Pages.LessonSettingsProgramModeModem"
+      mc:Ignorable="d" 
+      Width="531"
+      Height="335"
+      Title="LessonSettingsProgramModeModem">
+
+    <Grid>
+        <ListBox x:Name="lbModems" HorizontalAlignment="Left" Height="315" Margin="10,10,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="lbModems_SelectionChanged"/>
+        <GroupBox x:Name="gbModem" Header="" HorizontalAlignment="Left" Height="325" Margin="170,0,0,0" VerticalAlignment="Top" Width="351">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="36,10,0,0" TextWrapping="Wrap" Text="Ім'я:" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbModemType" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" 
+                          Checked="chb_Checked" 
+                          Unchecked="chb_Unchecked"
+                          IsChecked="False"/>
+                <ComboBox x:Name="cbModemType" SelectionChanged="cbModemType_SelectionChanged" HorizontalAlignment="Left" Margin="105,39,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="MIL110B" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="SERIAL" HorizontalAlignment="Left" Width="118" />
+                    <ComboBoxItem Content="STANAG-4285-C" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="STANAG-4285-U" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="WBFSK" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="XDL" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="ARQ" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="WBHF" HorizontalAlignment="Left" Width="118" />
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,76,0,0" TextWrapping="Wrap" Text="Data rate" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbDataRate" IsChecked="False" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <ComboBox x:Name="cbDataRate" SelectionChanged="cbDataRate_SelectionChanged"  HorizontalAlignment="Left" Margin="105,72,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="75" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="150" HorizontalAlignment="Left" Width="118" />
+                    <ComboBoxItem Content="300" HorizontalAlignment="Left" Width="118" />
+                    <ComboBoxItem Content="600" HorizontalAlignment="Left" Width="118" />
+                    <ComboBoxItem Content="1200" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="2400" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="4800" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,43,0,0" TextWrapping="Wrap" Text="Modem type" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="31,108,0,0" TextWrapping="Wrap" Text="Mode" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbMode" IsChecked="False" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <ComboBox x:Name="cbMode" SelectionChanged="cbMode_SelectionChanged"  HorizontalAlignment="Left" Margin="105,104,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="SYNC" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="ASYNC" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap" Text="Data bits" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbDataBits" IsChecked="False" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <ComboBox x:Name="cbDataBits" SelectionChanged="cbDataBits_SelectionChanged"  HorizontalAlignment="Left" Margin="105,137,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="7" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="8" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,173,0,0" TextWrapping="Wrap" Text="Stop bits" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbStopBits" IsChecked="False" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <ComboBox x:Name="cbStopBits" SelectionChanged="cbStopBits_SelectionChanged"  HorizontalAlignment="Left" Margin="105,169,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,205,0,0" TextWrapping="Wrap" Text="Parity" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbParity" IsChecked="False" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <ComboBox x:Name="cbParity" SelectionChanged="cbParity_SelectionChanged" HorizontalAlignment="Left" Margin="105,201,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="MARK" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+                    <ComboBoxItem Content="SPACE" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="NONE" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="EVEN" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="ODD" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="31,235,0,0" TextWrapping="Wrap" Text="Enable" VerticalAlignment="Top"/>
+                <CheckBox x:Name="chbEnableCheck" IsChecked="False" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"  Checked="chb_Checked" Unchecked="chb_Unchecked"/>
+                <CheckBox x:Name="chbEnable" Checked="chbEnable_Checked" Unchecked="chbEnable_Checked" Content="NO" HorizontalAlignment="Left" Margin="104,235,0,0" VerticalAlignment="Top"/>
+
+                <syncfusion:SfMaskedEdit Name="maskedEditName" HorizontalAlignment="Left" Height="23" Margin="104,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                                         TextChanged="maskedEditName_TextChanged"
+                                         MaskType="Regular"
+                                         Mask="[0-9A-Za-z]{5}"
+                                         PromptChar="_"/>
+                <CheckBox x:Name="chbName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" 
+                    Checked="chb_Checked" 
+                    Unchecked="chb_Unchecked"
+                    IsChecked="False"/>
+
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Page>

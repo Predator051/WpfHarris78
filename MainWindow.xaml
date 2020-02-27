@@ -7,7 +7,14 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         x:Class="WpfHarris78.MainWindow"
         mc:Ignorable="d"
-        Title="Harris RF-7800H-MP" Height="457.275" Width="841.57">
+        Title="Harris RF-7800H-MP" 
+        Height="457.275" 
+        Width="841.57"
+        MaxHeight="457.275"
+        MaxWidth="841.57"
+        MinHeight="457.275"
+        MinWidth="841.57"
+    >
     <Grid Margin="10,0,0,0" HorizontalAlignment="Left" Width="805" Height="426" VerticalAlignment="Bottom">
         <Grid.Background>
             <ImageBrush TileMode="FlipX" ImageSource="background-keys.png" Stretch="Uniform"/>

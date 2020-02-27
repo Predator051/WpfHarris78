@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using ProtobufKeyType = LessonParametersSet.LessonParameters.Types.Program.Types.Comsec.Types.Key.Types.KeyType;
 
 namespace Harris7800HMP
 {
@@ -172,6 +173,32 @@ namespace Harris7800HMP
             Citadel1,
             Aes256,
             Aes128
+        }
+
+        public static string Empty = "-------------------";
+
+        public static ProtobufKeyType KeyTypeToBrotobuf(KeyType type)
+        {
+            switch (type)
+            {
+                case KeyType.Citadel1:
+                    {
+                        return ProtobufKeyType.Citadel;
+                    }
+                case KeyType.Aes128:
+                    {
+                        return ProtobufKeyType.Aes128;
+                    }
+                case KeyType.Aes256:
+                    {
+                        return ProtobufKeyType.Aes256;
+                    }
+                case KeyType.None:
+                    {
+                        return ProtobufKeyType.None;
+                    }
+            }
+            return ProtobufKeyType.None;
         }
 
         public static string TypeToString(KeyType type)
@@ -365,6 +392,33 @@ namespace Harris7800HMP
         }
     }
 
+    public class StationChannel
+    {
+        public string number = "";
+        public string rxFrequency = "";
+        public string txFrequency = "";
+        public string modulation = "";
+        public bool mode = false;
+        public string hailKey = "";
+        public bool enableSsbScan = false;
+        public string maxBandwidth = "";
+
+        public LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel SerializeToProtobuf()
+        {
+            return new LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Channel()
+            {
+                Mode = mode,
+                EnableSsbScan = enableSsbScan,
+                HailKey = hailKey,
+                Modulation = modulation,
+                Num = number,
+                RxFrequency = rxFrequency,
+                TxFrequency = txFrequency,
+                MaxBandwidth = maxBandwidth,
+            };
+        }
+    }
+
     public class StationPresetModemModule
     {
         public string name;
@@ -377,6 +431,21 @@ namespace Harris7800HMP
         public string enable;
         public string originalName = "";
 
+        public LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem SerializeToProtobuf()
+        {
+            return new LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem()
+            {
+                Mode      = string.IsNullOrEmpty(mode) ? "" : mode,
+                DataBits  = string.IsNullOrEmpty(dataBits) ? "" : dataBits,
+                DataRate  = string.IsNullOrEmpty(dataRate) ? "" : dataRate,
+                Enable    = string.IsNullOrEmpty(enable) ? "" : enable,
+                ModemType = string.IsNullOrEmpty(modemType) ? "" : modemType,
+                Name      = string.IsNullOrEmpty(name) ? "" : name,
+                OriginalName = string.IsNullOrEmpty(originalName) ? "" : originalName,
+                Parity = string.IsNullOrEmpty(parity) ? "" : parity,
+                StopBits  = string.IsNullOrEmpty(stopBits) ? "" : stopBits
+            };
+        }
         public void ParseFromListWidgetTextParams(List<WidgetTextParams> textParams)
         {
             WidgetTextParams FindParam(string name)
@@ -417,6 +486,22 @@ namespace Harris7800HMP
         public string ptVoiceMode;
         public string ctVoiceMode;
         public string enable;
+
+        public LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System SerializeToProtobuf()
+        {
+            return new LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.System()
+            {
+                Name = String.IsNullOrEmpty(name) ? "" : name,
+                ChannelNumber = String.IsNullOrEmpty(channelNumber) ? "" : channelNumber,
+                CtVoiceMode = String.IsNullOrEmpty(ctVoiceMode) ? "" : ctVoiceMode,
+                Enable = String.IsNullOrEmpty(enable) ? "" : enable,
+                PtVoiceMode = String.IsNullOrEmpty(ptVoiceMode) ? "" : ptVoiceMode,
+                Key = key.Value != null ? key.Value.SerializeToProtobuf() : new LessonParameters.Types.Program.Types.Comsec.Types.Key() {
+                    Type = KeyModule.KeyTypeToBrotobuf(key.Key)
+                },
+                ModemPreset = modemPreset != null ? modemPreset.SerializeToProtobuf() : new LessonParameters.Types.Program.Types.Mode.Types.Preset.Types.Modem()
+            };
+        }
     }
 
     public class StationPresetSystemContainer
